@@ -1,3 +1,45 @@
+
+#our-testimonials .carousel-control-prev-icon{
+  display:none!important;
+}
+#our-testimonials .carousel-control-next-icon{
+  display:none!important;
+}
+
+.topBar .grid_list_search_result .right_area ul li:last-child .dropdown.bootstrap-select.show-tick, .grid_list_search_result .right_area ul li:last-child button.btn.dropdown-toggle {
+  width: 120px!important;
+  margin-left:10px;
+}
+.ngx-pagination .current{
+  background-color: #ff5a5f!important;
+  color: #fff;
+  border-radius: 5px!important;
+}
+.sidebar_advanced_search_widget .bootstrap-select .dropdown-toggle .filter-option-inner-inner{
+  color: #ff5a5f!important;
+}
+.sidebar_advanced_search_widget li .search_option_two .form-control{
+  width: 55%!important;
+}
+.sidebar_advanced_search_widget li .search_option_two label{
+  width: 45%!important;
+  color: #000;
+  padding: 0px 0px 0px 10px;
+}
+.sidebar_advanced_search_widget ul li .search_option_two{
+  box-shadow: 0 3px 10px 0px rgb(0 0 0 / 10%);
+}
+.ngx-pagination .pagination-previous{
+  color: #ff5a5f!important;
+  border-radius: 5px!important;
+}
+.ngx-pagination .pagination-next{
+  color: #ff5a5f!important;
+  border-radius: 5px!important;
+}
+.ngx-pagination .disabled {
+    cursor: no-drop!important;
+}
 @media(min-width: 993px) {
 	.main-menu {
 		display: block;

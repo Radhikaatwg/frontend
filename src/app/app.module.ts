@@ -54,6 +54,7 @@ import { UsercreatorComponent } from './usercreator/usercreator.component';
 import { AllusersComponent } from './allusers/allusers.component';
 import { LoancalcComponent } from './loancalc/loancalc.component';
 import { AdminloanComponent } from './adminloan/adminloan.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -109,6 +110,7 @@ import { AdminloanComponent } from './adminloan/adminloan.component';
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,

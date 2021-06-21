@@ -246,6 +246,36 @@ export class AuthService {
       city: data.city,
     }), httpOptions);
   }
+  product_Searching(data): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL + 'product/product_Searching', JSON.stringify({
+      build_name: data.build_name,
+      Location:data.Location,
+      area_unit:data.area_unit,
+      type: data.type,
+      Bathrooms: data.Bathrooms,
+      Bedrooms: data.Bedrooms,
+      availability_condition: data.availability_condition,
+      Years: data.Years,
+      Minimum:data.Minimum,
+      Maximum: data.Maximum,
+      property_status:data.property_status,
+    }),httpOptions);
+  }
+  product_SearchingLogin(data): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL + 'product/product_Searching_login', JSON.stringify({
+      build_name: data.build_name,
+      Location:data.Location,
+      area_unit:data.area_unit,
+      type: data.type,
+      Bathrooms: data.Bathrooms,
+      Bedrooms: data.Bedrooms,
+      availability_condition: data.availability_condition,
+      Years: data.Years,
+      Minimum:data.Minimum,
+      Maximum: data.Maximum,
+      property_status:data.property_status,
+    }),httpOptions);
+  }
 
   admin_loans(data): Observable<any> {
     return this.http.post(AUTH_API + 'admin/admin_loans', JSON.stringify({
@@ -319,6 +349,16 @@ export class AuthService {
     }), httpOptions);
   }
 
+  Wishlist(id): Observable<any> {
+    return this.http.post(AUTH_API + 'product/wishlist', JSON.stringify({
+      product_id: id,
+    }), httpOptions);
+  }
+  WishlistRemove(id): Observable<any> {
+    return this.http.post(AUTH_API + 'product/wishlistDelete', JSON.stringify({
+      product_id: id,
+    }), httpOptions);
+  }
   create_review(form, id): Observable<any> {
     return this.http.post(AUTH_API + 'product/post_review', JSON.stringify({
       product_id: id,
@@ -343,6 +383,10 @@ export class AuthService {
     return this.http.post(AUTH_API + 'product/product_review', JSON.stringify({
       id: id,
     }), httpOptions);
+  }
+  
+  getproductWishlist(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'product/get_product_wishlist', { responseType: 'json' });
   }
 
   lawyer_create_service(data): Observable<any> {

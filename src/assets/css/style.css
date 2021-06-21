@@ -1433,6 +1433,27 @@ header.header-nav.menu_style_home_one.style2 ul.ace-responsive-menu li.add_listi
   color: #ffffff;
   line-height: 1;
 }
+
+.loaderclass{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #ffffff;
+  top: 0px;
+  left: 0px;
+  z-index: 9999!important;
+}
+.preloader1 {
+  background-color: #ffffff;
+  background-image: url("././images/load.gif");
+  background-position: center center;
+  background-repeat: no-repeat;
+  height:50%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 99999; }
 header.header-nav.menu_style_home_one.style2.home10 ul.ace-responsive-menu li.add_listing.home2{
   border-radius: 8px;
   background-color: rgb(53, 71, 101);

@@ -11,6 +11,14 @@
             $("#preloader").hide();
         });
     }
+    function preloaderLoad1() {
+        if($('.preloader1').length){
+            $('.preloader').delay(200).fadeOut(300);
+        }
+        $(".preloader_disabler1").on('click', function() {
+            $("#preloader1").hide();
+        });
+    }
 
     /* ----- Navbar Scroll To Fixed ----- */
     function navbarScrollfixed() {
