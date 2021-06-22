@@ -37,6 +37,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 
@@ -78,6 +79,7 @@ const routes: Routes = [
   {path: 'loancalc', component: LoancalcComponent},
   {path: 'adminloan', component: AdminloanComponent},
   {path: 'testimonials', component: TestimonialsComponent},
+  {path: 'Wishlist', component: WishlistComponent},
   {path: '**', component: NotfoundComponent},
 
 ];

@@ -1,4 +1,16 @@
-
+/* iqbal css  */
+@media(min-width: 993px) {
+	.main-menu {
+		display: block;
+	}
+	.mobile-menu {
+		display: none;
+	}
+}
+.testimonial_grid .details p i{
+  font-size: 20px!important;
+    padding: 0px 5px;
+}
 #our-testimonials .carousel-control-prev-icon{
   display:none!important;
 }
@@ -40,14 +52,66 @@
 .ngx-pagination .disabled {
     cursor: no-drop!important;
 }
-@media(min-width: 993px) {
-	.main-menu {
-		display: block;
-	}
-	.mobile-menu {
-		display: none;
-	}
+/* .carousel-control-prev-icon{
+  display:none;
 }
+.carousel-control-next-icon{
+  display:none;
+} */
+/* .owl-prev{
+  display: none;
+}
+.owl-next{
+  display: none;
+} */
+.feat_property{
+  margin: 0px 8px;
+}
+.sidebar-menu {
+width:258px!important;
+}
+.owl-carousel .owl-stage:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+/* .owl-theme .owl-nav{
+  display:none;
+} */
+.carousel-indicators li{
+  background-color: #ffffff !important;
+  border: 5px solid rgb(92, 106, 124);
+  height: 6px;
+  width: 6px;
+  border-radius: 47%;
+  margin: 4px;
+}
+.wishlistValue{
+  background: #fff;
+  color:#000;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 30%);
+  font-size: 14px;
+  top: 30px;
+  position: absolute;
+  width: 20px;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+.flaticon-fa-gift{
+  cursor: pointer;
+  font-size: 20px!important;
+}
+
+@media(min-width: 768px) {
+  .home1_adsrchfrm{
+    width: 100%!important;
+  }
+}
+/* iqbal css 31 may */
 @media(max-width: 992px) {
   .our-dashbord.dashbord{margin-top: 0;}
 	.main-menu {

@@ -35,7 +35,7 @@
               <li class="last">
                   <a href="/testimonials"><span class="title">Testimonials</span></a>
               </li>
-                <li class="list-inline-item list_s"><a href="/login" class="btn flaticon-user" data-toggle="" data-target=".bd-example-modal-lg"> <span class="dn-lg"> Login/Register</span></a></li>
+                <li class="list-inline-item list_s" *ngIf="!isLoggedIn"><a href="/login" class="btn flaticon-user" data-toggle="" data-target=".bd-example-modal-lg"> <span class="dn-lg"> Login/Register</span></a></li>
                 <li class="user_setting" *ngIf="isLoggedIn" >
                   <div class="dropdown">
                             <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="flaticon-user"></span><span class="dn-1199"> {{ roles }}</span></a>
@@ -54,6 +54,10 @@
                       </div>
                   </div>
                     </li>
+                    <li _ngcontent-lol-c145="" class="list-inline-item" *ngIf="isLoggedIn"><a href="Wishlist" ><span _ngcontent-lol-c145="" class="flaticon-fa-gift"></span>
+                      <span class="wishlistValue">{{wishlistresult.length}}</span>
+                    </a></li>
+                
           </ul>
       </nav>
   </div>

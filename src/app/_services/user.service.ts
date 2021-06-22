@@ -1,7 +1,8 @@
 import { GlobalConstants } from './../global-constants';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from  'rxjs';
 
 
 
@@ -9,6 +10,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
+
+// topbar wishlist refresh functionalty start
+public _subject = new BehaviorSubject<any>('');
+emit<T>(data: T){
+  this._subject.next(data);
+}
+
+on<T>(): Observable<T>{
+   return this._subject.asObservable();
+}
+// topbar wishlist refresh functionalty end
 
   constructor(private http: HttpClient) { }
 
@@ -112,6 +124,21 @@ export class UserService {
 
   adminGetAdminReview(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + 'product/get_requ', { responseType: 'json' });
+  }
+  // iqbal function start
+  gettestimonialdata(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'product/testimonial', { responseType: 'json' });
+  }
+  getamenitiesdata():Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'amenities', { responseType: 'json' });
+  }
+
+  // wishlist data fetch
+  getwishlistdata():Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'product/wishlist', { responseType: 'json' });
+  }
+  wishlistcount():Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'product/wishlist', { responseType: 'json' });
   }
 
 

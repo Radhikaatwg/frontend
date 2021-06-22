@@ -54,7 +54,13 @@ import { UsercreatorComponent } from './usercreator/usercreator.component';
 import { AllusersComponent } from './allusers/allusers.component';
 import { LoancalcComponent } from './loancalc/loancalc.component';
 import { AdminloanComponent } from './adminloan/adminloan.component';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchleftbarComponent } from './searchleftbar/searchleftbar.component';
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -107,14 +113,20 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AllusersComponent,
     LoancalcComponent,
     AdminloanComponent,
+    WishlistComponent,
+    SearchleftbarComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     NgxPaginationModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgImageSliderModule,
+    CarouselModule,
+    NgbModule
   ],
   providers: [
     Title,

@@ -82,6 +82,7 @@ export class ProductListingComponent implements OnInit {
           // console.log(data.data[0]['0']);
           console.log(this.number);
           console.log(this.number[0]);
+          this.sendinformation();
         },
         err => {
           this.content = JSON.parse(err.error).message;
@@ -237,7 +238,7 @@ export class ProductListingComponent implements OnInit {
               if(this.Searchcontent){
                  this.showLoadingIndicator = false;
                  this.number = this.Searchcontent;
-              // console.log(this.number);
+                 this.sendinformation();
               }
               
             },
@@ -270,6 +271,11 @@ export class ProductListingComponent implements OnInit {
   
     }
 
+    // topbar searching functionalty
+
+    sendinformation(){
+      this.userService.emit<string>('true');
+   } 
 
 
 }

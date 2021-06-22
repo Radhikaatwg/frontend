@@ -51,7 +51,14 @@
 .flaticon-magnifying-glass:before { content: "\f11a"; }
 .flaticon-chat:before { content: "\f11b"; }
 .flaticon-box:before { content: "\f11c"; }
-.flaticon-user:before { content: "\f11d"; }
+.flaticon-user:before { content: "\f11d"; }.fa-gift:before {
+  content: "\f06b";
+  font-family: 'FontAwesome';
+}
+.flaticon-fa-gift:before { content: "\f06b";
+  font-family: 'FontAwesome'; }
+.flaticon-fa-heart:before { content: "\f004";
+    font-family: 'FontAwesome'; }
 .flaticon-logout:before { content: "\f11e"; }
 .flaticon-view:before { content: "\f11f"; }
 .flaticon-edit:before { content: "\f120"; }
