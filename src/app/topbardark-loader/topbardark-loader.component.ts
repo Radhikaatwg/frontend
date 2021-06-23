@@ -26,7 +26,8 @@ export class TopbardarkLoaderComponent implements OnInit {
     private userService: UserService,
     ) { }
 
-    ngOnInit(): void {this.userService.on<string>().subscribe(
+    ngOnInit(): void {
+      this.userService.on<string>().subscribe(
       (message: any) => {
         if(message=='true'){
           this.wishlistcount();

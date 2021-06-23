@@ -64,7 +64,7 @@ export class WishlistComponent implements OnInit {
           this.wishlistcontent = wishlistdata.data;
           this.wishlistresult = this.wishlistcontent;
           console.log(this.wishlistresult);
-          //console.log(this.content);
+          this.sendinformation();
         },
         err => {
           this.content = JSON.parse(err.error).message;
@@ -98,5 +98,9 @@ export class WishlistComponent implements OnInit {
       // this.myservice.setData(data);
       // this.router.navigate(["/productpage"])
     }
+    
+  sendinformation(){
+    this.userService.emit<string>('true');
+ } 
 
 }
