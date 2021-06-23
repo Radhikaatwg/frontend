@@ -197,15 +197,15 @@ export class ProductListingComponent implements OnInit {
       }
     }
 
-    console.log(this.first_prod+"|"+this.second_prod)
+    console.log(this.first_prod+"|"+this.second_prod+"|"+this.third_prod)
 
-    if (this.first_prod != null && this.second_prod != null){
+    if (this.first_prod != null && this.second_prod != null && this.third_prod != null){
 
       // alert("Added two property to compare list. (Only two properties can be compared at a time)")
 
       this.idservice.saveProdId(this.first_prod);
       this.idservice.saveCdata(this.second_prod)
-      // this.idservice.saveProd2Id(this.third_prod);
+      this.idservice.saveProd2Id(this.third_prod);
       window.location.href=GlobalConstants.siteURL+"compare"
     }
 

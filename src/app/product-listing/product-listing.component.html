@@ -678,7 +678,9 @@
                     <li class="list-inline-item"><a href="#"><img src="./../../assets/css/images/property/pposter1.png" alt="pposter1.png"></a></li>
                     <li class="list-inline-item"><a href="#">{{number.user_detail.name}}</a></li>
                   </ul>
-                  <div class="fp_pdate float-right">4 years ago</div>
+                  <div class="fp_pdate float-right">
+                    <a><button type="button" (click)="onComp(number.id)" class="btn btn-log btn-block btn-thm bg-white text-black-50">Add to compare</button></a>
+                  </div>           
                 </div>
               </div>
             </div>
