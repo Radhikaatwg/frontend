@@ -19,7 +19,7 @@
 @import       './assets/css/simplebar.min.css';
 @import       './assets/css/slider.css';
 @import       './assets/css/style.css';
-@import       './assets/css/timecounter.css'
+@import       './assets/css/timecounter.css';
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

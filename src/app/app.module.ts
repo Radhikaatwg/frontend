@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Title } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';									import { EditorModule } from '@tinymce/tinymce-angular';					import { EscapeHtmlPipe } from './render-html.pipe';					   
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,6 +62,20 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchleftbarComponent } from './searchleftbar/searchleftbar.component';
+import { AdminBlogComponent } from './admin-blog/admin-blog.component';
+import { AdminBlogSinglePostComponent } from './admin-blog-single-post/admin-blog-single-post.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogCatPropertyComponent } from './blog-cat-property/blog-cat-property.component';
+import { BlogCreatePostComponent } from './blog-create-post/blog-create-post.component';
+import { BlogDeletePostComponent } from './blog-delete-post/blog-delete-post.component';
+import { BlogFeaturedListComponent } from './blog-featured-list/blog-featured-list.component';
+import { BlogSearchComponent } from './blog-search/blog-search.component';
+import { BlogSinglePostComponent } from './blog-single-post/blog-single-post.component';
+import { BlogTagsComponent } from './blog-tags/blog-tags.component';
+import { RouterModule } from '@angular/router';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+import { TruncateTextPipe } from './truncate-text.pipe';
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -115,14 +130,30 @@ import { SearchleftbarComponent } from './searchleftbar/searchleftbar.component'
     AdminloanComponent,
     WishlistComponent,
     SearchleftbarComponent,
+    AdminBlogComponent,
+    AdminBlogSinglePostComponent,
+    BlogComponent,
+    BlogCatPropertyComponent,
+    BlogCreatePostComponent,
+    BlogDeletePostComponent,
+    BlogFeaturedListComponent,
+    BlogSearchComponent,
+    BlogSinglePostComponent,
+    BlogTagsComponent,
+    ConfirmationDialogComponent,
+    EscapeHtmlPipe,
+    TruncateTextPipe,
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+	EditorModule,
     NgxPaginationModule,
     AppRoutingModule,
     HttpClientModule,
+	RouterModule,			 
     FormsModule,
+	ToastrModule.forRoot(),				 
     ReactiveFormsModule,
     NgImageSliderModule,
     CarouselModule,
@@ -130,6 +161,7 @@ import { SearchleftbarComponent } from './searchleftbar/searchleftbar.component'
   ],
   providers: [
     Title,
+	ConfirmationDialogService,			   
     ProductService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
