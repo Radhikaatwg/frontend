@@ -4,7 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Title } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';									import { EditorModule } from '@tinymce/tinymce-angular';					import { EscapeHtmlPipe } from './render-html.pipe';					   
+import { ToastrModule } from 'ngx-toastr';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { EscapeHtmlPipe } from './render-html.pipe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -76,6 +78,7 @@ import { RouterModule } from '@angular/router';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { TruncateTextPipe } from './truncate-text.pipe';
+import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -93,7 +96,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     BoardAgentComponent,
     BoardCompanyComponent,
     BoardUserComponent,
-//    FileUploadModule,
+    //    FileUploadModule,
     UserloginComponent,
     UserregisterComponent,
     ProfileComponent,
@@ -143,17 +146,18 @@ import { TruncateTextPipe } from './truncate-text.pipe';
     ConfirmationDialogComponent,
     EscapeHtmlPipe,
     TruncateTextPipe,
+    ArticlesTipsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-	EditorModule,
+    EditorModule,
     NgxPaginationModule,
     AppRoutingModule,
     HttpClientModule,
-	RouterModule,			 
+    RouterModule,
     FormsModule,
-	ToastrModule.forRoot(),				 
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
     NgImageSliderModule,
     CarouselModule,
@@ -161,7 +165,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
   ],
   providers: [
     Title,
-	ConfirmationDialogService,			   
+    ConfirmationDialogService,
     ProductService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

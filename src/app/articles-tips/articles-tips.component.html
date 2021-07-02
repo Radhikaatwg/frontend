@@ -1,0 +1,34 @@
+<section class="our-blog bgc-f7 pb30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="main-title text-center">
+                    <h2>Articles & Tips</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-4" *ngFor="let post of response">
+                <div class="for_blog feat_property">
+                    <div class="thumb">
+                        <a [routerLink]="['/blog-single-post', post.slug]"><img class="img-whp" src="{{ images_folder }}/images/{{ post.image_path }}" alt="bh1.jpg"></a>
+                    </div>
+                    <div class="details">
+                        <div class="tc_content">
+                            <p class="text-thm">{{ post.category }}</p>
+                            <h4>{{ post.title }}</h4>
+                        </div>
+                        <div class="fp_footer">
+                            <ul class="fp_meta float-left mb0">
+                                <li class="list-inline-item"><a href="#"><img src="{{ images_folder }}/{{ post.profile_pic }}" alt="pposter1.png"></a></li>
+                                <li class="list-inline-item"><a href="#">{{ post.name }}</a></li>
+                            </ul>
+                            <a class="fp_pdate float-right" href="#">{{ post.updated_at | date: 'dd MMMM yyyy' }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

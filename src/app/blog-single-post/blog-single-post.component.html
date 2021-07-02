@@ -18,19 +18,24 @@
         <section class="blog_post_container bgc-f7 pb30">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6">
-                        <div class="breadcrumb_content style2">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active text-thm" aria-current="page">Blog – {{
-                                    post_detail[0].title }}</li>
-                            </ol>
-                            <h2 class="breadcrumb_title">Blog</h2>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <div class="breadcrumb_content style2">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active text-thm" aria-current="page">Blog – {{
+                                            post_detail[0].title }}</li>
+                                    </ol>
+                                    <h2 class="breadcrumb_title">Blog</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-xl-6 col-md-6 col-sm-6 col-6 text-right">
+                                <a [routerLink]="['/blog']" class="fp_pdate text-thm"><span
+                                        class="flaticon-left-arrow"></span>
+                                    Back to Blog</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-6">
-                        <a [routerLink]="['/blog']" class="fp_pdate text-thm"><span class="flaticon-left-arrow"></span>
-                            Back to Blog</a>
                     </div>
                 </div>
                 <div class="row">
@@ -78,7 +83,8 @@
                                 </div>
                                 <div class="details">
                                     <!--<p class="mb30">{{ post_detail[0].description }}</p> -->
-                                    <div class="mb30 text-justify" [innerHTML]="post_detail[0].description | safe: 'html'"></div>
+                                    <div class="mb30 text-justify"
+                                        [innerHTML]="post_detail[0].description | safe: 'html'"></div>
                                     <!--<p class="mb30"></p>
                                     <h4 class="mb15"></h4>
                                     <p></p>
