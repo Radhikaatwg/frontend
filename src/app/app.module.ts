@@ -157,7 +157,7 @@ import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
     HttpClientModule,
     RouterModule,
     FormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({timeOut:1500,progressBar:true}),
     ReactiveFormsModule,
     NgImageSliderModule,
     CarouselModule,

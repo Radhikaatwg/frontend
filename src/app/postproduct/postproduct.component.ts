@@ -5,12 +5,14 @@ import { AuthService } from './../_services/auth.service';
 import { TokenStorageService } from './../_services/token-storage.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-postproduct',
   templateUrl: './postproduct.component.html',
   styleUrls: ['./postproduct.component.css']
 })
 export class PostproductComponent implements OnInit {
+  [x: string]: any;
 
 
   form: any = {};
@@ -40,18 +42,57 @@ export class PostproductComponent implements OnInit {
   content: any = {};
 
   err_caused:boolean = false;
+  selectedItems:string[];
 
   image1;
   image2;
   image3;
   image4;
   image5;
-
+  
+  amenitiesresult: () => void;
+  errorMessage1: any;
+  build_name: any;
+  type: any;
+  address: any;
+  city: any;
+  locality: any;
+  property_detail: any;
+  nearest_landmark: any;
+  map_latitude: any;
+  map_longitude: any;
+  display_address: any;
+  area: any;
+  area_unit: any;
+  carpet_area: any;
+  bedroom: any;
+  bathroom: any;
+  balconies: any;
+  additional_rooms: any;
+  furnishing_status: any;
+  furnishings: any;
+  total_floors: any;
+  property_on_floor: any;
+  rera_registration_status: any;
+  additional_parking_status: any;
+  expected_pricing: any;
+  possession_by: any;
+  tax_govt_charge: any;
+  price_negotiable: any;
+  facing_towards: any;
+  availability_condition: any;
+  buildyear: any;
+  age_of_property: any;
+  description: any;
+  nearby_places: any;
+  equipment: any;
+  features: any;
 
   constructor(
     private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
+    private toastr: ToastrService,
     private userService: UserService
     ) { }
 
@@ -61,6 +102,7 @@ export class PostproductComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.amenities();
     this.titleService.setTitle('Create Listing');
     // Login check
     if(this.tokenStorage.getUser() != null){
@@ -81,6 +123,7 @@ export class PostproductComponent implements OnInit {
     else{
       this.isLoggedIn = false ;
     }
+    this.selectedItems = new Array<string>();
   }
 
   redirect_to_home(): void {
@@ -99,6 +142,35 @@ export class PostproductComponent implements OnInit {
       this.furnish = false;
     }
   }
+  amenities(): void{
+    this.userService.getamenitiesdata().pipe().subscribe(
+      (amenitiesdata: any) => {
+        //  console.log(amenitiesdata);
+        this.amenities = amenitiesdata.data;
+        this.amenitiesresult = this.amenities;
+        console.log(this.amenitiesresult);
+        //console.log(this.content);
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  onchangeAmenties(e:any,id:string){
+    if(e.target.checked){
+      console.log(id + 'Checked');
+      this.selectedItems.push(id);
+    }else{
+      
+      console.log(id + 'UNChecked');
+      this.selectedItems= this.selectedItems.filter(m=>m!=id);
+    }
+    this.amenityArray=this.selectedItems;
+   console.log(this.amenityArray);
+
+  }
+
 
 
   onChange(UpdatedValue : string) :void
@@ -242,13 +314,18 @@ z
     console.log(this.form)
     this.authService.product_insert_sale(this.form, this.content.id, this.amenityArray, this.furnishingArray, this.image1, this.image2, this.image3, this.image4, this.image5).subscribe(
       data => {
-        console.log(data)
+        console.log(data);
+        this.toastr.success('Successfuly Saved', 'Property');
         window.location.href=GlobalConstants.siteURL+"myproperties"
       },
       err => {
         this.err_caused = true;
         this.errorMessage = err.error.errors;
+        this.errorMessage1 = err.error.message;
         console.log(this.errorMessage);
+        this.toastr.error(this.errorMessage1, 'Something Error', {
+          timeOut: 3000,
+        });
       }
     );
   }
