@@ -5,6 +5,7 @@ import { TokenStorageService } from './../_services/token-storage.service';
 import { AuthService } from './../_services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-postproductrent',
@@ -38,6 +39,7 @@ export class PostproductrentComponent implements OnInit {
   text : string;
 
   err_caused: boolean = false;
+  selectedItems:string[];
 
   content: any = {};
 
@@ -46,12 +48,62 @@ export class PostproductrentComponent implements OnInit {
   image3;
   image4;
   image5;
+  amenitiesresult: () => void;
+  errorMessage1: any;
+  build_name: any;
+  type: any;
+  willing_to_rent_out_to:any;
+  agreement_type:any;
+  address: any;
+  city: any;
+  locality: any;
+  property_detail: any;
+  nearest_landmark: any;
+  map_latitude: any;
+  map_longitude: any;
+  display_address: any;
+  area: any;
+  area_unit: any;
+  carpet_area: any;
+  bedroom: any;
+  bathroom: any;
+  balconies: any;
+  additional_rooms: any;
+  furnishing_status: any;
+  furnishings: any;
+  total_floors: any;
+  property_on_floor: any;
+  rera_registration_status: any;
+  additional_parking_status: any;
+  parking_covered_count:any;
+  expected_pricing: any;
+  possession_by: any;
+  tax_govt_charge: any;
+  price_negotiable: any;
+  facing_towards: any;
+  availability_condition: any;
+  buildyear: any;
+  age_of_property: any;
+  expected_rent:any;
+  description: any;
+  inc_electricity_and_water_bill:any;
+  month_of_notice:any;
+  duration_of_rent_aggreement:any;
+  security_deposit:any;
+  rent_availability:any;
+  rent_cond:any;
+  ownership:any;
+  available_for:any;
+  nearby_places: any;
+  equipment: any;
+  features: any;
 
 
   constructor(
     private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
+    private toastr: ToastrService,
     private userService: UserService
     ) { }
 
@@ -61,6 +113,7 @@ export class PostproductrentComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.amenities();
     this.titleService.setTitle('Create Listing');
 
     // Login check
@@ -83,6 +136,7 @@ export class PostproductrentComponent implements OnInit {
     else{
       this.isLoggedIn = false ;
     }
+    this.selectedItems = new Array<string>();
   }
 
   redirect_to_home(): void {
@@ -114,6 +168,19 @@ export class PostproductrentComponent implements OnInit {
     this.amenityArray.push(event);
 
       console.log(this.amenityArray);
+  }
+  onchangeAmenties(e:any,id:string){
+    if(e.target.checked){
+      console.log(id + 'Checked');
+      this.selectedItems.push(id);
+    }else{
+      
+      console.log(id + 'UNChecked');
+      this.selectedItems= this.selectedItems.filter(m=>m!=id);
+    }
+    this.amenityArray=this.selectedItems;
+   console.log(this.amenityArray);
+
   }
 
   furnishing(event): void{
@@ -239,16 +306,37 @@ z
     }
   }
 
+  
+  amenities(): void{
+    this.userService.getamenitiesdata().pipe().subscribe(
+      (amenitiesdata: any) => {
+        //  console.log(amenitiesdata);
+        this.amenities = amenitiesdata.data;
+        this.amenitiesresult = this.amenities;
+        console.log(this.amenitiesresult);
+        //console.log(this.content);
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
+  }
+
   onSubmitRent(): void {
     this.authService.product_insert_rent(this.form, this.content, this.amenityArray, this.furnishingArray, this.image1, this.image2, this.image3, this.image4, this.image5).subscribe(
       data => {
         console.log("successful" + data)
+        this.toastr.success('Successfuly Saved', 'Property');
         window.location.href=GlobalConstants.siteURL+"myproperties"
       },
       err => {
         this.err_caused = true;
         this.errorMessage = err.error.errors;
-        console.log(err)
+        this.errorMessage1 = err.error.message;
+        console.log(this.errorMessage);
+        this.toastr.error(this.errorMessage1, 'Something Error', {
+          timeOut: 3000,
+        });
       }
     );
   }
