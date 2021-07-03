@@ -254,40 +254,42 @@
                         <div class="text-center" id="errorId" *ngIf="errorMessage.balconies"><p class="alert alert-danger" >{{errorMessage.balconies}}</p></div>
 										</div>
 									</div>
-									<div class="col-lg-12 col-xl-12">
+                  <div class="row">
+									<div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Additional Rooms</label>
 									    	<input type="number" class="form-control" name="additional_rooms" #additional_rooms="ngModel" [(ngModel)]="form.additional_rooms" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.additional_rooms"><p class="alert alert-danger" >{{errorMessage.additional_rooms}}</p></div>
 										</div>
                   </div>
-									<div class="col-lg-12 col-xl-12">
+									<div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Equipment</label>
 									    	<input type="text" class="form-control" name="equipment" #equipment="ngModel" [(ngModel)]="form.equipment" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.equipment"><p class="alert alert-danger" >{{errorMessage.equipment}}</p></div>
 										</div>
                   </div>
-									<div class="col-lg-12 col-xl-12">
+									<div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Features</label>
 									    	<input type="text" class="form-control" name="features" #features="ngModel" [(ngModel)]="form.features" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.features"><p class="alert alert-danger" >{{errorMessage.features}}</p></div>
 										</div>
                   </div>
-									<div class="col-lg-12 col-xl-12">
+									<div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Nearby Places</label>
 									    	<input type="text" class="form-control" name="nearby_places" #nearby_places="ngModel" [(ngModel)]="form.nearby_places" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.nearby_places"><p class="alert alert-danger" >{{errorMessage.nearby_places}}</p></div>
 										</div>
                   </div>
-									<div class="col-lg-12 col-xl-12">
+									<div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Age of Property</label>
 									    	<input type="number" class="form-control" name="age_of_property" #age_of_property="ngModel" [(ngModel)]="form.age_of_property" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.age_of_property"><p class="alert alert-danger" >{{errorMessage.age_of_property}}</p></div>
 										</div>
+                  </div>
                   </div>
 
 
@@ -460,14 +462,14 @@
 									<div class="col-lg-12">
 										<h4 class="mb30">Parking</h4>
 									</div>
-                  <div class="col-lg-12 col-xl-12">
+                  <div class="col-lg-6 col-xl-6 col-12">
                     <div class="my_profile_setting_input form-group">
                         <label>Conered Parking</label>
                         <input type="number" class="form-control" name="parking_covered_count" #parking_covered_count="ngModel" [(ngModel)]="form.parking_covered_count" id="parking_covered">
                         <!-- <div class="text-center" id="errorId" *ngIf="err_caused"><p class="alert alert-danger" >{{errorMessage.parking_covered_count}}</p></div> -->
                     </div>
                   </div>
-                  <div class="col-lg-12 col-xl-12">
+                  <div class="col-lg-6 col-xl-6 col-12">
                     <div class="my_profile_setting_input form-group">
                         <label>Open Parking</label>
                         <input type="number" class="form-control" name="parking_open_count" #parking_open_count="ngModel" [(ngModel)]="form.parking_open_count" id="parking_covered">
@@ -487,14 +489,6 @@
                     <div class="col-sm-10 float-left"><input type="text" class="form-control" (change)="furnishing($event.target.value)" id="amenities"></div>
                     <div class="col-lg-2 float-right"><button type="button" class="btn btn-thm2 float-right" >Add</button></div>
                   </div>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
                   <div class="col-xl-6 col-lg-6">
                     <ul class="order_list list-inline-item" >
                       <li *ngFor="let items of furnishingArray"><a href="#"><span class="flaticon-tick"></span>{{ items }}</a></li>
@@ -510,7 +504,7 @@
 									<div class="col-lg-12">
 										<h4 class="mb30">Property Pricing</h4>
 									</div>
-                  <div class="col-lg-6 col-xl-12">
+                  <div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input ui_kit_select_search form-group">
 									    	<label>Ownership</label>
                         <select class="form-control selectpicker" name="ownership" #ownership="ngModel" [(ngModel)]="form.ownership" name="type" required data-live-search="true" data-width="100%">
@@ -524,8 +518,6 @@
                     </div>
 
 										</div>
-                  </div>
-                  <div class="row">
                   <div class="col-lg-6 col-xl-6">
                     <div class="my_profile_setting_input form-group">
                         <label for="locality">Expected Price</label>
@@ -554,8 +546,7 @@
                         <!-- <div class="text-center" id="errorId" *ngIf="err_caused"><p class="alert alert-danger" >{{errorMessage.brokerage_charges}}</p></div> -->
                     </div>
                   </div>
-                 </div>
-                  <div class="col-lg-6 col-xl-12">
+                  <div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input ui_kit_select_search form-group">
 									    	<label>Is Tax and Govt. Charges Included?</label>
                         <select class="form-control selectpicker" name="tax_govt_charge" #tax_govt_charge="ngModel" [(ngModel)]="form.tax_govt_charge"  required data-live-search="true" data-width="100%">
@@ -566,7 +557,7 @@
                         <div class="text-center" id="errorId" *ngIf="errorMessage.tax_govt_charge"><p class="alert alert-danger" >{{errorMessage.tax_govt_charge}}</p></div>
 										</div>
                   </div>
-                  <div class="col-lg-6 col-xl-12">
+                  <div class="col-lg-6 col-xl-6 col-12">
 										<div class="my_profile_setting_input ui_kit_select_search form-group">
 									    	<label>Is Price Negotiable?</label>
                         <select class="form-control selectpicker" name="price_negotiable" #price_negotiable="ngModel" [(ngModel)]="form.price_negotiable" required data-live-search="true" data-width="100%">
@@ -577,7 +568,7 @@
                         <div class="text-center" id="errorId" *ngIf="errorMessage.price_negotiable"><p class="alert alert-danger" >{{errorMessage.price_negotiable}}</p></div>
 										</div>
                   </div>
-                  <div class="col-lg-12 col-xl-12">
+                  <div class="col-lg-6 col-xl-6 col-12">
                     <div class="my_profile_setting_input ui_kit_select_search form-group">
                       <label>Is Maintenance Charge Included?</label>
                       <select class="form-control selectpicker" (change)="maintenanceStatus($event.target.value)" name="maintenance_charge_status" #maintenance_charge_status="ngModel" [(ngModel)]="form.maintenance_charge_status" required data-live-search="true" data-width="100%">
@@ -586,6 +577,7 @@
                         </select>
                         <!-- <div class="text-center" id="errorId" *ngIf="err_caused"><p class="alert alert-danger" >{{errorMessage.maintenance_charge_status}}</p></div> -->
                       </div>
+                  </div>
                   </div>
 								</div>
 

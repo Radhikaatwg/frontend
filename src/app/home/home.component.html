@@ -70,12 +70,27 @@
 													  <div class=" form-group candidate_revew_select">
 														  <select class="selectpicker w100 show-tick form-control" name="type"  [(ngModel)]="form.type" #type="ngModel" id="type">
 															  <option value="Property Type">Property Type</option>
-															  <option value="Appartment">Appartment</option>
-															  <option value="Bunglaow">Bunglaow</option>
-															  <option value="Condo">Condo</option>
-															  <option value="House">House</option>
-															  <option value="Land">Land</option>
-															  <option value="Single  Family">Single Family</option>
+															  <option value="ALL RESIDENTIAL">ALL RESIDENTIAL</option>
+															  <option value="Flat/ Apartment">Flat/ Apartment</option>
+															  <option value="Residential House">Residential House</option>
+															  <option value="Villa">Villa</option>
+															  <option value="Builder Floor Apartment">Builder Floor Apartment</option>
+															  <option value="Residential Land/ Plot">Residential Land/ Plot</option>
+															  <option value="Penthouse">Penthouse</option>
+															  <option value="Studio Apartment">Studio Apartment</option>
+															  <option value="ALL COMMERCIAL">ALL COMMERCIAL</option>
+															  <option value="Commercial Office Space">Commercial Office Space</option>
+															  <option value="Office in IT Park/ SEZ">Office in IT Park/ SEZ</option>
+															  <option value="Commercial Shop">Commercial Shop</option>
+															  <option value="Commercial Showroom">Commercial Showroom</option>
+															  <option value="Commercial Land">Commercial Land</option>
+															  <option value="Warehouse/ Godown">Warehouse/ Godown</option>
+															  <option value="Industrial Land">Industrial Land</option>
+															  <option value="Industrial Building">Industrial Building</option>
+															  <option value="Industrial Shed">Industrial Shed</option>
+															  <option value="ALL AGRICULTURAL">ALL AGRICULTURAL</option>
+															  <option value="Agricultural Land">Agricultural Land</option>
+															  <option value="Farm House">Farm House</option>
   
 														  </select>
 														  <!-- <input type="text" class="form-control" name="type" [(ngModel)]="form.type" #type="ngModel" id="type" placeholder="Enter keywords..."> -->
@@ -90,18 +105,17 @@
 												  </div>
 											  </li>
 											  <li class="list-inline-item">
-												  <div class="small_dropdown2">
-													  <div id="prncgs2" class="btn dd_btn">
-														  <span>Price</span>
-														  <label for="exampleInputEmail4"><span class="fa fa-angle-down"></span></label>
+												<div class="search_option_two">
+													<div class="candidate_revew_select">
+													  <div class="dropdown bootstrap-select w100 show-tick">
+														  <select class="selectpicker show-tick form-control" name="availability_condition"  [(ngModel)]="form.availability_condition" #type="ngModel" id="availability_condition">
+															<option>Select Availability</option>
+														  <option value="Under Construction">Under Construction</option>
+														  <option value="Ready To Move">Ready To Move</option>
+														  <!-- <option value="Others">Others</option> -->
+														</select>
 													  </div>
-														<div class="dd_content2">
-														  <div class="pricing_acontent">
-															  <input type="text" class="amount" placeholder="$52,239">
-															  <input type="text" class="amount2" placeholder="$985,14">
-															  <div class="slider-range"></div>
-														  </div>
-														</div>
+													</div>
 												  </div>
 											  </li>
 											  
@@ -130,7 +144,7 @@
 																		<ul class="apeartment_area_list mb0">
 																			<li class="list-inline-item">
 																			  <div class="candidate_revew_select">
-																				  <select class="selectpicker w100 show-tick">
+																				  <select class="selectpicker w100 show-tick" name="Bathrooms"  [(ngModel)]="form.Bathrooms" #type="ngModel" id="Bathrooms">
 																					  <option>Bathrooms</option>
 																					  <option>1</option>
 																					  <option>2</option>
@@ -145,7 +159,7 @@
 																			</li>
 																			<li class="list-inline-item">
 																			  <div class="candidate_revew_select">
-																				  <select class="selectpicker w100 show-tick">
+																				  <select class="selectpicker w100 show-tick" name="Bedrooms"  [(ngModel)]="form.Bedrooms" #type="ngModel" id="Bedrooms">
 																					  <option>Bedrooms</option>
 																					  <option>1</option>
 																					  <option>2</option>
@@ -160,7 +174,7 @@
 																			</li>
 																			<li class="list-inline-item">
 																			  <div class="candidate_revew_select">
-																				  <select class="selectpicker w100 show-tick">
+																				  <select class="selectpicker w100 show-tick"  name="Years"  [(ngModel)]="form.Years" #type="ngModel" id="Years">
 																					  <option>Year built</option>
 																					  <option>2013</option>
 																					  <option>2014</option>

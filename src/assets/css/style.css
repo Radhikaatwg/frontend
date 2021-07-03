@@ -16468,7 +16468,11 @@ button.gm-ui-hover-effect:focus {
   margin-right: 10px;
 }
 
-
+@media(min-width: 768px) {
+.home1_adsrchfrm ul{
+  width: 102%!important;
+}
+}
 
 @media(max-width: 768px) {
   .home1-advnc-search .search_option_two .dropdown.bootstrap-select>.dropdown-toggle{
