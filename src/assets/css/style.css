@@ -16467,3 +16467,78 @@ button.gm-ui-hover-effect:focus {
 .gm-style-iw-d p span{
   margin-right: 10px;
 }
+
+
+
+@media(max-width: 768px) {
+  .home1-advnc-search .search_option_two .dropdown.bootstrap-select>.dropdown-toggle{
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #ebebeb;
+    height: 50px;
+    line-height: 35px;
+    width: 100%!important;
+  }
+  .home1-advnc-search ul li:nth-child(3) .form-group .form-control{
+    width: 100%!important;
+  }
+  .small_dropdown2 .dd_btn{
+    width: 100%!important;
+  }
+  .home1-advnc-search .search_option_two .dropdown.bootstrap-select .dropdown-menu.show, .home1-advnc-search .dropdown.bootstrap-select .dropdown-menu.show{
+    transform: translate3d(0px, 0px, 0px)!important;
+  }
+  #myTabContent .carousel-inner{
+    height: 270px!important;
+  }
+  #myTabContent .carousel-inner img{
+    height: 270px!important;
+  }
+  .walkscore_area .iba_container{
+    display: block!important;
+  }
+  .property_attachment_area .iba_container{
+    display: block!important;
+  }
+  .order_list li{
+    padding-left: 0px!important;
+  }
+  .our-agent-single{
+    padding-top:0px!important;
+  }
+  .single_line{
+    margin: 15px 0px!important;
+  }
+  .single_line ul{
+    float: left!important;
+  }
+  .faq_according .accordion .card .card-body{
+    padding-bottom: 0px!important;
+  }
+  .single_property_social_share h2{
+    font-size: 22px!important;
+    /* text-align: center!important; */
+  }
+  .single_property_title {
+    margin-bottom: 0px!important;
+  }
+  
+  .single_property_title  h2{
+    font-size: 22px!important;
+    /* text-align: center!important; */
+  }
+  .single_property_title p{
+    font-size: 22px!important;
+    /* text-align: center!important; */
+  }
+  /* .single_property_social_share ul{
+    margin: 0px auto;
+    display: flex;
+    justify-content: center!important;
+    align-items: center!important;
+  } */
+
+ .paraclass{
+   margin-left: 30px!important;
+ }
+}

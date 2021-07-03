@@ -118,7 +118,7 @@
 																	  <ul class="ui_kit_checkbox selectable-list">
 																		  <li>
 																			  <div class="custom-control custom-checkbox ">
-																				  <input type="checkbox" class="custom-control-input" id="{{menuData.id}}" value="{{menuData.id}}">
+																				  <input type="checkbox" class="custom-control-input" id="{{menuData.id}}" value="{{menuData.id}}" (change)="onchangeAmenties($event,menuData.id)">
 																				  <label class="custom-control-label" for="{{menuData.id}}">{{menuData.name}}</label>
 																			  </div>
 																		  </li>

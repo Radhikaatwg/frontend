@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   login: any;
   ftpstring = GlobalConstants.ftpURL;
   city: any;
+  selectedItems:string[];
+  amenityArray = [];
 
 
   public constructor(
@@ -56,6 +58,7 @@ export class HomeComponent implements OnInit {
     this.currentUser = this.tokenService.getUser().username;
     this.currentUserid = this.tokenService.getUser().id;
     this.login = this.tokenService.getToken();
+    this.selectedItems = new Array<string>();
     
   }
   DeleteProd_function(data: any){
@@ -181,11 +184,25 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  
+  onchangeAmenties(e:any,id:string){
+    if(e.target.checked){
+      console.log(id + 'Checked');
+      this.selectedItems.push(id);
+    }else{
+      
+      console.log(id + 'UNChecked');
+      this.selectedItems= this.selectedItems.filter(m=>m!=id);
+    }
+    this.amenityArray=this.selectedItems;
+   console.log(this.amenityArray);
 
+  }
   onSearch(): void{
-    console.log(this.form);
-    this.authService.search(this.form).subscribe(
+    console.log(this.form,this.amenityArray);
+    this.authService.search(this.form,this.amenityArray).subscribe(
       data => {
+        console.log(this.data);
         this.tokenService.searchData(data);
       },
       err => {
@@ -194,7 +211,7 @@ export class HomeComponent implements OnInit {
         console.log(this.errorMessage);
       }
     );
-    console.log(this.tokenService.returnSearch().product.data);
+    console.log(this.tokenService.returnSearch());
       window.location.href=GlobalConstants.siteURL+"search"
       // this.router.navigate(["/search"])
 

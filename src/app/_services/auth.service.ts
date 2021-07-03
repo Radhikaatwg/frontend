@@ -249,11 +249,20 @@ export class AuthService {
     }), httpOptions);
   }
 
-  search(data): Observable<any> {
+  search(data,amenityArray): Observable<any> {
     return this.http.post(AUTH_API + 'product/search', JSON.stringify({
       build_name: data.build_name,
       type: data.type,
-      city: data.city,
+      Location: data.city,
+      area_unit:data.area_unit,
+      Bathrooms: data.Bathrooms,
+      Bedrooms: data.Bedrooms,
+      availability_condition: data.availability_condition,
+      Years: data.Years,
+      Minimum:data.Minimum,
+      Maximum: data.Maximum,
+      property_status:data.property_status,
+      amenities: amenityArray,
     }), httpOptions);
   }
   product_Searching(data,amenityArray): Observable<any> {

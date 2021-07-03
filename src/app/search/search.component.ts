@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
 
   content: [];
   ftpstring: string = GlobalConstants.ftpURL;
+  contentdata: any;
 
   constructor(
     private titleService: Title,
@@ -21,8 +22,12 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Search Results');
-    this.content = this.dataService.returnSearch().product.data;
-    console.log(this.dataService.returnSearch().product)
+    this.contentdata = this.dataService.returnSearch();
+    this.content=this.contentdata['product'];
+    console.log(this.content);
+    console.log(this.contentdata['product']);
+    // this.content= this.contentdata[] ;
+    console.log(this.dataService.returnSearch());
   }
   prod_func(data){
     this.dataService.saveProdId(data);
