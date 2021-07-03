@@ -24,6 +24,8 @@ export class ProductListingComponent implements OnInit {
   content: any = {};
   ftpstring: string= GlobalConstants.ftpURL;
   prod_if;  
+  amenityArray = [];
+  selectedItems:string[];
   searchForm = { 
     build_name: '',
     Location  : '', 
@@ -60,6 +62,9 @@ export class ProductListingComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    this.selectedItems = new Array<string>();
+    this. amenities();
+    this.recently_view();
     this.idservice.saveCdata(null);
     this.idservice.saveProdId(null);
     this.titleService.setTitle('Listing');
@@ -101,6 +106,34 @@ export class ProductListingComponent implements OnInit {
         }
       );
     }
+  }
+
+  recently_view():void{
+    this.userService.getRecently_viewProperty().subscribe(
+      viewproperty => { 
+        this.view_property = viewproperty.data;
+        console.log("recently_view");
+        console.log(this.view_property);          
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  amenities(): void{
+    this.userService.getamenitiesdata().pipe().subscribe(
+      (amenitiesdata: any) => {
+        //  console.log(amenitiesdata);
+        this.amenities = amenitiesdata.data;
+        this.amenitiesresult = this.amenities;
+        console.log(this.amenitiesresult);
+        //console.log(this.content);
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
   }
 
   DeleteProd_function(data: any){
@@ -150,6 +183,20 @@ export class ProductListingComponent implements OnInit {
       this.isLoggedIn = false ;
     }
   }
+  onchangeAmenties(e:any,id:string){
+    if(e.target.checked){
+      console.log(id + 'Checked');
+      this.selectedItems.push(id);
+    }else{
+      
+      console.log(id + 'UNChecked');
+      this.selectedItems= this.selectedItems.filter(m=>m!=id);
+    }
+    this.amenityArray=this.selectedItems;
+   console.log(this.amenityArray);
+
+  }
+
   prod_func(data){
     this.idservice.saveProdId(data);
     // this.myservice.setData(data);
@@ -228,10 +275,11 @@ export class ProductListingComponent implements OnInit {
 
     onSearch(): void{
       console.log(this.form);
+      console.log(this.amenityArray);
         if(this.tokenStorage.getToken()){
           this.isLoggedIn = true;  
           this.showLoadingIndicator = true;
-          this.authService.product_SearchingLogin(this.form).subscribe(
+          this.authService.product_SearchingLogin(this.form,this.amenityArray).subscribe(
             searchData => {
               console.log("login");
               this.Searchcontent = searchData.data;
@@ -250,7 +298,7 @@ export class ProductListingComponent implements OnInit {
           );
         }else{
           this.showLoadingIndicator = true;
-          this.authService.product_Searching(this.form).subscribe(
+          this.authService.product_Searching(this.form,this.amenityArray).subscribe(
             searchData => {
               console.log("without_login");
               this.Searchcontent = searchData.data;

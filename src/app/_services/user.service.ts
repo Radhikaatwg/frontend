@@ -63,6 +63,9 @@ on<T>(): Observable<T>{
   getproductlistingfeatured(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + 'product/get_product_featured', { responseType: 'json' });
   }
+  getRecently_viewProperty(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'product/getRecently_viewProperty', { responseType: 'json' });
+  }
 
   getrequirements(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + 'product/get_requ', { responseType: 'json' });

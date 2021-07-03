@@ -238,6 +238,16 @@ export class AuthService {
       prod_id: prodid_no,
     }), httpOptions);
   }
+  product_similarproperty(cityValue): Observable<any> {
+    return this.http.post(AUTH_API + 'product/similarproperty', JSON.stringify ({
+      cityValue: cityValue,
+    }), httpOptions);
+  }
+  login_similarproperty(cityValue): Observable<any> {
+    return this.http.post(AUTH_API + 'product/loginSimilarproperty', JSON.stringify ({
+      cityValue: cityValue,
+    }), httpOptions);
+  }
 
   search(data): Observable<any> {
     return this.http.post(AUTH_API + 'product/search', JSON.stringify({
@@ -246,7 +256,7 @@ export class AuthService {
       city: data.city,
     }), httpOptions);
   }
-  product_Searching(data): Observable<any> {
+  product_Searching(data,amenityArray): Observable<any> {
     return this.http.post(GlobalConstants.apiURL + 'product/product_Searching', JSON.stringify({
       build_name: data.build_name,
       Location:data.Location,
@@ -259,9 +269,10 @@ export class AuthService {
       Minimum:data.Minimum,
       Maximum: data.Maximum,
       property_status:data.property_status,
+      amenities: amenityArray,
     }),httpOptions);
   }
-  product_SearchingLogin(data): Observable<any> {
+  product_SearchingLogin(data,amenityArray): Observable<any> {
     return this.http.post(GlobalConstants.apiURL + 'product/product_Searching_login', JSON.stringify({
       build_name: data.build_name,
       Location:data.Location,
@@ -274,6 +285,7 @@ export class AuthService {
       Minimum:data.Minimum,
       Maximum: data.Maximum,
       property_status:data.property_status,
+      amenities: amenityArray,
     }),httpOptions);
   }
 
