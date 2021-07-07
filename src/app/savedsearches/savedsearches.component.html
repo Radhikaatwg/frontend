@@ -32,7 +32,7 @@
  <!-- Listing Grid View -->
 <app-dashboard-topbar></app-dashboard-topbar>
 <!-- <app-topbardark-loader></app-topbardark-loader> -->
- <section class="our-listing bgc-f7 pb30-991"  style="margin-left: 100px;">
+ <section class="our-listing bgc-f7 pb30-991 SavedSeacch">
    <div class="container">
      <div class="row">
        <div class="col-lg-12">
@@ -316,7 +316,7 @@
          </div> -->
        </div>
      </div>
-     <div class="row">
+     <div class="row contentRowsaved" >
        <div class="col-lg-4 col-xl-4">
          <div class="sidebar_listing_grid1 dn-991">
            <!-- <div class="sidebar_listing_list">
@@ -700,10 +700,10 @@
            </div> -->
          </div>
        </div>
-       <div class="col-md-12 col-lg-12" style="margin-left: 30px;">
-         <div class="row">
+       <div class="col-md-12 col-lg-12">
+         <!-- <div class="row"> -->
            <div class="grid_list_search_result">
-             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-5" >
+             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-5 col-12" >
                <div class="left_area tac-xsd">
                  <p >{{content.length}} Saved Searches</p>
                </div>
@@ -731,8 +731,9 @@
                </div>
              </div>
            </div>
-         </div>
-         <div class="row">
+           </div>
+         <!-- </div> -->
+         <!-- <div class="row"> -->
            <div class="col-md-6 col-lg-6" *ngFor = "let number of content">
              <div class="feat_property home7 style4">
                <!-- <div class="thumb">
@@ -799,8 +800,8 @@
                </ul>
              </div>
            </div> -->
-         </div>
-       </div>
+         <!-- </div> -->
+       <!-- </div> -->
      </div>
    </div>
  </section>

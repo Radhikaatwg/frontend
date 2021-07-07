@@ -98,7 +98,6 @@ export class PostproductrentComponent implements OnInit {
   equipment: any;
   features: any;
 
-
   constructor(
     private titleService: Title,
     private authService: AuthService,
@@ -195,12 +194,34 @@ export class PostproductrentComponent implements OnInit {
 
 
   insert_image1(event){
-
-    this.readThis1(event.target)
+    if(event.target.files.length<=5){
+      for(let i=0; i<=event.target.files.length;i++){
+          if(i==0){
+          this.readThis1(event.target.files[0]);
+          }
+          if(i==1){
+            this.readThis2(event.target.files[1]);
+          }
+          if(i==2){
+            this.readThis3(event.target.files[2]);
+          }
+          if(i==3){
+            this.readThis4(event.target.files[3]);
+          }    
+          if(i==4){
+            this.readThis5(event.target.files[4]);
+          }
+      }
+    }else{
+      this.toastr.error("Maximum 5 Images Selected", 'Image Upload Error!!!...', {
+        timeOut: 1500,
+      });
+    }
+  
 
   }
   readThis1(inputValue: any): void {
-    var file:File = inputValue.files[0];
+    var file:File = inputValue;
     var myReader:FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
@@ -209,13 +230,13 @@ export class PostproductrentComponent implements OnInit {
     myReader.readAsDataURL(file);
   }
 
-  insert_image2(event){
+   insert_image2(event){
 
     this.readThis2(event.target)
 
   }
   readThis2(inputValue: any): void {
-    var file:File = inputValue.files[0];
+    var file:File = inputValue;
     var myReader:FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
@@ -223,14 +244,13 @@ export class PostproductrentComponent implements OnInit {
     }
     myReader.readAsDataURL(file);
   }
-
   insert_image3(event){
 
     this.readThis3(event.target)
 
   }
   readThis3(inputValue: any): void {
-    var file:File = inputValue.files[0];
+    var file:File = inputValue;
     var myReader:FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
@@ -238,14 +258,13 @@ export class PostproductrentComponent implements OnInit {
     }
     myReader.readAsDataURL(file);
   }
-
   insert_image4(event){
 
     this.readThis4(event.target)
 
   }
   readThis4(inputValue: any): void {
-    var file:File = inputValue.files[0];
+    var file:File = inputValue;
     var myReader:FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
@@ -253,14 +272,13 @@ export class PostproductrentComponent implements OnInit {
     }
     myReader.readAsDataURL(file);
   }
-
   insert_image5(event){
 
     this.readThis5(event.target)
 
   }
   readThis5(inputValue: any): void {
-    var file:File = inputValue.files[0];
+    var file:File = inputValue;
     var myReader:FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
@@ -285,8 +303,8 @@ z
   delete_pic5(){
     this.image5 = null;
   }
-
-
+  
+ 
   maintenanceStatus(event): void {
     if (event == 0){
       this.maintenance = true;

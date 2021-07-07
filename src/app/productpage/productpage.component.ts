@@ -312,11 +312,7 @@ export class ProductpageComponent implements OnInit {
   redirect_to_home(): void {
     window.location.href=GlobalConstants.siteURL="login"
   }
-  
- 
-  
-    // topbar searching functionalty
-
+   // topbar searching functionalty
     sendinformation(){
       this.userService.emit<string>('true');
    } 

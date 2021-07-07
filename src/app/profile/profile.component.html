@@ -51,8 +51,8 @@
 						<div class="col-lg-12 mb10" >
 							<div class="breadcrumb_content style2" style="margin-left: 30px;">
 								<h2 class="breadcrumb_title">My Profile</h2>
-                <p>We are glad to see you {{ currentUser }}</p>
-                <div class="text-center"><p class="alert alert-danger" *ngIf="!email_verify">Please Verify your Phone Number</p></div>
+                                 <p>We are glad to see you {{ currentUser }}</p>
+                                <div class="text-center"><p class="alert alert-danger" *ngIf="!email_verify">Please Verify your Phone Number</p></div>
 							</div>
 						</div>
 						<div class="col-lg-12">
@@ -63,12 +63,7 @@
 									</div>
 									<div class="col-xl-10">
 										<div class="row">
-											<div class="col-lg-12">
-												<div class="wrap-custom-file">
-											<img class="img-whp" src= "{{ profile_pic }}" alt="fp1.jpg">
-
-												</div>
-											</div>
+											<div class="col-lg-6 col-xl-6">
 											<div class="col-lg-12 col-xl-12">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleInput1">Username: {{currentUser}}</label>
@@ -78,73 +73,73 @@
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Email: {{email}}</label>
 												</div>
-                      </div>
-                      <div class="col-lg-12 col-xl-12">
+                                             </div>
+                                            <div class="col-lg-12 col-xl-12">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Phone Number: +91{{phn_no}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="company_name">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="company_name">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Company Name: {{company_name}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="company_url">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="company_url">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Company URL: {{company_url}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="address">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="address">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Address: {{address}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="city">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="city">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">City: {{city}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="landline_number">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="landline_number">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Landline Number: {{landline_number}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="company_profile">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="company_profile">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Company Profile: {{company_profile}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="pan_number">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="pan_number">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">PAN Number: {{pan_number}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="aadhar_number">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="aadhar_number">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Aadhar Number: {{aadhar_number}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="place_of_practice">
+                                           <div class="col-lg-12 col-xl-12" *ngIf="place_of_practice">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Provided Service: {{provided_service}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="provided_service">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="provided_service">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Place Of Practice: {{place_of_practice}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="price_for_service">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="price_for_service">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Price For Service: {{price_for_service}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="law_firm_number">
+                                            <div class="col-lg-12 col-xl-12" *ngIf="law_firm_number">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Law Firm Number: {{law_firm_number}}</label>
 												</div>
 											</div>
-                      <div class="col-lg-12 col-xl-12" *ngIf="practice_number">
+                                           <div class="col-lg-12 col-xl-12" *ngIf="practice_number">
 												<div class="my_profile_setting_input form-group">
 											    	<label for="formGroupExampleEmail">Practice Number: {{practice_number}}</label>
 												</div>
@@ -171,9 +166,17 @@
 											    	<label for="formGroupExampleInput6">Id Created At: {{id_created_at | date: 'MMM d, y, h:mm:ss a' }}</label>
 												</div>
 											</div>
-                      <div class="col-xl-12 text-right">
+											</div>
+											
+											<div class="col-lg-6">
+												<div class="wrap-custom-file">
+											    <img class="img-whp" src= "{{ profile_pic }}" alt="fp1.jpg">
+												</div>
+											</div>
+											
+											<div class="col-xl-12 text-right">
 												<div class="my_profile_setting_input">
-                          <a data-toggle="modal" data-target=".bd-example-modal-lg" (click)="user_details(id)" ><button class="btn btn1">Edit Profile</button></a>
+                                                  <a data-toggle="modal" data-target=".bd-example-modal-lg" (click)="user_details(id)" ><button class="btn btn1">Edit Profile</button></a>
 
 												</div>
 											</div>
@@ -202,44 +205,42 @@
 												</div>
 											</div>
                       -->
-                      <div class="col-xl-6 margin-bes">
+					  
+                      <div class="col-xl-12 margin-bes">
                         <h4>Change Password</h4>
-
-
-
-
-
-
-
-
                         <form action="#" name="form" (ngSubmit)="f.form.valid && onSubmitChange()" #f="ngForm">
-
+							<div class="row">
+							<div class="col-xl-12">
                           <div class="form-group input-group margin-bes" >
                               <input type="password" class="form-control" id="exampleInputName" name="old_password" #old_password="ngModel" [(ngModel)]="form.old_password" placeholder="Old Password">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="flaticon-user"></i></div>
                               </div>
                           </div>
+						  </div>
+						  <div class="col-xl-6">
                           <div class="form-group input-group">
                               <input type="password" class="form-control" id="exampleInputEmail2" name="new_password" #new_password="ngModel" [(ngModel)]="form.new_password" placeholder="New Password">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-envelope-o"></i></div>
                               </div>
                           </div>
+						  </div>
+						  <div class="col-xl-6">
                           <div class="form-group input-group">
                               <input type="password" class="form-control" id="exampleInputEmail2" name="confirm_password" #confirm_password="ngModel" [(ngModel)]="form.confirm_password" placeholder="Confirm New Password">
                               <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fa fa-envelope-o"></i></div>
                               </div>
                           </div>
-
-                          <button type="submit" class="btn btn-log btn-block btn-thm">Update</button>
+                          </div>
+						  </div>
+						  
+						  <div class="col-xl-4 offset-xl-8">
+                             <button type="submit" class="btn btn-log btn-block btn-thm">Update</button>
+						  </div>
                           <!-- <p class="text-center">Already have an account? <a class="text-thm" href="#">Log In</a></p> -->
                         </form>
-
-
-
-
 
                     </div>
 										</div>

@@ -250,22 +250,21 @@
                         <div class="text-center" id="errorId" *ngIf="errorMessage.balconies"><p class="alert alert-danger" >{{errorMessage.balconies}}</p></div>
 										</div>
 									</div>
-                  <div class="row">
-									<div class="col-lg-6 col-xl-6 col-12">
+									<div class="col-lg-4 col-xl-4 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Additional Rooms</label>
 									    	<input type="number" class="form-control" name="additional_rooms" #additional_rooms="ngModel" [(ngModel)]="form.additional_rooms" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.additional_rooms"><p class="alert alert-danger" >{{errorMessage.additional_rooms}}</p></div>
 										</div>
                   </div>
-									<div class="col-lg-6 col-xl-6 col-12">
+									<div class="col-lg-4 col-xl-4 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Equipment</label>
 									    	<input type="text" class="form-control" name="equipment" #equipment="ngModel" [(ngModel)]="form.equipment" id="LASPostfix">
                         <div class="text-center" id="errorId" *ngIf="errorMessage.equipment"><p class="alert alert-danger" >{{errorMessage.equipment}}</p></div>
 										</div>
                   </div>
-									<div class="col-lg-6 col-xl-6 col-12">
+									<div class="col-lg-4 col-xl-4 col-12">
 										<div class="my_profile_setting_input form-group">
 									    	<label for="LASPostfix">Features</label>
 									    	<input type="text" class="form-control" name="features" #features="ngModel" [(ngModel)]="form.features" id="LASPostfix">
@@ -286,10 +285,7 @@
                         <div class="text-center" id="errorId" *ngIf="errorMessage.age_of_property"><p class="alert alert-danger" >{{errorMessage.age_of_property}}</p></div>
 										</div>
                   </div>
-                  </div>
-
-
-                  <div class="col-lg-6 col-xl-4">
+                  <div class="col-lg-4 col-xl-4">
 										<div class="my_profile_setting_input ui_kit_select_search form-group">
 									    	<label>Furnishings</label>
                         <select class="form-control selectpicker" (change)="furnishStatus($event.target.value)" name="furnishing_status" #furnishing_status="ngModel" [(ngModel)]="form.furnishing_status" name="type" required data-live-search="true" data-width="100%">
@@ -588,82 +584,59 @@
               </div>
 
 
-							<div class="my_dashboard_review mt30">
-								<div class="row">
-									<div class="col-lg-12">
-										<h4 class="mb30">Property Details</h4>
-                  </div>
+              <div class="my_dashboard_review mt30">
+                <div class="row">
                   <div class="col-lg-12">
-										<ul class="mb0">
-											<li class="list-inline-item">
-                        <span>Property Image</span>
-												<div class="portfolio_item">
-													<img class="img-fluid" src="{{ image1 }}" alt="First Image">
-								    				<div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic1()" ><span class="flaticon-garbage"></span></button></div>
-												</div>
-											</li>
-											<li class="list-inline-item">
-												<div class="portfolio_item">
-													<img class="img-fluid" src="{{ image2 }}" alt="Second Image">
-								    				<div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic2()"><span class="flaticon-garbage"></span></button></div>
-												</div>
-											</li>
-											<li class="list-inline-item">
-												<div class="portfolio_item">
-													<img class="img-fluid" src="{{ image3 }}" alt="Third Image">
-								    				<div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic3()"><span class="flaticon-garbage"></span></button></div>
-												</div>
-                      </li>
-                      <li class="list-inline-item">
-												<div class="portfolio_item">
-													<img class="img-fluid" src="{{ image4 }}" alt="Fourth Image">
-								    				<div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic4()"><span class="flaticon-garbage"></span></button></div>
-												</div>
-                      </li>
-                      <li class="list-inline-item">
-												<div class="portfolio_item">
-													<img class="img-fluid" src="{{ image5 }}" alt="Fifth Image">
-								    				<div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic5()"><span class="flaticon-garbage"></span></button></div>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div class="col-lg-2">
-										<div class="portfolio_upload">
-                      <input type="file" class="form-control" name="profile_pic" (change)= "insert_image1($event)" id="image1" >
-                       <div class="icon"><label for="image1" class="flaticon-download"></label></div>
-                       <label for="image1"><p>Click to Upload First Image</p></label>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="portfolio_upload">
-                      <input type="file" class="form-control" name="profile_pic" (change)= "insert_image2($event)" id="image2" >
-                       <div class="icon"><label for="image2" class="flaticon-download"></label></div>
-                       <label for="image2"><p>Click to Upload Second Image</p></label>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="portfolio_upload">
-                      <input type="file" class="form-control" name="profile_pic" (change)= "insert_image3($event)" id="image3" >
-                       <div class="icon"><label for="image3" class="flaticon-download"></label></div>
-                       <label for="image3"><p>Click to Upload Third Image</p></label>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="portfolio_upload">
-                      <input type="file" class="form-control" name="profile_pic" (change)= "insert_image4($event)" id="image4" >
-                       <div class="icon"><label for="image4" class="flaticon-download"></label></div>
-                       <label for="image4"><p>Click to Upload Fourth Image</p></label>
-										</div>
-									</div>
-									<div class="col-lg-2">
-										<div class="portfolio_upload">
-                      <input type="file" class="form-control" name="profile_pic" (change)= "insert_image5($event)" id="image5" >
-                       <div class="icon"><label for="image5" class="flaticon-download"></label></div>
-											<label for="image5"><p>Click to Upload Fifth Image</p></label>
-										</div>
+                    <h4 class="mb30">Property Images</h4>
                   </div>
-
+                  <div class="col-lg-12" >
+                    <ul class="mb0">
+                      <li class="list-inline-item" *ngIf="image1">
+                        <span>Property Image1</span>
+                        <div class="portfolio_item">
+                          <img class="img-fluid" src="{{ image1 }}" alt="First Image">
+                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic1()" ><span class="flaticon-garbage"></span></button></div>
+                        </div>
+                      </li>
+                      <li class="list-inline-item" *ngIf="image2">
+                        <span>Property Image2</span>
+                        <div class="portfolio_item">
+                          <img class="img-fluid" src="{{ image2 }}" alt="Second Image">
+                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic2()"><span class="flaticon-garbage"></span></button></div>
+                        </div>
+                      </li>
+                      <li class="list-inline-item" *ngIf="image3">
+                        <span>Property Image3</span>
+                        <div class="portfolio_item">
+                          <img class="img-fluid" src="{{ image3 }}" alt="Third Image">
+                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic3()"><span class="flaticon-garbage"></span></button></div>
+                        </div>
+                      </li>
+                      <li class="list-inline-item" *ngIf="image4">
+                        <span>Property Image4</span>
+                        <div class="portfolio_item">
+                          <img class="img-fluid" src="{{ image4 }}" alt="Fourth Image">
+                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic4()"><span class="flaticon-garbage"></span></button></div>
+                        </div>
+                      </li>
+                      <li class="list-inline-item" *ngIf="image5">
+                        <span>Property Image5</span>
+                        <div class="portfolio_item">
+                          <img class="img-fluid" src="{{ image5 }}" alt="Fifth Image">
+                            <div class="edu_stats_list" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><button type="button" class="btn btn-thm2 float-right" (click)="delete_pic5()"><span class="flaticon-garbage"></span></button></div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-12 d-flex justify-content-center">
+                  <div class="col-lg-4">
+                      <div class="portfolio_upload">
+                        <input type="file" class="form-control" name="profile_pic" (change)= "insert_image1($event)" id="image1" multiple>
+                        <div class="icon"><label for="image1" class="flaticon-download"></label></div>
+                        <label for="image1"><p>Click To Upload Multiple Image</p></label>
+                      </div>
+                  </div>         
+                  </div>
                   <div class="col-lg-12">
                     <div class="my_profile_setting_textarea form-group">
                         <label for="propertyDetail">Property Description</label>
@@ -671,15 +644,15 @@
                         <div class="text-center" id="errorId" *ngIf="errorMessage.description"><p class="alert alert-danger" >{{errorMessage.description}}</p></div>
                     </div>
                   </div>
-
+            
                   <!-- <div class="text-center" *ngIf="err_caused"><p class="alert alert-danger">{{errorMessage | json}}</p></div> -->
-
+            
                   <div class="col-xl-12">
-										<div class="my_profile_setting_input">
-											<button type="submit" class="btn btn2 float-right">Submit</button>
-										</div>
-									</div>
-								</div>
+                    <div class="my_profile_setting_input ProductSubmitBTN">
+                      <button type="submit" class="btn btn2 float-right">Submit</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </form>
 

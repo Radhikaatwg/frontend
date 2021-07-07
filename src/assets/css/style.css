@@ -6530,10 +6530,10 @@ form.home5_advanced_search_form .form-group input.form-control::-ms-input-placeh
 }
 .my_profile_setting_input .form-control{
   background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(235, 235, 235);
+  /* border: 1px solid rgb(235, 235, 235); */
   border-radius: 8px;
   height: 52px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
 .my_profile_setting_input .form-control::placeholder{
   font-size: 14px;
@@ -10276,6 +10276,7 @@ a.btn.btn_error{
   color: #484848;
   line-height: 1.2;
   margin-right: 0;
+  padding:0px 10px 0px 0px!important;
 }
 .blog_search_widget button.btn{
   height: 48px;
@@ -11395,7 +11396,7 @@ a.btn.btn_error{
   margin: 0 auto 30px;
   padding: 0 15px;
   position: relative;
-  width: 96%;
+  width: 99%;
 }
 .grid_list_search_result.style2{
   width: 98%;
@@ -12504,9 +12505,12 @@ a.btn.btn_error{
 .wrap-custom-file {
   position: relative;
   display: inline-block;
-  width: 260px;
-  height: 260px;
+  width: 300px;
+  height: 310px;
   text-align: center;
+}
+.wrap-custom-file .img-whp{
+  height: 300px;
 }
 .wrap-custom-file input[type="file"] {
   position: absolute;
@@ -16483,6 +16487,43 @@ button.gm-ui-hover-effect:focus {
     line-height: 35px;
     width: 100%!important;
   }
+  .my_dashboard_review h2,h3,h4{
+    text-align: center!important;
+  }
+  .my_dashboard_review .flr-520{
+    float: none!important;
+  }
+  .SavedSeacch{
+    width: 100%!important;
+    margin-left: 0%!important;
+  }
+  .contentRowsaved{
+    margin-left: 0px!important;
+  }
+  .SavedSeacch h2{
+    font-size: 14px!important;
+  } 
+  .btn-log{
+    margin-top: 10px!important;
+  } 
+  .breadcrumb_content .mt40{
+    margin: 10px 0px 0px 0px!important;
+  }
+  .SavedSeacch .feat_property .details .fp_footer .fp_meta li {
+   margin-top:10px;
+  }
+  .ProductSubmitBTN{
+    width: 100%!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+  }
+  .hidden-xs{
+    display: none!important;
+  }
+  .my_dashboard_review, .my_listing_single{
+    padding: 30px 10px!important;
+  }
   .home1-advnc-search ul li:nth-child(3) .form-group .form-control{
     width: 100%!important;
   }
@@ -16545,4 +16586,63 @@ button.gm-ui-hover-effect:focus {
  .paraclass{
    margin-left: 30px!important;
  }
+ .our-dashbord.dashbord{
+   padding: 20px 0px!important;
+ }
+ .our-dashbord.dashbord .container-fluid{
+   padding: 0px 15px!important;
+ }
+ h2, .h2 {
+  font-size: 20px!important;
+}
+.my_dashboard_review ul li{
+  width: 100%!important;
+}
+.portfolio_item{
+  width: 100%!important;
+  height: 235px!important;
+}
+.portfolio_item img{
+  width: 100%!important;
+  height: 235px!important;
+}
+.breadcrumb_content.style2{
+  margin: 5px 0px!important;
+  text-align: center!important;
+}
+}
+.imageAdd_btn
+{
+  background-color: #ff5a5f; 
+  color:#fff; 
+  font-size: 14px;
+}
+.imageAdd_btn:hover
+{
+  background-color: #ff5a5f; 
+  color:#fff; 
+  font-size: 14px;
+}
+.delete_image{
+  position: absolute;
+  top: -18px;
+  font-size: 28px;
+  color: #ff5a5f; ;
+  text-align: right;
+  right: 0px!important;
+  font-weight: 800;
+  cursor: pointer;
+  z-index: 10;
+}
+.delete_imageRow{
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+.SavedSeacch{
+  width: 84%;
+  margin-left: 16%;
+}
+.contentRowsaved{
+  margin-left: 30px;
 }

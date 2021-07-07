@@ -66,7 +66,7 @@
               <img class="nav_logo_img img-fluid mt20" src="./assets/css/images/header-logo2.png" alt="header-logo2.png">
       </div>
       <ul class="menu_bar_home2">
-                <li class="list-inline-item list_s"><a href="/register"><span class="flaticon-user"></span></a></li>
+                <li class="list-inline-item list_s"><a href="/profile" *ngIf="isLoggedIn" ><span class="flaticon-user"></span></a></li>
         <li class="list-inline-item"><a href="#menu"><span></span></a></li>
       </ul>
     </div>
@@ -75,12 +75,9 @@
     <ul>
       <li><a href="">Home</a></li>
       <li><a href="/productlisting">listing</a></li>
-
-
-
       <li><a href="/contact">Contact</a></li>
-      <li><a href="/login"><span class="flaticon-user"></span> Login</a></li>
-      <li><a href="/register"><span class="flaticon-edit"></span> Register</a></li>
+      <li><a href="/login" *ngIf="!isLoggedIn" ><span class="flaticon-user"></span> Login</a></li>
+      <li><a href="/register" *ngIf="!isLoggedIn" ><span class="flaticon-edit"></span> Register</a></li>
       <li class="cl_btn"><a class="btn btn-block btn-lg btn-thm circle" href="#"><span class="flaticon-plus"></span> Create Listing</a></li>
     </ul>
   </nav>
