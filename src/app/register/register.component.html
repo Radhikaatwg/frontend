@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<!-- Mirrored from grandetest.com/theme/findhouse-html//register by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Oct 2020 08:28:08 GMT -->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords"
+    content="advanced search custom, agency, agent, business, clean, corporate, directory, google maps, homes, listing, membership packages, property, real estate, real estate agent, realestate agency, realtor">
+  <meta name="description" content="FindHouse - Real Estate HTML Template">
+  <meta name="CreativeLayers" content="ATFN">
+
+  <!-- Favicon -->
+  <link href="./../../assets/css/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+  <link href="./../../assets/css/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="preloader"></div>
+    <div *ngIf="showLoadingIndicator">
+      <div class="preloader"></div>
+    </div>
+
+    <app-topbardark></app-topbardark>
+
+
+    <!-- Inner Page Breadcrumb -->
+    <section class="inner_page_breadcrumb">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6">
+            <div class="breadcrumb_content">
+              <h4 class="breadcrumb_title">Register</h4>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Register</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our LogIn Register -->
+    <section class="our-log-reg bgc-fa">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-lg-6 offset-lg-3">
+            <div class="sign_up_form inner_page">
+              <div class="heading" *ngIf="isSuccessful == false">
+                <h3 class="text-center">Register</h3>
+                <p class="text-center">Have an account? <a class="text-thm" href="/login">Login</a></p>
+              </div>
+              <div class="details">
+                <form action="#" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+                  novalidate>
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="firstName" [(ngModel)]="form.firstName" required
+                          #firstName="ngModel" id="firstName" placeholder="First Name">
+                        <div class="alert-danger" *ngIf="f.submitted && firstName.invalid">
+                          <div *ngIf="firstName.errors.required">
+                            First Name is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-12 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="lastName" [(ngModel)]="form.lastName"
+                          #lastName="ngModel" id="lastName" placeholder="Last Name">
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
+                      #email="ngModel" id="exampleInputEmail3" placeholder="Email Address">
+                    <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                      <div *ngIf="email.errors.required">Email is required</div>
+                      <div *ngIf="email.errors.email">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required
+                      minlength="6" #password="ngModel" id="exampleInputPassword4" placeholder="Password">
+                    <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                      <div *ngIf="password.errors.required">Password is required</div>
+                      <div *ngIf="password.errors.minlength">
+                        Password must be at least 6 characters
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="cpassword" [(ngModel)]="form.cpassword" required
+                      minlength="6" #cpassword="ngModel" id="exampleInputPassword5" placeholder="Confirm Password">
+                    <div class="alert-danger" *ngIf="f.submitted && form.password != form.cpassword">
+                      <div>The password confirmation does not match.</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="number" class="form-control" name="phone_number" [(ngModel)]="form.other_mobile_number"
+                      required minlength="10" maxlength="10" #phone_number="ngModel" id="phone_number"
+                      placeholder="Phone Number" pattern="[0-9]{10}">
+                    <div class="alert-danger" *ngIf="f.submitted && phone_number.invalid">
+                      <div *ngIf="phone_number.errors.required">
+                        Phone Number is required
+                      </div>
+                      <div *ngIf="phone_number.errors.pattern">
+                        Please enter a 10 digit Mobile Number
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="search_option_two">
+                      <div class="candidate_revew_select">
+                        <select required class="selectpicker w100 show-tick" [(ngModel)]="form.select_type"
+                          name="select_type" #select_type="ngModel">
+                          <option disabled selected value="0">User Type</option>
+                          <option value="1">Individual</option>
+                          <option value="2">Agent</option>
+                          <option value="3">Builder</option>
+                        </select>
+                        <div class="alert-danger" *ngIf="f.submitted && select_type.errors?.required">
+                          <div>Please select User Type</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" [(ngModel)]="form.tnc_check" id="tnc_check"
+                      name="tnc_check" #tnc_check="ngModel" required>
+                    <label class="custom-control-label" for="tnc_check">I have read and accept the <a href=""
+                        data-toggle="modal" data-target=".modal-terms">Terms and Conditions</a> and <a href=""
+                        data-toggle="modal" data-target=".modal-privacy">Privacy
+                        Policy</a></label>
+                    <div class="alert-danger" *ngIf="f.submitted && tnc_check.errors?.required">
+                      <div>Please agree to the terms and Privacy Policy</div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="form-group custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="exampleCheck3">
+									<label class="custom-control-label" for="exampleCheck3">Want to become an instructor?</label>
+                  </div> -->
+
+                  <div class="form-group">
+                    <button class="btn btn-log btn-block btn-thm2">Register</button>
+                  </div>
+
+                  <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                    <h4>SignUp Failed</h4>
+
+                    <div *ngIf="!errorMessage.errors && errorMessage.message">
+                      {{ errorMessage.message }}
+                    </div>
+
+                    <div *ngIf="errorMessage.errors && errorMessage.errors.email">
+                      <p><strong> The Email Address has already been taken. </strong></p>
+                    </div>
+
+                    <div *ngIf="errorMessage.errors && errorMessage.errors.other_mobile_number">
+                      <p><strong>The Mobile Number has already been taken.</strong></p>
+                    </div>
+
+                  </div>
+                </form>
+
+                <div class="alert alert-success" *ngIf="isSuccessful">
+                  Your registration is successful. Check your SMS for verification OTP.
+                </div>
+                <div class="alert alert-success" *ngIf="isVerified">
+                  Your Number is verified, Login to continue.<a href="/login">Login</a>
+                </div>
+                <form action="#" *ngIf="verify" name="form" (ngSubmit)="f.form.valid && onSubmitotp()" #f="ngForm"
+                  novalidate>
+                  <div class="heading">
+                    <h3 class="text-center">Enter OTP</h3>
+                  </div>
+                  <div class="form-group">
+                    <input type="number" name="number" [(ngModel)]="otp.password" required minlength="6"
+                      #password="ngModel" class="form-control" id="exampleInputPassword4"
+                      placeholder="One Time Password">
+                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+                      <div *ngIf="password.errors.required">OTP is required</div>
+                      <div *ngIf="password.errors.minlength">
+                        OTP must be at least 6 characters
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-log btn-block btn-thm2">Verify</button>
+                  </div>
+                  <div class="form-group">
+                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isFailedVerify">
+                      Verification Failed, Wrong OTP
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="reg_modal modal fade modal-terms" tabindex="-1" role="dialog" aria-labelledby="ModalTermsTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalTermsTitle">Terms and Conditions</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <h3>Terms</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor cumque ullam libero dolorem sed ex,
+                  rerum saepe animi tempora corrupti accusamus dolore corporis consectetur et quae sint temporibus
+                  ducimus dignissimos!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit recusandae cum blanditiis
+                  vero voluptatibus! Odio veniam explicabo obcaecati quidem quam cumque corporis dolor laborum sapiente
+                  iste labore, ea sequi.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, quis blanditiis quos laboriosam
+                  reprehenderit facere repudiandae eaque dolorum. Molestias voluptatibus nulla eius impedit velit sunt
+                  reiciendis hic iste architecto suscipit.</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus rem excepturi deleniti. Atque ratione
+                  ipsa facere, cum voluptatibus nostrum inventore culpa, eligendi ea reprehenderit vero beatae. Fuga
+                  placeat fugit consectetur!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor cumque ullam libero dolorem sed ex,
+                  rerum saepe animi tempora corrupti accusamus dolore corporis consectetur et quae sint temporibus
+                  ducimus dignissimos!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit recusandae cum blanditiis
+                  vero voluptatibus! Odio veniam explicabo obcaecati quidem quam cumque corporis dolor laborum sapiente
+                  iste labore, ea sequi.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, quis blanditiis quos laboriosam
+                  reprehenderit facere repudiandae eaque dolorum. Molestias voluptatibus nulla eius impedit velit sunt
+                  reiciendis hic iste architecto suscipit.</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus rem excepturi deleniti. Atque ratione
+                  ipsa facere, cum voluptatibus nostrum inventore culpa, eligendi ea reprehenderit vero beatae. Fuga
+                  placeat fugit consectetur!</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor cumque ullam libero dolorem sed ex,
+                  rerum saepe animi tempora corrupti accusamus dolore corporis consectetur et quae sint temporibus
+                  ducimus dignissimos!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit recusandae cum blanditiis
+                  vero voluptatibus! Odio veniam explicabo obcaecati quidem quam cumque corporis dolor laborum sapiente
+                  iste labore, ea sequi.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, quis blanditiis quos laboriosam
+                  reprehenderit facere repudiandae eaque dolorum. Molestias voluptatibus nulla eius impedit velit sunt
+                  reiciendis hic iste architecto suscipit.</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus rem excepturi deleniti. Atque ratione
+                  ipsa facere, cum voluptatibus nostrum inventore culpa, eligendi ea reprehenderit vero beatae. Fuga
+                  placeat fugit consectetur!</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor cumque ullam libero dolorem sed ex,
+                  rerum saepe animi tempora corrupti accusamus dolore corporis consectetur et quae sint temporibus
+                  ducimus dignissimos!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit recusandae cum blanditiis
+                  vero voluptatibus! Odio veniam explicabo obcaecati quidem quam cumque corporis dolor laborum sapiente
+                  iste labore, ea sequi.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, quis blanditiis quos laboriosam
+                  reprehenderit facere repudiandae eaque dolorum. Molestias voluptatibus nulla eius impedit velit sunt
+                  reiciendis hic iste architecto suscipit.</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus rem excepturi deleniti. Atque ratione
+                  ipsa facere, cum voluptatibus nostrum inventore culpa, eligendi ea reprehenderit vero beatae. Fuga
+                  placeat fugit consectetur!</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Modal End -->
+
+    <!-- Modal -->
+    <div class="reg_modal modal fade modal-privacy" tabindex="-1" role="dialog" aria-labelledby="ModalPrivacyTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="ModalPrivacyTitle">Privacy Policy</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body container pb20">
+            <div class="row">
+              <div class="col-lg-12">
+                <h3>Privacy</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor cumque ullam libero dolorem sed ex,
+                  rerum saepe animi tempora corrupti accusamus dolore corporis consectetur et quae sint temporibus
+                  ducimus dignissimos!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit recusandae cum blanditiis
+                  vero voluptatibus! Odio veniam explicabo obcaecati quidem quam cumque corporis dolor laborum sapiente
+                  iste labore, ea sequi.</p>
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti, quis blanditiis quos laboriosam
+                  reprehenderit facere repudiandae eaque dolorum. Molestias voluptatibus nulla eius impedit velit sunt
+                  reiciendis hic iste architecto suscipit.</p>
+
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus rem excepturi deleniti. Atque ratione
+                  ipsa facere, cum voluptatibus nostrum inventore culpa, eligendi ea reprehenderit vero beatae. Fuga
+                  placeat fugit consectetur!</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> <!-- Modal End -->
+
+    <app-footer></app-footer>
+
+    <a class="scrollToHome" href="#"><i class="flaticon-arrows"></i></a>
+  </div>
+  <!-- Wrapper End -->
+
+</body>
+<!-- Mirrored from grandetest.com/theme/findhouse-html//register by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 21 Oct 2020 08:28:08 GMT -->
+
+</html>

@@ -40,6 +40,23 @@ export class AuthService {
     }), httpOptions);
   }
 
+/* Code added by Radhika Start */
+
+  register_new(user): Observable<any> {
+    console.log(user);
+    return this.http.post(AUTH_API + 'auth/user_signup_new', ({
+      first_name: user.firstName,
+      last_name: user.lastName,
+      email: user.email,
+      other_mobile_number: user.other_mobile_number,
+      password: user.password,
+      password_confirmation: user.cpassword,
+      selectType: user.select_type,
+      agree_check: user.tnc_check
+    }), httpOptions);
+  }
+
+  /* Code added by Radhika End */
   register_owner(user, profile_pic): Observable<any> {
     return this.http.post(AUTH_API + 'auth/owner_signup', ({
       name: user.username,

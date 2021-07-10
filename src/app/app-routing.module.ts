@@ -44,7 +44,10 @@ import { BlogSinglePostComponent } from './blog-single-post/blog-single-post.com
 import { AdminBlogComponent } from './admin-blog/admin-blog.component';
 import { AdminBlogSinglePostComponent } from './admin-blog-single-post/admin-blog-single-post.component';
 import { PostsGuard } from './posts.guard';
-
+import { RegisterComponent } from './register/register.component';
+import { VerifyGuard } from './verify.guard';
+import { VerifyDetailsComponent } from './verify-details/verify-details.component';
+import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
 
 const routes: Routes = [
 
@@ -52,15 +55,17 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'productlisting', component: ProductListingComponent},
   {path: 'productpage', component: ProductpageComponent},
-  {path: 'register', component: UserregisterComponent},
+  //{path: 'register', component: UserregisterComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'logout', component: UserlogoutComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'insertproductsale', component: PostproductComponent},
   {path: 'insertproductrent', component: PostproductrentComponent},
   {path: 'search', component: SearchComponent},
-  {path: 'agentregister', component: BoardAgentComponent},
-  {path: 'insertproduct', component: InsertselectorComponent},
+  //{path: 'agentregister', component: BoardAgentComponent},
+  {path: 'agentregister', component: RegisterComponent},
+  {path: 'insertproduct', component: InsertselectorComponent, canActivate: [VerifyGuard]},
   {path: 'requirement', component: RequirementComponent},
   {path: 'myproperties', component: MypropertiesComponent},
   {path: 'compare', component: CompareComponent},
@@ -93,7 +98,8 @@ const routes: Routes = [
   //{path: 'blog-single-post', component: BlogSinglePostComponent},
   {path: 'admin-blog', component: AdminBlogComponent, canActivate: [PostsGuard]},
   {path: 'admin-blog-single-post/:slug', component: AdminBlogSinglePostComponent},
-  
+  {path: 'verify-details', component:  VerifyDetailsComponent},
+  {path: 'emi-calculator', component: EmiCalculatorComponent},
   {path: '**', component: NotfoundComponent},
 
 ];

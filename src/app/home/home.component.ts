@@ -125,6 +125,7 @@ export class HomeComponent implements OnInit {
         },
         err => {
           this.content = JSON.parse(err.error).message;
+		  this.content = err.error.message;								   
         }
       );
     }
@@ -140,7 +141,8 @@ export class HomeComponent implements OnInit {
           this.sendinformation();
         },
         err => {
-          this.content = JSON.parse(err.error).message;
+          //this.content = JSON.parse(err.error).message;
+          this.content = err.error.message;
         }
       );   
     }else{
@@ -151,7 +153,8 @@ export class HomeComponent implements OnInit {
           console.log(this.number);        
         },
         err => {
-          this.content = JSON.parse(err.error).message;
+          //this.content = JSON.parse(err.error).message;
+          this.content = err.error.message;
         }
       );
     }
@@ -167,7 +170,8 @@ export class HomeComponent implements OnInit {
         //console.log(this.content);
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        //this.content = JSON.parse(err.error).message;
+        this.content = err.error.message;
       }
     );
   }
@@ -180,7 +184,7 @@ export class HomeComponent implements OnInit {
         //console.log(this.content);
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.content = err.error.message;
       }
     );
   }

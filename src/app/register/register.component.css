@@ -1,15 +1,6 @@
-div .thumb a {
-    display: contents;
+a {
+    color: #007bff !important;
 }
-
-.feat_property .thumb img {
-    opacity: 1;
-}
-
-/*.page-link {
-    width: auto !important;
-    border-radius: 10% !important;
-} */
 
 body.modal-open {
     overflow: auto !important; 
@@ -22,6 +13,5 @@ body.modal-close {
 }
 
 body {
-    overflow: auto !important;
     padding-right: 0 !important;
 }

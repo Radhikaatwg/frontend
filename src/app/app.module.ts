@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { ChartsModule } from 'ng2-charts';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { EscapeHtmlPipe } from './render-html.pipe';
 
@@ -79,6 +80,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { TruncateTextPipe } from './truncate-text.pipe';
 import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
+import { RegisterComponent } from './register/register.component';
+import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -147,17 +150,20 @@ import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
     EscapeHtmlPipe,
     TruncateTextPipe,
     ArticlesTipsComponent,
+    RegisterComponent,
+    EmiCalculatorComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     EditorModule,
     NgxPaginationModule,
+    ChartsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
     FormsModule,
-    ToastrModule.forRoot({timeOut:1500,progressBar:true}),
+    ToastrModule.forRoot({ timeOut: 1500, progressBar: true }),
     ReactiveFormsModule,
     NgImageSliderModule,
     CarouselModule,

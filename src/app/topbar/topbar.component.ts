@@ -53,7 +53,7 @@ export class TopbarComponent implements OnInit {
         console.log(this.wishlistresult);
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.content = err.error.message;
       }
     );
   }

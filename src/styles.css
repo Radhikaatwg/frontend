@@ -33,3 +33,34 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+/* Added by Radhika Start */
+/* To fix the padding right issue */
+.modal-open {
+  overflow:auto;
+  padding-right:0 !important;
+}
+
+/* Added by Radhika End */
+
+.reg_modal:before {
+  background-color: rgba(0, 0, 0, .9);
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.reg_modal.modal .close:focus{
+  outline: none;
+}
+
+.reg_modal .tab-content .tab-pane.active{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}

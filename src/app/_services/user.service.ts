@@ -32,6 +32,9 @@ on<T>(): Observable<T>{
     return this.http.get(GlobalConstants.apiURL + 'auth/user', { responseType: 'json' });
   }
 
+  getUserDetails(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'auth/verify_user', { responseType: 'json' });
+  }
   googleLogin(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + 'auth/redirect', { responseType: 'json' });
   }
