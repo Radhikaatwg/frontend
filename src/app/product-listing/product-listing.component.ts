@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../_services/auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgForm } from '@angular/forms';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 @Component({
   selector: 'app-product-listing',
   templateUrl: './product-listing.component.html',
@@ -64,18 +65,32 @@ export class ProductListingComponent implements OnInit {
   ngOnInit(): void {
     this.selectedItems = new Array<string>();
     this. amenities();
-    this.recently_view();
+    this.feature_property();
     this.idservice.saveCdata(null);
     this.idservice.saveProdId(null);
     this.titleService.setTitle('Listing');
     // this.getpropertyData();
     this.onSearch();
-    this.currentUser = this.tokenService.getUser().username;
-    this.currentUserid = this.tokenService.getUser().id;
-    this.login = this.tokenService.getToken();
+    if (this.tokenStorage.getToken() != null){
+      this.isLoggedIn = true;
+      this.currentUser = this.tokenService.getUser().username;
+      this.currentUserid = this.tokenService.getUser().id;
+      this.login = this.tokenService.getToken();
+      this.loginuser_coutData();
+    }
     
   }
 
+  loginuser_coutData(){
+    this.authService.get_CountData().subscribe(
+      data => {
+        console.log(data.data);
+        this.Recently_UserData = data.data;
+        console.log("Recently Views Properties");
+         console.log(this.Recently_UserData);
+      });
+  
+  }
 
   getpropertyData(): void{
     if(this.tokenStorage.getToken()){
@@ -106,19 +121,6 @@ export class ProductListingComponent implements OnInit {
         }
       );
     }
-  }
-
-  recently_view():void{
-    this.userService.getRecently_viewProperty().subscribe(
-      viewproperty => { 
-        this.view_property = viewproperty.data;
-        console.log("recently_view");
-        console.log(this.view_property);          
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
   }
 
   amenities(): void{
@@ -153,6 +155,18 @@ export class ProductListingComponent implements OnInit {
       this.redirect_to_home();
     }
     
+  }
+  feature_property():void{
+    this.userService.getRecently_viewProperty().subscribe(
+      featureproperty => { 
+        this.feature_property = featureproperty.data;
+        console.log("feature_properties");
+        console.log(this.feature_property);        
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    );
   }
   
   prod_function(data: any){
@@ -324,6 +338,34 @@ export class ProductListingComponent implements OnInit {
     sendinformation(){
       this.userService.emit<string>('true');
    } 
+   // carosule image
+   customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['<i class="flaticon-left-arrow-1"></i>', '<i class="flaticon-right-arrow"></i>'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      },
+      1050: {
+        items: 1
+      }
+    },
+    nav: true
+  }
 
 
 }

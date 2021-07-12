@@ -39,6 +39,11 @@ export class TopbardarkLoaderComponent implements OnInit {
       if (this.tokenStorage.getToken() != null){
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().username;
+        this.userEmail=this.tokenStorage.getUser().misc.email;
+        this.userProfile=this.tokenStorage.getUser().misc.profile_pic;
+        console.log(this.userEmail);
+        console.log(this.userProfile);
+        this.wishlistcount();
   
       }
   

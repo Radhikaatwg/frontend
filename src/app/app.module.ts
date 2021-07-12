@@ -82,6 +82,7 @@ import { TruncateTextPipe } from './truncate-text.pipe';
 import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
 import { RegisterComponent } from './register/register.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
+import { UpdatepropertyComponent } from './updateproperty/updateproperty.component';
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -152,6 +153,7 @@ import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.componen
     ArticlesTipsComponent,
     RegisterComponent,
     EmiCalculatorComponent,
+    UpdatepropertyComponent,
   ],
   imports: [
     BrowserAnimationsModule,

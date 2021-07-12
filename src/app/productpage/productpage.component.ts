@@ -114,25 +114,30 @@ export class ProductpageComponent implements OnInit {
       );
     }
     this.amenities();
-    this.recently_view();
+    this.feature_property();
     this.idService.saveCdata(null);
     this.idService.saveProdId(null);
+    if (this.tokenStorage.getToken() != null){
+      this.isLoggedIn = true;
+      this.loginuser_countProduct(this.prod_id);
+      this.loginuser_coutData();
+    }
   }
   
-  recently_view():void{
-    this.userService.getRecently_viewProperty().subscribe(
-      viewproperty => { 
-        this.view_property = viewproperty.data;
-        console.log("recently_view");
-        console.log(this.view_property);  
-        console.log(this.login_userID);
-        console.log(this.login_usertype);        
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
-  }
+  // recently_view():void{
+  //   this.userService.getRecently_viewProperty().subscribe(
+  //     viewproperty => { 
+  //       this.view_property = viewproperty.data;
+  //       console.log("recently_view");
+  //       console.log(this.view_property);  
+  //       console.log(this.login_userID);
+  //       console.log(this.login_usertype);        
+  //     },
+  //     err => {
+  //       this.content = JSON.parse(err.error).message;
+  //     }
+  //   );
+  // }
   
   amenities(): void{
     this.userService.getamenitiesdata().pipe().subscribe(
@@ -147,6 +152,24 @@ export class ProductpageComponent implements OnInit {
       }
     );
   }
+  loginuser_coutData(){
+    this.authService.get_CountData().subscribe(
+      data => {
+        console.log(data.data);
+        this.Recently_UserData = data.data;
+        console.log("Recently Views Properties");
+         console.log(this.Recently_UserData);
+      });
+  
+  }
+  loginuser_countProduct(prod_id){
+    console.log(prod_id);
+     this.authService.User_productCount(this.prod_id).subscribe(
+       data => {
+         console.log(data);
+       });
+   
+   }
 
   prod_function(data: any){
     // Login check
@@ -245,6 +268,19 @@ export class ProductpageComponent implements OnInit {
         console.log(err.error);
       }
     );
+}
+
+feature_property():void{
+  this.userService.getRecently_viewProperty().subscribe(
+    featureproperty => { 
+      this.feature_property = featureproperty.data;
+      console.log("feature_properties");
+      console.log(this.feature_property);        
+    },
+    err => {
+      this.content = JSON.parse(err.error).message;
+    }
+  );
 }
 
   onShare(){

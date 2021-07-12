@@ -290,22 +290,47 @@
               </ul>
             </div>
           </div>
+          <div class="terms_condition_widget">
+						<h4 class="title">Featured Properties</h4>
+						<div class="sidebar_feature_property_slider" *ngFor = "let feature_pro of feature_property">
+							<div class="item">
+								<div class="feat_property home7 agent">
+									<div class="thumb">
+										<img class="img-whp" src="{{ftpstring}}{{ feature_pro.product_image1}}" alt="fp5.jpg">
+										<!-- <img class="img-whp" src="./../../assets/css/images/property/fp5.jpg" alt="fp5.jpg"> -->
+										<div class="thmb_cntnt">
+											<ul class="tag mb0">
+												<li class="list-inline-item" *ngIf=" feature_pro.rent_availability "><a href="#">For Rent</a></li>
+												<li class="list-inline-item"  *ngIf=" feature_pro.sale_availability "><a href="#">Featured</a></li>
+											</ul>
+											<a class="fp_price" href="/productlisting" *ngIf="feature_pro.expected_pricing != null">${{ feature_pro.expected_pricing }}<small></small></a>
+											<a *ngIf="feature_pro.expected_rent != null" class="fp_price"  >${{ feature_pro.expected_rent }}<small></small></a>
+											<h4 class="posr color-white">{{feature_pro.build_name}}</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
           
-          <div class="sidebar_feature_listing">
-            <h4 class="title">Recently Viewed</h4>
-            <div class="media" *ngFor = "let Recently_view of view_property">
-              <img style="width: 100px;" class="align-self-start mr-3" src="{{ftpstring}}{{ Recently_view.product_image5}}" alt="fls1.jpg">
-              <div class="media-body">
-                  <h5 class="mt-0 post_title">{{Recently_view.build_name}}</h5>
-                  <a href="#">RS.{{Recently_view.expected_pricing}}<small>/mo</small></a>
-                  <ul class="mb0">
-                    <li class="list-inline-item">Beds: {{Recently_view.bedroom}}</li>
-                    <li class="list-inline-item">Baths: {{Recently_view.bathroom}}</li>
-                    <li class="list-inline-item">Sq Ft: {{Recently_view.equipment}}</li>
-                  </ul>
-              </div>
-            </div>
-          </div>
+          <div class="sidebar_feature_listing"  *ngIf="isLoggedIn">
+						<h4 class="title">Recently Viewed</h4>
+						<div class="media" *ngFor = "let Recently_view of Recently_UserData">
+							<!-- {{Recently_view | json}} -->
+						  <img style="width: 100px;" class="align-self-start mr-3" src="{{ftpstring}}{{ Recently_view.productdetails.product_image1}}" alt="fls1.jpg">
+						  <div class="media-body">
+							  <h5 class="mt-0 post_title">{{Recently_view.productdetails.build_name}}</h5>
+							  <a *ngIf="Recently_view.productdetails.expected_pricing != null" class="fp_price" >${{ Recently_view.productdetails.expected_pricing }}<small>/mo</small></a>
+							  <a *ngIf="Recently_view.productdetails.expected_rent != null" class="fp_price"  >${{Recently_view.productdetails.expected_rent }}<small>/mo</small></a>
+							
+							  <ul class="mb0">
+								<li class="list-inline-item">Beds: {{Recently_view.productdetails.bedroom}}</li>
+								<li class="list-inline-item">Baths: {{Recently_view.productdetails.bathroom}}</li>
+								<li class="list-inline-item">Sq Ft: {{Recently_view.productdetails.equipment}}</li>
+							  </ul>
+						  </div>
+						</div>
+					</div>
         </div>
        </div>
        <div class="col-md-12 col-lg-8">
@@ -344,37 +369,155 @@
             <div class="preloader1"></div>
           </div>
         </div>       
-         <div class="row">
+         <div class="row propertyListingPage">
           
-           <div class="col-md-6 col-lg-6" *ngFor = "let number of Searchcontent | paginate:{itemsPerPage:8, currentPage:p}">
-            <!-- {{ number | json}} -->
+                     
+          <div class="col-md-6 col-lg-6" *ngFor = "let number of Searchcontent | paginate:{itemsPerPage:8, currentPage:p}">
             <div class="feat_property home7 style4">
-              <div class="thumb">
-                <img class="img-whp" src="{{ftpstring}}{{number.product_image1}}" alt="fp1.jpg">   
-                <div class="thmb_cntnt style2">
-                  <ul class="tag mb0">
-                    <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
-                    <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
-                  </ul>
-                </div>
-                <div class="thmb_cntnt style3">
-                  <ul class="icon mb0">
-                    <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
-                    <li class="list-inline-item"  *ngIf="number[0] != null;else wishlistcontent">
-                      <a (click)="DeleteProd_function(number.id)">
-                          <span class="flaticon-fa-heart"></span>
-                      </a>
-                    </li>
-                     <ng-template #wishlistcontent>
-                        <li class="list-inline-item">
-                          <a  (click)="prod_function(number.id)"><span class="flaticon-heart"></span></a>
+              <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide *ngIf="number.product_image1">
+                  <img class="img-whp" src="{{ftpstring}}{{number.product_image1}}" alt="img1.jpg">
+                  <div class="thumb">
+                    <img *ngIf="!number.product_image1" class="img-whp" src="./../../assets/css/images/property/5.jpg" alt="pposter1.png"> 
+                     <div class="thmb_cntnt style2">
+                      <ul class="tag mb0">
+                        <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
+                        <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
+                      </ul>
+                    </div>
+                    <div class="thmb_cntnt style3">
+                      <ul class="icon mb0">
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
+                        <li class="list-inline-item"  *ngIf="number[0] != null;else wishlistcontent">
+                          <a (click)="DeleteProd_function(number.id)">
+                              <span class="flaticon-fa-heart"></span>
+                          </a>
                         </li>
-                      </ng-template>
-                  </ul>
-                  <a *ngIf="number.expected_pricing != null" class="fp_price" >${{ number.expected_pricing }}<small></small></a>
-							    <a *ngIf="number.expected_rent != null" class="fp_price"  >${{ number.expected_rent }}<small></small></a>
-						  </div>
-              </div>
+                         <ng-template #wishlistcontent>
+                            <li class="list-inline-item">
+                              <a  (click)="prod_function(number.id)"><span class="flaticon-heart"></span></a>
+                            </li>
+                          </ng-template>
+                      </ul>
+                      <a *ngIf="number.expected_pricing != null" class="fp_price" >${{ number.expected_pricing }}<small></small></a>
+                      <a *ngIf="number.expected_rent != null" class="fp_price"  >${{ number.expected_rent }}<small></small></a>
+                  </div>
+                  </div>
+                </ng-template>  
+                <ng-template carouselSlide *ngIf="number.product_image2"> 
+                  <img class="img-whp" src="{{ftpstring}}{{number.product_image2}}" alt="img2.jpg">
+                  <div class="thumb">
+                     <div class="thmb_cntnt style2">
+                      <ul class="tag mb0">
+                        <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
+                        <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
+                      </ul>
+                    </div>
+                    <div class="thmb_cntnt style3">
+                      <ul class="icon mb0">
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
+                        <li class="list-inline-item"  *ngIf="number[0] != null;else wishlistcontent">
+                          <a (click)="DeleteProd_function(number.id)">
+                              <span class="flaticon-fa-heart"></span>
+                          </a>
+                        </li>
+                         <ng-template #wishlistcontent>
+                            <li class="list-inline-item">
+                              <a  (click)="prod_function(number.id)"><span class="flaticon-heart"></span></a>
+                            </li>
+                          </ng-template>
+                      </ul>
+                      <a *ngIf="number.expected_pricing != null" class="fp_price" >${{ number.expected_pricing }}<small></small></a>
+                      <a *ngIf="number.expected_rent != null" class="fp_price"  >${{ number.expected_rent }}<small></small></a>
+                  </div>
+                  </div>
+                </ng-template>  
+                <ng-template carouselSlide *ngIf="number.product_image3"> 
+                  <img class="img-whp" src="{{ftpstring}}{{number.product_image3}}" alt="img3.jpg">
+                  <div class="thumb">
+                     <div class="thmb_cntnt style2">
+                      <ul class="tag mb0">
+                        <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
+                        <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
+                      </ul>
+                    </div>
+                    <div class="thmb_cntnt style3">
+                      <ul class="icon mb0">
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
+                        <li class="list-inline-item"  *ngIf="number[0] != null;else wishlistcontent">
+                          <a (click)="DeleteProd_function(number.id)">
+                              <span class="flaticon-fa-heart"></span>
+                          </a>
+                        </li>
+                         <ng-template #wishlistcontent>
+                            <li class="list-inline-item">
+                              <a  (click)="prod_function(number.id)"><span class="flaticon-heart"></span></a>
+                            </li>
+                          </ng-template>
+                      </ul>
+                      <a *ngIf="number.expected_pricing != null" class="fp_price" >${{ number.expected_pricing }}<small></small></a>
+                      <a *ngIf="number.expected_rent != null" class="fp_price"  >${{ number.expected_rent }}<small></small></a>
+                  </div>
+                  </div>
+                </ng-template>  
+                <ng-template carouselSlide *ngIf="number.product_image4"> 
+                  <img class="img-whp" src="{{ftpstring}}{{number.product_image4}}" alt="img4.jpg">
+                  <div class="thumb">
+                     <div class="thmb_cntnt style2">
+                      <ul class="tag mb0">
+                        <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
+                        <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
+                      </ul>
+                    </div>
+                    <div class="thmb_cntnt style3">
+                      <ul class="icon mb0">
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
+                        <li class="list-inline-item"  *ngIf="number[0] != null;else wishlistcontent">
+                          <a (click)="DeleteProd_function(number.id)">
+                              <span class="flaticon-fa-heart"></span>
+                          </a>
+                        </li>
+                         <ng-template #wishlistcontent>
+                            <li class="list-inline-item">
+                              <a  (click)="prod_function(number.id)"><span class="flaticon-heart"></span></a>
+                            </li>
+                          </ng-template>
+                      </ul>
+                      <a *ngIf="number.expected_pricing != null" class="fp_price" >${{ number.expected_pricing }}<small></small></a>
+                      <a *ngIf="number.expected_rent != null" class="fp_price"  >${{ number.expected_rent }}<small></small></a>
+                  </div>
+                  </div>
+                </ng-template> 
+                <ng-template carouselSlide *ngIf="number.product_image5"> 
+                  <img class="img-whp" src="{{ftpstring}}{{number.product_image5}}" alt="img5.jpg">
+                  <div class="thumb">
+                     <div class="thmb_cntnt style2">
+                      <ul class="tag mb0">
+                        <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
+                        <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
+                      </ul>
+                    </div>
+                    <div class="thmb_cntnt style3">
+                      <ul class="icon mb0">
+                        <li class="list-inline-item"><a href="#"><span class="flaticon-transfer-1"></span></a></li>
+                        <li class="list-inline-item"  *ngIf="number[0] != null;else wishlistcontent">
+                          <a (click)="DeleteProd_function(number.id)">
+                              <span class="flaticon-fa-heart"></span>
+                          </a>
+                        </li>
+                         <ng-template #wishlistcontent>
+                            <li class="list-inline-item">
+                              <a  (click)="prod_function(number.id)"><span class="flaticon-heart"></span></a>
+                            </li>
+                          </ng-template>
+                      </ul>
+                      <a *ngIf="number.expected_pricing != null" class="fp_price" >${{ number.expected_pricing }}<small></small></a>
+                      <a *ngIf="number.expected_rent != null" class="fp_price"  >${{ number.expected_rent }}<small></small></a>
+                  </div>
+                  </div>
+                </ng-template> 
+              </owl-carousel-o>
+              <!-- <img *ngIf="!number.product_image1" *ngIf="!number.product_image2" *ngIf="!number.product_image3" *ngIf="!number.product_image4" *ngIf="!number.product_image5" class="img-whp" src="./../../assets/css/images/property/5.jpg" alt="pposter1.png">    -->
               <div class="details">
                 <a href="/productpage"  (click)="prod_func(number.id)">
                   <div class="tc_content">
@@ -400,6 +543,7 @@
               </div>
             </div>
            </div>
+
 
            <!-- <div class="col-lg-12 mt20">
              <div class="mbp_pagination">

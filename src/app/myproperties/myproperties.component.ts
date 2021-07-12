@@ -62,5 +62,8 @@ export class MypropertiesComponent implements OnInit {
     // this.myservice.setData(data);
     // this.router.navigate(["/productpage"])
   }
-
+  property_details(id){
+    this.userService.handleproductEditdata.next({id});
+    this.router.navigate(['UdateProperty']);
+  }
 }

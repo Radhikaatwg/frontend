@@ -19,22 +19,44 @@
           <!-- Responsive Menu Structure-->
           <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
           <ul id="respMenu" class="ace-responsive-menu text-right" data-menu-style="horizontal">
-              <li><a href="">Home</a></li>
-              <li>
-                  <a href="/productlisting"><span class="title">Listing</span></a>
-                  <!-- Level Two-->
+            <li><a href="">Home</a></li>
+            <li>
+                <a href="/productlisting"><span class="title">Listing</span></a>
+                <!-- Level Two-->
 
 
 
-              <li class="last">
-                  <a href="/contact"><span class="title">Contact</span></a>
-              </li>
-              <li class="last">
-                <a href="/requirement"><span class="title">Requirements</span></a>
+            <li class="last">
+                <a href="/contact"><span class="title">Contact</span></a>
             </li>
-                <li class="list-inline-item list_s"><a href="/login" class="btn flaticon-user" data-toggle="" data-target=".bd-example-modal-lg"> <span class="dn-lg">Login/Register</span></a></li>
-                <li class="list-inline-item add_listing"><a href="/insertproduct"><span class="flaticon-plus"></span><span class="dn-lg"> Create Listing</span></a></li>
-          </ul>
+            <li class="last">
+              <a href="/requirement"><span class="title">Requirements</span></a>
+          </li>
+          <li class="list-inline-item list_s" *ngIf="!isLoggedIn"><a href="/login" class="btn flaticon-user" data-toggle="" data-target=".bd-example-modal-lg"> <span class="dn-lg"> Login/Register</span></a></li>
+          <li class="user_setting" *ngIf="isLoggedIn" >
+            <div class="dropdown">
+                      <a class="btn dropdown-toggle" href="#" data-toggle="dropdown"><span class="flaticon-user"></span><span class="dn-1199"> {{ roles }}</span></a>
+                <div class="dropdown-menu">
+                  <div class="user_set_header">
+                    <span  *ngIf="userProfile"><img src="{{ftpstring}}{{userProfile}}" alt="login_user.png"></span>
+                    <span  *ngIf="!userProfile"><img class="float-left" src="./../../assets/css/images/team/e1.png" alt="login_user.png"></span>
+                    <p>   {{ roles }} <br><span class="address text-secondary"><a href="" class="__cf_email__ " data-cfemail="32535e5b464754535c72555f535b5e1c515d5f" style="color: black;">{{userEmail}}</a></span></p>
+                   </div>
+                   <div class="user_setting_content">
+                  <a class="dropdown-item text-secondary" href="/profile">My Profile</a>
+                  <a class="dropdown-item text-secondary" href="#">Messages</a>
+                  <a class="dropdown-item text-secondary" href="#">Purchase history</a>
+                  <a class="dropdown-item text-secondary" href="#">Help</a>
+                  <a class="dropdown-item text-secondary" href="/logout">Log out</a>
+                  </div>
+                </div>
+            </div>
+              </li>
+              <li _ngcontent-lol-c145="" class="list-inline-item" *ngIf="isLoggedIn"><a href="Wishlist" ><span _ngcontent-lol-c145="" class="flaticon-fa-gift"></span>
+                <span class="wishlistValue">{{wishlistresult.length}}</span>
+              </a></li>
+              <li class="list-inline-item add_listing"><a href="/insertproduct"><span class="flaticon-plus"></span><span class="dn-lg"> Create Listing</span></a></li>
+        </ul>
       </nav>
   </div>
 </header>

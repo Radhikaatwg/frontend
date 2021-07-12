@@ -10,6 +10,9 @@ import { Subject } from  'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+  
+  
+  handleproductEditdata = new BehaviorSubject<any>(null);
 
 // topbar wishlist refresh functionalty start
 public _subject = new BehaviorSubject<any>('');

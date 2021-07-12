@@ -255,6 +255,14 @@ export class AuthService {
       prod_id: prodid_no,
     }), httpOptions);
   }
+  User_productCount(prodid_no): Observable<any> {
+    return this.http.post(AUTH_API + 'product/User_productCount', JSON.stringify ({
+      prod_id: prodid_no,
+    }), httpOptions);
+  }
+  get_CountData(): Observable<any> {
+    return this.http.get(AUTH_API + 'product/User_CountData', { responseType: 'json' });
+  }
   product_similarproperty(cityValue): Observable<any> {
     return this.http.post(AUTH_API + 'product/similarproperty', JSON.stringify ({
       cityValue: cityValue,
@@ -446,7 +454,11 @@ export class AuthService {
       id: data
     }), httpOptions);
   }
-
+  Propery_get_id(data): Observable<any> {
+    return this.http.post(AUTH_API + 'product/Propery_get_id', JSON.stringify({
+      id: data
+    }), httpOptions);
+  }
   verify(number, otp:string): Observable<any> {
     let name = ""+number
     console.log(typeof(name), typeof(otp))

@@ -13,6 +13,8 @@ export class DashboardTopbarComponent implements OnInit {
   usertype;
   isLoggedIn = false;
   roles: string[] = null;
+  userEmail: string[] = null;
+  userProfile: string[] = null;
 
   constructor(
     private token: TokenStorageService,
@@ -20,12 +22,13 @@ export class DashboardTopbarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.currentUser = this.token.getUser().username;
-    this.usertype = this.token.getUser().usertype;
-    console.log(this.usertype);
     if (this.tokenStorage.getToken() != null){
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().username;
+      this.userEmail=this.tokenStorage.getUser().misc.email;
+        this.userProfile=this.tokenStorage.getUser().misc.profile_pic;
+      this.currentUser = this.token.getUser().username;
+      this.usertype = this.token.getUser().usertype;
 
     }
   }

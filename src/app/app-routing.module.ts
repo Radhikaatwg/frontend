@@ -47,6 +47,7 @@ import { PostsGuard } from './posts.guard';
 import { RegisterComponent } from './register/register.component';
 import { VerifyGuard } from './verify.guard';
 import { VerifyDetailsComponent } from './verify-details/verify-details.component';
+import { UpdatepropertyComponent } from './updateproperty/updateproperty.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
 
 const routes: Routes = [
@@ -100,6 +101,7 @@ const routes: Routes = [
   {path: 'admin-blog-single-post/:slug', component: AdminBlogSinglePostComponent},
   {path: 'verify-details', component:  VerifyDetailsComponent},
   {path: 'emi-calculator', component: EmiCalculatorComponent},
+  {path: 'UdateProperty', component: UpdatepropertyComponent},
   {path: '**', component: NotfoundComponent},
 
 ];

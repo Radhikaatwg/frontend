@@ -19,6 +19,8 @@ export class TopbarComponent implements OnInit {
   errorMessage = '';
   roles: string[] = null;
   data;
+  userEmail: string[] = null;
+  userProfile: string[] = null;
 
 
   constructor(
@@ -37,10 +39,15 @@ export class TopbarComponent implements OnInit {
       }
     );
     this.wishlistcount();
-    this.data = this.tokenStorage.getToken();
+   
     if (this.tokenStorage.getToken() != null){
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().username;
+      this.userEmail=this.tokenStorage.getUser().misc.email;
+      this.userProfile=this.tokenStorage.getUser().misc.profile_pic;
+      console.log(this.userEmail);
+      console.log(this.userProfile);
+      this.wishlistcount();
 
     }
 
