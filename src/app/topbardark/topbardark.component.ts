@@ -27,6 +27,7 @@ export class TopbardarkComponent implements OnInit {
   data;
   wishlistcontent: any;
   wishlistresult: any;
+  wishlist_length= 0;
 
   constructor(
     private titleService: Title,
@@ -61,7 +62,8 @@ export class TopbardarkComponent implements OnInit {
     this.userService.getwishlistdata().pipe().subscribe(
       (wishlistdata: any) => {
         this.wishlistcontent = wishlistdata.data;
-        this.wishlistresult = this.wishlistcontent
+        this.wishlistresult = this.wishlistcontent;
+        this.wishlist_length=this.wishlistcontent.length;
         console.log(this.wishlistresult);
       },
       err => {

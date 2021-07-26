@@ -183,6 +183,8 @@ export class AuthService {
   }
 
   product_insert_rent(details, id, amenityArray, furnishingArray,  imageName1, imageName2, imageName3, imageName4, imageName5): Observable<any> {
+    console.log(imageName1);
+      console.log(imageName2);
     return this.http.post(AUTH_API + 'product/insert_product_rent', JSON.stringify ({
       user_id: id ,
       build_name: details.build_name ,
@@ -575,9 +577,12 @@ export class AuthService {
     }), httpOptions);
   }
 
-  product_rent_update(id, details, furnishingArray, amenityArray): Observable<any> {
+  product_rent_update(details, id, amenityArray, amenity_Uncheck, furnishingArray,  imageName1, imageName2, imageName3, imageName4, imageName5): Observable<any> {
     console.log(details);
-    return this.http.post(AUTH_API + 'admin/product_sale_update', JSON.stringify ({
+    console.log(imageName1);
+    console.log(amenityArray);
+    console.log(amenity_Uncheck);
+    return this.http.post(AUTH_API + 'admin/product_Rent_update', JSON.stringify ({
       id: id,
       build_name: details.build_name,
       type: details.type,
@@ -610,6 +615,7 @@ export class AuthService {
       availability_condition: details.availability_condition,
       possession_by: details.possession_by,
       amenities: amenityArray,
+      amenity_Uncheck: amenity_Uncheck,
       parking_covered_count: details.parking_covered_count,
       parking_open_count: details.parking_open_count,
       furnishings: furnishingArray,
@@ -628,11 +634,83 @@ export class AuthService {
       rent_availability: details.rent_availability,
       sale_availability: details.sale_availability,
       available_for: details.available_for,
-      product_image1: details.product_image1,
-      product_image2: details.product_image2,
-      product_image3: details.product_image3,
-      product_image4: details.product_image4,
-      product_image5: details.product_image5,
+      product_image1: imageName1,
+      product_image2: imageName2,
+      product_image3: imageName3,
+      product_image4: imageName4,
+      product_image5: imageName5,
+      expected_rent: details.expected_rent,
+      inc_electricity_and_water_bill: details.inc_electricity_and_water_bill,
+      security_deposit: details.security_deposit,
+      duration_of_rent_aggreement: details.duration_of_rent_aggreement,
+      month_of_notice: details.month_of_notice,
+      willing_to_rent_out_to: details.willing_to_rent_out_to,
+      agreement_type: details.agreement_type,
+      delete_flag: details.delete_flag,
+      view_counter: details.view_counter
+    }), httpOptions);
+  }
+  product_sales_update(details, id, amenityArray, amenity_Uncheck, furnishingArray,  imageName1, imageName2, imageName3, imageName4, imageName5): Observable<any> {
+    console.log(details);
+    console.log(amenityArray);
+    console.log(amenity_Uncheck);
+    return this.http.post(AUTH_API + 'admin/product_sales_update', JSON.stringify ({
+      id: id,
+      build_name: details.build_name,
+      type: details.type,
+      address: details.address,
+      display_address: details.display_address,
+      city: details.city,
+      locality: details.locality,
+      property_detail: details.property_detail,
+      nearest_landmark: details.nearest_landmark,
+      map_latitude: details.map_latitude,
+      map_longitude: details.map_longitude,
+      area: details.area,
+      carpet_area: details.carpet_area,
+      area_unit: details.area_unit,
+      bedroom: details.bedroom,
+      bathroom: details.bathroom,
+      balconies: details.balconies,
+      additional_rooms: details.additional_rooms,
+      equipment: details.equipment,
+      features: details.features,
+      nearby_places: details.nearby_places,
+      age_of_property: details.age_of_property,
+      furnishing_status: details.furnishing_status,
+      property_on_floor: details.property_on_floor,
+      total_floors: details.total_floors,
+      facing_towards: details.facing_towards,
+      rera_registration_status: details.rera_registration_status,
+      additional_parking_status: details.additional_parking_status,
+      buildyear: details.buildyear,
+      availability_condition: details.availability_condition,
+      possession_by: details.possession_by,
+      amenities: amenityArray,
+      amenity_Uncheck: amenity_Uncheck,
+      parking_covered_count: details.parking_covered_count,
+      parking_open_count: details.parking_open_count,
+      furnishings: furnishingArray,
+      ownership: details.ownership,
+      expected_pricing: details.expected_pricing,
+      deposit: details.deposit,
+      inclusive_pricing_details: details.inclusive_pricing_details,
+      tax_govt_charge: details.tax_govt_charge,
+      price_negotiable: details.price_negotiable,
+      maintenance_charge_status: details.maintenance_charge_status,
+      brokerage_charges: details.brokerage_charges,
+      maintenance_charge: details.maintenance_charge,
+      maintenance_charge_condition: details.maintenance_charge_condition,
+      description: details.description,
+      rent_cond: details.rent_cond,
+      rent_availability: details.rent_availability,
+      sale_availability: details.sale_availability,
+      available_for: details.available_for,
+      product_image1: imageName1,
+      product_image2: imageName2,
+      product_image3: imageName3,
+      product_image4: imageName4,
+      product_image5: imageName5,
       expected_rent: details.expected_rent,
       inc_electricity_and_water_bill: details.inc_electricity_and_water_bill,
       security_deposit: details.security_deposit,

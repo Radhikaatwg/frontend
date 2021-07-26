@@ -64,7 +64,7 @@
           <div class="sidebar_listing_list">
             <div class="sidebar_advanced_search_widget">
               <ul class="sasw_list mb0">
-                <form  action="#" name="searchForm"  (ngSubmit)="searchForm.form.valid && onSearch()" id="searchForm" #searchForm="ngForm">
+                <form  action="#" name="searchForm"  id="searchForm" #searchForm="ngForm">
                 <li class="search_area">
                     <div class="form-group">
                       <input type="text" class="form-control" name="build_name" [(ngModel)]="form.build_name" #build_name="ngModel" id="build_name" placeholder="Enter keywords...">
@@ -73,7 +73,9 @@
                 </li>
                 <li class="search_area">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="Location" [(ngModel)]="form.Location" #Location="ngModel" id="Location" placeholder="Location">
+                      <input type="hidden" class="form-control" name="Location" [(ngModel)]="form.Location" #Location="ngModel" id="Location" placeholder="Location">
+                      <input  #search  autocorrect="off" autocapitalize="off"  spellcheck="off" [(ngModel)]="form.Location" type="search"  class="form-control input-text"
+                      placeholder="Enter Address"  [ngModelOptions]="{ standalone: true }" />
                       <label for="Location"><span class="flaticon-maps-and-flags"></span></label>
                     </div>
                 </li>
@@ -232,14 +234,15 @@
                 </li>
                 <li class="min_area list-inline-item">
                     <div class="form-group">
-                      <input type="text" class="form-control" id="Minimum" placeholder="Min Area" name="Minimum" [(ngModel)]="form.Minimum" #Minimum="ngModel">
+                      <input type="text" class="form-control" id="Minimum" placeholder="Min Price" name="Minimum" [(ngModel)]="form.Minimum" #Minimum="ngModel">
                     </div>
                 </li>
                 <li class="max_area list-inline-item">
                     <div class="form-group">
-                      <input type="text" class="form-control" id="Maximum" placeholder="Max Area" name="Maximum" [(ngModel)]="form.Maximum" #Maximum="ngModel">
+                      <input type="text" class="form-control" id="Maximum" placeholder="Max Price" name="Maximum" [(ngModel)]="form.Maximum" #Maximum="ngModel">
                     </div>
                 </li>
+                <li><ng5-slider [(value)]="form.Minimum" [(highValue)]="form.Maximum" [options]="options"></ng5-slider></li>
                 <li>
                     <div id="accordion" class="panel-group">
                       <div class="panel">
@@ -271,7 +274,7 @@
                 </li>
                 <li>
                   <div class="search_option_button">
-                      <button type="submit" class="btn btn-block btn-thm">Search</button>
+                      <button type="button"  (click)="searchForm.form.valid && onSearch()" class="btn btn-block btn-thm">Search</button>
                   </div>
                 </li>
                 </form>
@@ -313,11 +316,11 @@
 						</div>
 					</div>
           
-          <div class="sidebar_feature_listing"  *ngIf="isLoggedIn">
+          <div class="sidebar_feature_listing rentlyView_singlepage "  *ngIf="isLoggedIn">
 						<h4 class="title">Recently Viewed</h4>
 						<div class="media" *ngFor = "let Recently_view of Recently_UserData">
 							<!-- {{Recently_view | json}} -->
-						  <img style="width: 100px;" class="align-self-start mr-3" src="{{ftpstring}}{{ Recently_view.productdetails.product_image1}}" alt="fls1.jpg">
+						  <span><img style="width: 100px;" class="align-self-start mr-3" src="{{ftpstring}}{{ Recently_view.productdetails.product_image1}}" alt="fls1.jpg"></span>
 						  <div class="media-body">
 							  <h5 class="mt-0 post_title">{{Recently_view.productdetails.build_name}}</h5>
 							  <a *ngIf="Recently_view.productdetails.expected_pricing != null" class="fp_price" >${{ Recently_view.productdetails.expected_pricing }}<small>/mo</small></a>
@@ -338,7 +341,7 @@
           <div class="grid_list_search_result">
             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-5">
               <div class="left_area tac-xsd">
-                <p>{{Searchcontent.length}} Search results</p>
+                <p>{{Search_data_length}} Search results</p>
               </div>
             </div>
             <div class="col-sm-12 col-md-8 col-lg-8 col-xl-7">
@@ -519,7 +522,7 @@
               </owl-carousel-o>
               <!-- <img *ngIf="!number.product_image1" *ngIf="!number.product_image2" *ngIf="!number.product_image3" *ngIf="!number.product_image4" *ngIf="!number.product_image5" class="img-whp" src="./../../assets/css/images/property/5.jpg" alt="pposter1.png">    -->
               <div class="details">
-                <a href="/productpage"  (click)="prod_func(number.id)">
+                <a href="/productpage/{{number.id}}"  >
                   <div class="tc_content">
                     <p class="text-thm">{{ number.type }}</p>
                     <h4>{{number.build_name}}</h4>
@@ -565,10 +568,10 @@
              </div>
            </div> -->
          </div>
-         <div class="col-lg-12  col-md-12 "  *ngIf="Searchcontent.length<1">
+         <div class="col-lg-12  col-md-12 "  *ngIf="Search_data_length<1">
            <h2 _ngcontent-rrd-c80="" class="breadcrumb_title">Product Listing Not Found!!!...</h2>
          </div>
-         <div class="row" *ngIf="Searchcontent.length>8">
+         <div class="row" *ngIf="Search_data_length>8">
            <div class="col-lg-6  col-md-12 offset-lg-6">
             <pagination-controls (pageChange)="p=$event"></pagination-controls>
            </div>

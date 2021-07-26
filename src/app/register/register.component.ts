@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.form.select_type=2;
     this.titleService.setTitle('Register');
   }
 

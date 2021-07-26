@@ -83,6 +83,11 @@ import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
 import { RegisterComponent } from './register/register.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
 import { UpdatepropertyComponent } from './updateproperty/updateproperty.component';
+import { UpdateSalesPropertyComponent } from './update-sales-property/update-sales-property.component';
+import { Ng5SliderModule } from 'ng5-slider';
+import { SliderModule } from '@syncfusion/ej2-angular-inputs';
+import { AgmCoreModule  } from '@agm/core';
+
 //import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
@@ -154,8 +159,14 @@ import { UpdatepropertyComponent } from './updateproperty/updateproperty.compone
     RegisterComponent,
     EmiCalculatorComponent,
     UpdatepropertyComponent,
+    UpdateSalesPropertyComponent,
   ],
   imports: [
+    Ng5SliderModule,
+    SliderModule,
+    AgmCoreModule.forRoot({  
+    apiKey: 'AIzaSyC2S5kHeGYkW9cL4d7_uxfauTBfQEtN4HA', libraries: ['places']
+  }), 
     BrowserAnimationsModule,
     BrowserModule,
     EditorModule,

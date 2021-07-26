@@ -10,7 +10,15 @@ import { Subject } from  'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  
+   // google map integrtated
+   getLocationService():Promise<any>{
+    return new Promise((resolve, reject)=>{
+      navigator.geolocation.getCurrentPosition(resp=>{
+        resolve({lng:resp.coords.longitude, lat: resp.coords.latitude,accuracy: resp.coords.accuracy})
+       
+       })
+     })
+   }
   
   handleproductEditdata = new BehaviorSubject<any>(null);
 

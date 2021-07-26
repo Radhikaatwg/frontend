@@ -3,9 +3,14 @@ import { UserService } from './../_services/user.service';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from './../_services/auth.service';
 import { TokenStorageService } from './../_services/token-storage.service';
-import { Component, Input, OnInit } from '@angular/core';
+// import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder } from '@angular/forms';
+import { Options,LabelType } from 'ng5-slider';
+import { MapsAPILoader,AgmMap } from '@agm/core';
+// import { google } from "google-maps";
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-postproduct',
   templateUrl: './postproduct.component.html',
@@ -88,13 +93,35 @@ export class PostproductComponent implements OnInit {
   equipment: any;
   features: any;
   i:any;
+
+  // map google
+  geoCoder:any;
+  // searchElementRef:any;
+  latCus=78.89;
+  longCus=76.897;
+  @ViewChild("search") searchElementRef: ElementRef;
+  @ViewChild(AgmMap,{static: true}) public agmMap: AgmMap;
+  zoom: number;
+  location: string;
+
+  // value: number = 30000000;
+  options: Options = {
+    floor: 0,
+    ceil: 50000000
+  };
+
    constructor(
     private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private toastr: ToastrService,
-    private userService: UserService
-    ) { }
+    private userService: UserService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone:NgZone
+    ) {
+      
+    this.getLocation();
+     }
 
     eventListen(event){
       console.log(event);
@@ -102,6 +129,34 @@ export class PostproductComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.form.expected_pricing="0";
+
+    
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder();
+    });
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement
+      );
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.latCus = place.geometry.location.lat();
+          this.longCus = place.geometry.location.lng();
+          this.location = place.formatted_address;
+          this.zoom = 15;
+          console.log(this.latCus);
+          console.log(this.location);
+          this.form.address=this.location;
+          this.form.map_latitude=this.latCus;
+          this.form.map_longitude=this.longCus;
+        
+        });
+      });
+    });
+
     this.amenities();
     this.titleService.setTitle('Create Listing');
     // Login check
@@ -128,6 +183,16 @@ export class PostproductComponent implements OnInit {
 
   redirect_to_home(): void {
     window.location.href=GlobalConstants.siteURL="login"
+  }
+  getLocation(){
+    this.userService.getLocationService().then(resp=>{
+     console.log(resp.lng);
+     console.log(resp); 
+     this.longCus=resp.lng;
+     this.latCus=resp.lat; 
+     this.form.map_latitude=this.latCus;
+     this.form.map_longitude=this.longCus;
+     })
   }
 
 
@@ -330,8 +395,8 @@ z
   }
 
   onSubmitSale(): void {
-
-    console.log(this.form)
+    console.log(this.form);
+    if(this.form.expected_pricing>=500000 && this.form.expected_pricing<=50000000){
     this.authService.product_insert_sale(this.form, this.content.id, this.amenityArray, this.furnishingArray, this.image1, this.image2, this.image3, this.image4, this.image5).subscribe(
       data => {
         console.log(data);
@@ -348,7 +413,12 @@ z
         });
       }
     );
+  }else{
+    this.toastr.error("Expected Price Between 5Lakhs to 5 Crore", 'Price Invalid..!!', {
+      timeOut: 2000,
+    });
   }
+}
 
 
   saleButton(): void{

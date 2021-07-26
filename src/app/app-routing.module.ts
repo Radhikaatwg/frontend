@@ -49,13 +49,14 @@ import { VerifyGuard } from './verify.guard';
 import { VerifyDetailsComponent } from './verify-details/verify-details.component';
 import { UpdatepropertyComponent } from './updateproperty/updateproperty.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
+import { UpdateSalesPropertyComponent } from './update-sales-property/update-sales-property.component';
 
 const routes: Routes = [
 
   {path: '', component: HomeComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'productlisting', component: ProductListingComponent},
-  {path: 'productpage', component: ProductpageComponent},
+  {path: 'productpage/:id', component: ProductpageComponent},
   //{path: 'register', component: UserregisterComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
@@ -101,7 +102,8 @@ const routes: Routes = [
   {path: 'admin-blog-single-post/:slug', component: AdminBlogSinglePostComponent},
   {path: 'verify-details', component:  VerifyDetailsComponent},
   {path: 'emi-calculator', component: EmiCalculatorComponent},
-  {path: 'UdateProperty', component: UpdatepropertyComponent},
+  {path: 'UdateProperty/:id', component: UpdatepropertyComponent},
+  {path: 'UdateSalesProperty/:id', component: UpdateSalesPropertyComponent},
   {path: '**', component: NotfoundComponent},
 
 ];

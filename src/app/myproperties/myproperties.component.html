@@ -59,14 +59,13 @@
           </div>
           <div class="col-lg-4 col-xl-4 mb10">
             <div class="breadcrumb_content style2 mb30-991" style="margin-left: 30px;">
-              <h2 class="breadcrumb_title">My Properties</h2>
+              <h2 class="breadcrumb_title">My Properties ({{contentLenght}})</h2>
               <p>We are glad to see you again!</p>
             </div>
           </div>
           <div class="col-lg-8 col-xl-8">
             <div class="candidate_revew_select style2 text-right mb30-991">
               <ul class="mb0">
-
 
               </ul>
             </div>
@@ -85,8 +84,14 @@
                           <th scope="col">Action</th>
                         </tr>
                     </thead>
+                      
+                  <div class="row" *ngIf="showLoadingIndicator">
+                    <div class="col-md-12 col-lg-12"  class="loaderClass">
+                      <div class="preloader1"></div>
+                    </div>
+                  </div> 
                     <tbody>
-                        <tr *ngFor="let number of content">
+                        <tr *ngFor="let number of content | paginate:{itemsPerPage:4, currentPage:p}">
                           <th scope="row">
                           <div class="feat_property list favorite_page style2">
                             <div class="thumb">
@@ -94,8 +99,8 @@
                               <div class="thmb_cntnt">
                                 <ul class="tag mb0">
                                   <li class="list-inline-item dn"></li>
-                                  <li class="list-inline-item" *ngIf=" number.rent_availability "><a >For Rent</a></li>
-                                  <li class="list-inline-item" *ngIf=" number.sale_availability "><a >For Sale</a></li>
+                                  <li class="list-inline-item" *ngIf=" number.rent_availability  != null"><a >For Rent</a></li>
+                                  <li class="list-inline-item" *ngIf=" number.sale_availability  != null"><a >For Sale</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -112,23 +117,28 @@
                           <!-- <td>{{ number.updated_at }}</td> -->
                           <td  class="hidden-xs hidden-sm">{{ number.updated_at | date: 'MMM d, y, h:mm:ss a' }}</td>
                           <!-- <td><span class="status_tag badge">Pending</span></td> -->
-                          <td  class="hidden-xs hidden-sm">{{ number.view_counter }}</td>
+                          <td  class="hidden-xs hidden-sm">{{ number.view_counter }} </td>
                           <td>
                             <ul class="view_edit_delete_list mb0">
-                              <li class="list-inline-item hidden-xs hidden-sm" data-toggle="tooltip" data-placement="top" title="Edit">
-                                <a (click)="property_details(number.id)"  ><span class="flaticon-edit"></span></a>
+                              <li class="list-inline-item hidden-xs hidden-sm" data-toggle="tooltip" data-placement="top" title="Edit" *ngIf=" number.sale_availability  != null">
+                                <a href="/UdateSalesProperty/{{number.id}}"  ><span class="flaticon-edit"></span></a>
+                              </li>
+                              <li class="list-inline-item hidden-xs hidden-sm" data-toggle="tooltip" data-placement="top" title="Edit" *ngIf=" number.rent_availability  != null">
+                                <a href="/UdateProperty/{{number.id}}"  ><span class="flaticon-edit"></span></a>
                               </li>
                               <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Delete"><a (click)="del_func(number.id)"><span class="flaticon-garbage"></span></a></li>
                             </ul>
                           </td>
                         </tr>
-
-
-
                     </tbody>
                   </table>
-                </div>
-
+                  <div class="col-lg-12  col-md-12 " *ngIf="contentLenght==0">
+                    <h2 _ngcontent-rrd-c80="" class="breadcrumb_title">Product Listing Not Found!!!...</h2>
+                  </div>
+                  <div class="col-lg-4 offset-lg-8 offset-md-8 " *ngIf="contentLenght>4">
+                    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+                   </div>
+                </div> 
               </div>
             </div>
           </div>

@@ -21,6 +21,8 @@ export class TopbarComponent implements OnInit {
   data;
   userEmail: string[] = null;
   userProfile: string[] = null;
+  
+  wishlist_length= 0;
 
 
   constructor(
@@ -38,7 +40,6 @@ export class TopbarComponent implements OnInit {
         }
       }
     );
-    this.wishlistcount();
    
     if (this.tokenStorage.getToken() != null){
       this.isLoggedIn = true;
@@ -56,7 +57,9 @@ export class TopbarComponent implements OnInit {
     this.userService.getwishlistdata().pipe().subscribe(
       (wishlistdata: any) => {
         this.wishlistcontent = wishlistdata.data;
-        this.wishlistresult = this.wishlistcontent
+        this.wishlistresult = this.wishlistcontent;
+        this.wishlist_length=this.wishlistcontent.length;
+        console.log(this.wishlist_length);
         console.log(this.wishlistresult);
       },
       err => {

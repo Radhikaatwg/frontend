@@ -29,11 +29,13 @@
 
 <body>
 	<div class="wrapper">
-		<div class="preloader"></div>
+		<div class="preloader" *ngIf="showLoadingIndicator"></div>
 
 		<!-- Main Header Nav -->
 		<app-topbardark></app-topbardark>
 		<!-- <app-topbardark-loader></app-topbardark-loader> -->
+ 
+		
 
 		<!-- Main Header Nav For Mobile -->
 		<div class="single_page_listing_tab">
@@ -77,24 +79,24 @@
 												<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 											</ol>
 											<div class="carousel-inner">
-												<div class="carousel-item active">
-													<img src="{{ p_img1 }}" class="d-block w-100" alt="..."
+												<div class="carousel-item active" *ngIf="p_img1 !=null">
+													<img src="{{ftpstring}}{{p_img1}}" class="d-block w-100" alt="..."
 														height="600">
 												</div>
-												<div class="carousel-item">
-													<img src="{{ p_img2 }}" class="d-block w-100" alt="..."
+												<div class="carousel-item" *ngIf="p_img2 != null">
+													<img src="{{ftpstring}}{{p_img2}}" class="d-block w-100" alt="..."
 														height="600">
 												</div>
-												<div class="carousel-item">
-													<img src="{{ p_img3 }}" class="d-block w-100" alt="..."
+												<div class="carousel-item"  *ngIf="p_img3 !=null">
+													<img src="{{ftpstring}}{{p_img3}}" class="d-block w-100" alt="..."
 														height="600">
 												</div>
-												<div class="carousel-item">
-													<img src="{{ p_img4 }}" class="d-block w-100" alt="..."
+												<div class="carousel-item"  *ngIf="p_img4 != null">
+													<img src="{{ftpstring}}{{p_img4}}" class="d-block w-100" alt="..."
 														height="600">
 												</div>
-												<div class="carousel-item">
-													<img src="{{ p_img5 }}" class="d-block w-100" alt="..."
+												<div class="carousel-item"  *ngIf="p_img5 != null">
+													<img src="{{ftpstring}}{{p_img5}}" class="d-block w-100" alt="..."
 														height="600">
 												</div>
 											</div>
@@ -448,7 +450,7 @@
 					</div>
 				</div>
 				<div class="row" *ngFor="let pdata of product_data">
-					<div class="col-lg-7 col-xl-8">
+					<div class="col-lg-6 col-xl-6">
 						<!-- <div class="dn db-991 mt30 mb0">
 						<div id="main2">
 							<span id="open2" class="flaticon-filter-results-button filter_open_btn style3"> Show Filter</span>
@@ -459,7 +461,7 @@
 							<p>{{pdata.address}}</p>
 						</div>
 					</div>
-					<div class="col-lg-5 col-xl-4">
+					<div class="col-lg-6 col-xl-6">
 						<div class="single_property_social_share">
 							<div class="price float-left fn-400" *ngIf="pdata.expected_rent != null">
 								<h2 *ngIf="pdata.expected_rent != 0">Rs.
@@ -685,16 +687,21 @@
 										<div class="col-lg-12">
 											<h4 class="mb10">Amenities</h4>
 										</div>
-										<div class="col-sm-6  col-md-6 col-lg-4"
-											*ngFor="let amenitiesData of amenities">
+										<div class="col-sm-6  col-md-6 col-lg-4" *ngFor="let amenitiesData of amenitiesresult">
 											<ul class="order_list list-inline-item">
-												<li *ngIf=" amenitiesData.name==pdata.amenities"><a href="#"><span
-															class="flaticon-tick"></span>
+												<li *ngIf="Amenties_funtion(amenitiesData.id)==true,else OtherAmenties">
+													<a href="#">
+														<span class="flaticon-tick"></span>
 														<p class="paraclass">{{amenitiesData.name}}</p>
-													</a></li>
-												<li *ngIf=" amenitiesData.name!=pdata.amenities"><a href="#">
+													</a>
+												</li>
+												<ng-template #OtherAmenties>
+												<li>
+													<a href="#">
 														<p class="paraclass">{{amenitiesData.name}}</p>
-													</a></li>
+													</a>
+												</li>
+											</ng-template> 
 											</ul>
 										</div>
 									</div>
@@ -1190,8 +1197,10 @@
 							<div class="sidebar_advanced_search_widget">
 								<div class="sl_creator">
 									<h4 class="mb25">Listed By</h4>
-									<div class="media">
-										<img class="mr-3" src="./../../assets/css/images/team/lc1.png" alt="lc1.png">
+									<div class="media userProfile">
+										<!-- <img class="mr-3" src="./../../assets/css/images/team/lc1.png" alt="lc1.png"> -->
+										<span  *ngIf="udata.profile_pic !=null"><img src="{{ftpstring}}{{udata.profile_pic}}" alt="login_user.png"></span>
+										<span  *ngIf="!udata.profile_pic"><img class="float-left" src="./../../assets/css/images/team/e1.png" alt="login_user.png"></span>
 										<div class="media-body">
 											<h5 class="mt-0 mb0">{{udata.name}}</h5>
 											<p class="mb0">{{udata.phone_number}}</p>
@@ -1299,7 +1308,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="sidebar_feature_listing"  *ngIf="isLoggedIn">
+						<div class="sidebar_feature_listing rentlyView_singlepage"  *ngIf="isLoggedIn">
 							<h4 class="title">Recently Viewed</h4>
 							<div class="media" *ngFor = "let Recently_view of Recently_UserData">
 								<!-- {{Recently_view | json}} -->

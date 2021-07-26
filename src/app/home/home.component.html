@@ -52,7 +52,7 @@
 							  </ul>
 							  <div class="tab-content home1_adsrchfrm mx-auto" style="width: 80%;" id="pills-tabContent">
 								  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-									  <form class="home1-advnc-search" action="#" name="form" (ngSubmit)="f.form.valid && onSearch()" #f="ngForm">
+									  <form class="home1-advnc-search" action="#" name="form"  #f="ngForm">
 										  <ul class="h1ads_1st_list mb0">
 											  <li class="list-inline-item">
 												  <div class="form-group">
@@ -100,8 +100,10 @@
 											   </li>
 											  <li class="list-inline-item">
 												  <div class="form-group">
-													  <input type="text" class="form-control" name="city" [(ngModel)]="form.city" #city="ngModel" id="City" placeholder="Location">
-													  <label for="exampleInputEmail"><span class="flaticon-maps-and-flags"></span></label>
+													<input type="hidden" class="form-control" name="city" [(ngModel)]="form.city" #city="ngModel" id="city" placeholder="city">
+													<input  #search  autocorrect="off" autocapitalize="off"  spellcheck="off" [(ngModel)]="form.city" type="search"  class="form-control input-text"
+													placeholder="Enter Address"  [ngModelOptions]="{ standalone: true }" />
+													<label for="Location"><span class="flaticon-maps-and-flags"></span></label>
 												  </div>
 											  </li>
 											  <li class="list-inline-item">
@@ -187,22 +189,6 @@
 																				  </select>
 																			  </div>
 																			</li>
-																			<li class="list-inline-item">
-																			  <div class="candidate_revew_select">
-																				  <select class="selectpicker w100 show-tick">
-																					  <option>Built-up Area</option>
-																					  <option>Adana</option>
-																					  <option>Ankara</option>
-																					  <option>Antalya</option>
-																					  <option>Bursa</option>
-																					  <option>Bodrum</option>
-																					  <option>Gaziantep</option>
-																					  <option>İstanbul</option>
-																					  <option>İzmir</option>
-																					  <option>Konya</option>
-																				  </select>
-																			  </div>
-																			</li>
 																		</ul>
 																	</div>
 																	<div class="col-lg-1 col-xl-2">
@@ -218,7 +204,7 @@
 											  
 											  <li class="list-inline-item">
 												  <div class="search_option_button form-group">
-													  <button class="btn btn-thm" >Search</button>
+													  <button type="button" (click)="f.form.valid && onSearch()" class="btn btn-thm" >Search</button>
 												  </div>
 											  </li>
 											  <li class="list-inline-item">
@@ -496,11 +482,14 @@
 					  <div class="main-title text-center mb40">
 						  <h2>Featured Properties </h2>
 						  <p>Handpicked properties by our team.</p>
-			<h4 class="italic" *ngIf="!content">No Properties</h4>
-  
+			               <h4 class="italic" *ngIf="!content">No Properties</h4>
 					  </div>
-		  </div>
-		  
+		           </div>
+				   <!-- loader start -->
+				   <div class="col-md-12 col-lg-12"  class="loaderClass" *ngIf="showLoadingIndicator">
+					<div class="preloader1"></div>
+				  </div>
+				  <!-- loader closed -->
 		  <div class="col-lg-12 feature-property_home">
 			  <owl-carousel-o [options]="customOptions">
 				  <ng-container *ngFor = "let number of content">
@@ -543,7 +532,7 @@
 						   </div>
 						</div>
 						<div class="details">
-							<a href="/productpage"  (click)="prod_func(number.id)">
+							<a href="/productpage/{{number.id}}">
 								<div class="tc_content">
 									<p class="text-thm">{{ number.type }}</p>
 									<h4>{{number.build_name}}</h4>
@@ -702,7 +691,7 @@
 							  <span class="flaticon-profit"></span>
 						  </div>
 						  <div class="details">
-							  <h4>Financing Made Easy{{testimonial.length}}</h4>
+							  <h4>Financing Made Easy{{testimonial_length}}</h4>
 							  <p>Aliquam dictum elit vitae mauris facilisis at dictum urna dignissim donec vel lectus vel felis.</p>
 						  </div>
 					  </div>
@@ -711,7 +700,7 @@
 		  </div>
 	  </section>
   <!-- iqbal working testimonial section -->
-	  <section *ngIf="testimonial.length>0" id="our-testimonials" class="our-testimonial" >
+	  <section *ngIf="testimonial_length>0" id="our-testimonials" class="our-testimonial" >
 		  <div class="container">
 			  <div class="row">
 				  <div class="col-lg-6 offset-lg-3">

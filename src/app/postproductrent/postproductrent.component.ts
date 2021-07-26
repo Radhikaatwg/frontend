@@ -4,8 +4,11 @@ import { UserService } from './../_services/user.service';
 import { TokenStorageService } from './../_services/token-storage.service';
 import { AuthService } from './../_services/auth.service';
 import { Title } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { MapsAPILoader,AgmMap } from '@agm/core';
+// import { google } from "google-maps";
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Options,LabelType } from 'ng5-slider';
 
 @Component({
   selector: 'app-postproductrent',
@@ -97,14 +100,35 @@ export class PostproductrentComponent implements OnInit {
   nearby_places: any;
   equipment: any;
   features: any;
+  
+  
+  // value: number = 30000000;
+  options: Options = {
+    floor: 0,
+    ceil: 50000000
+  };
+  i:any;
+  geoCoder:any;
+  // searchElementRef:any;
+  latCus=78.89;
+  longCus=76.897;
+  @ViewChild("search") searchElementRef: ElementRef;
+  @ViewChild(AgmMap,{static: true}) public agmMap: AgmMap;
+  zoom: number;
+  location: string;
 
   constructor(
     private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private toastr: ToastrService,
-    private userService: UserService
-    ) { }
+    private userService: UserService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone:NgZone
+    ) { 
+     
+      this.getLocation();
+    }
 
     eventListen(event){
       console.log(event);
@@ -112,6 +136,33 @@ export class PostproductrentComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
+    this.form.expected_rent="0";
+    
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder();
+    });
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement
+      );
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.latCus = place.geometry.location.lat();
+          this.longCus = place.geometry.location.lng();
+          this.location = place.formatted_address;
+          this.zoom = 15;
+          console.log(this.latCus);
+          console.log(this.location);
+          this.form.address=this.location;
+          this.form.map_latitude=this.latCus;
+          this.form.map_longitude=this.longCus;
+        
+        });
+      });
+    });
     this.amenities();
     this.titleService.setTitle('Create Listing');
 
@@ -136,6 +187,16 @@ export class PostproductrentComponent implements OnInit {
       this.isLoggedIn = false ;
     }
     this.selectedItems = new Array<string>();
+  }
+  getLocation(){
+    this.userService.getLocationService().then(resp=>{
+     console.log(resp.lng);
+     console.log(resp); 
+     this.longCus=resp.lng;
+     this.latCus=resp.lat; 
+     this.form.map_latitude=this.latCus;
+     this.form.map_longitude=this.longCus;
+     })
   }
 
   redirect_to_home(): void {
@@ -173,7 +234,6 @@ export class PostproductrentComponent implements OnInit {
       console.log(id + 'Checked');
       this.selectedItems.push(id);
     }else{
-      
       console.log(id + 'UNChecked');
       this.selectedItems= this.selectedItems.filter(m=>m!=id);
     }
@@ -220,6 +280,7 @@ export class PostproductrentComponent implements OnInit {
   
 
   }
+  
   readThis1(inputValue: any): void {
     var file:File = inputValue;
     var myReader:FileReader = new FileReader();
@@ -341,22 +402,30 @@ z
   }
 
   onSubmitRent(): void {
-    this.authService.product_insert_rent(this.form, this.content, this.amenityArray, this.furnishingArray, this.image1, this.image2, this.image3, this.image4, this.image5).subscribe(
-      data => {
-        console.log("successful" + data)
-        this.toastr.success('Successfuly Saved', 'Property');
-        window.location.href=GlobalConstants.siteURL+"myproperties"
-      },
-      err => {
-        this.err_caused = true;
-        this.errorMessage = err.error.errors;
-        this.errorMessage1 = err.error.message;
-        console.log(this.errorMessage);
-        this.toastr.error(this.errorMessage1, 'Something Error', {
-          timeOut: 3000,
-        });
+    console.log(this.form);
+    if(this.form.expected_rent>=5000 && this.form.expected_rent<=500000){
+      this.authService.product_insert_rent(this.form, this.content, this.amenityArray, this.furnishingArray, this.image1, this.image2, this.image3, this.image4, this.image5).subscribe(
+        data => {
+          console.log("successful" + data)
+          this.toastr.success('Successfuly Saved', 'Property');
+          window.location.href=GlobalConstants.siteURL+"myproperties"
+        },
+        err => {
+          this.err_caused = true;
+          this.errorMessage = err.error.errors;
+          this.errorMessage1 = err.error.message;
+          console.log(this.errorMessage);
+          this.toastr.error(this.errorMessage1, 'Something Error', {
+            timeOut: 3000,
+          });
+        }
+      );
+    }else{
+      this.toastr.error("Expected Price Between 5k to 5 5Lakhs", 'Price Invalid..!!', {
+        timeOut: 2000,
       }
-    );
+      );
+    }
   }
 
   saleButton(): void{

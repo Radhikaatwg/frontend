@@ -39,19 +39,36 @@ export class ProfileComponent implements OnInit {
   content: {};
   form: any =  {};
   formd: any =  {};
-  id
+  id;
+  
   ftpstring: string = GlobalConstants.ftpURL;
+  
+  showLoadingIndicator = false;
+  isLoggedIn: boolean;
 
   constructor(
     private token: TokenStorageService,
     private titleService: Title,
     private userService: UserService,
     private authService: AuthService,
+    private tokenStorage: TokenStorageService,
 
     ) { }
 
   ngOnInit(): void {
+    if(this.tokenStorage.getUser() != null){
+      this.isLoggedIn = true
+      console.log(this.isLoggedIn)
+    }
+    else{
+      this.redirect_to_home();
+    }
     this.titleService.setTitle('Profile Page');
+    this.LoginUser_Data();
+    
+  }
+  LoginUser_Data():void{
+    this.showLoadingIndicator = true;
     this.userService.getUserBoard().pipe().subscribe(
       (data: any) => {
         this.content = data;
@@ -100,10 +117,12 @@ export class ProfileComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     )
+    this.showLoadingIndicator = false;
   }
 
 
   user_details(data): void {
+    this.showLoadingIndicator = true;
     this.authService.user_get(this.id).subscribe(
       (data: any) => {
         console.log(data)
@@ -174,6 +193,12 @@ export class ProfileComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     )
+    this.showLoadingIndicator = false;
+  }
+
+  
+  redirect_to_home(): void {
+    window.location.href=GlobalConstants.siteURL="login"
   }
 
   onSubmitUpdate(): void {

@@ -18,6 +18,7 @@ export class TopbardarkLoaderComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = null;
+  wishlist_length=0;
   data
   constructor(
     private titleService: Title,
@@ -34,7 +35,6 @@ export class TopbardarkLoaderComponent implements OnInit {
         }
       }
     );
-      this.wishlistcount();
       this.data = this.tokenStorage.getToken();
       if (this.tokenStorage.getToken() != null){
         this.isLoggedIn = true;
@@ -52,7 +52,8 @@ export class TopbardarkLoaderComponent implements OnInit {
       this.userService.getwishlistdata().pipe().subscribe(
         (wishlistdata: any) => {
           this.wishlistcontent = wishlistdata.data;
-          this.wishlistresult = this.wishlistcontent
+          this.wishlistresult = this.wishlistcontent;
+          this.wishlist_length=this.wishlistcontent.length;
           console.log(this.wishlistresult);
         },
         err => {

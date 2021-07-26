@@ -4,21 +4,29 @@ import { ProductService } from './../_services/product.service';
 import { GlobalConstants } from './../global-constants';
 import { UserService } from './../_services/user.service';
 import { DomSanitizer, SafeUrl, Title } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../_services/auth.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgForm } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Options,LabelType } from 'ng5-slider';
+import { MapsAPILoader,AgmMap } from '@agm/core';
+// import { google } from "google-maps";
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-product-listing',
   templateUrl: './product-listing.component.html',
   styleUrls: ['./product-listing.component.css']
 })
 export class ProductListingComponent implements OnInit {
-  [x: string]: any;
+  options: Options = {
+    floor: 0,
+    ceil: 50000000
+  };
 
-  
-   currentUser: any;
+
+  [x: string]: any;
+  currentUser: any;
   currentUserid: any;
   form: any = {};
   data: any = {};
@@ -39,6 +47,17 @@ export class ProductListingComponent implements OnInit {
     Minimum : '',
     Maximum   : '',
     };
+    Search_data_length=0;
+
+    // map google
+  geoCoder:any;
+  // searchElementRef:any;
+  latCus=78.89;
+  longCus=76.897;
+  @ViewChild("search") searchElementRef: ElementRef;
+  @ViewChild(AgmMap,{static: true}) public agmMap: AgmMap;
+  zoom: number;
+  location: string;
 
 
   first_prod = null
@@ -55,14 +74,46 @@ export class ProductListingComponent implements OnInit {
     private authService: AuthService,
     private tokenService: TokenStorageService,
     private tokenStorage: TokenStorageService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone:NgZone,
     
-  ) {}
+  ) {
+    this.getpropertyData();
+  }
 
   sanitizeImageUrl(imageUrl: string): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
 }
 
   ngOnInit(): void {
+    this.form.Minimum=0;
+    this.form.Maximum=50000000;
+        
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder();
+    });
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement
+      );
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.latCus = place.geometry.location.lat();
+          this.longCus = place.geometry.location.lng();
+          this.location = place.formatted_address;
+          this.zoom = 15;
+          // console.log(this.latCus);
+          // console.log(this.location);
+          this.form.Location=this.location;
+          // this.form.map_latitude=this.latCus;
+          // this.form.map_longitude=this.longCus;
+        
+        });
+      });
+    });
+
     this.selectedItems = new Array<string>();
     this. amenities();
     this.feature_property();
@@ -296,10 +347,12 @@ export class ProductListingComponent implements OnInit {
           this.authService.product_SearchingLogin(this.form,this.amenityArray).subscribe(
             searchData => {
               console.log("login");
+              console.log(searchData);
               this.Searchcontent = searchData.data;
               if(this.Searchcontent){
-                 this.showLoadingIndicator = false;
                  this.number = this.Searchcontent;
+                 this.Search_data_length=this.Searchcontent.length;
+                 this.showLoadingIndicator = false;
                  this.sendinformation();
               }
               
@@ -318,7 +371,8 @@ export class ProductListingComponent implements OnInit {
               this.Searchcontent = searchData.data;
               if(this.Searchcontent){
                 this.showLoadingIndicator = false;
-             this.number = this.Searchcontent;
+                this.Search_data_length=this.Searchcontent.length;
+                this.number = this.Searchcontent;
               // console.log(this.number);
               }
               

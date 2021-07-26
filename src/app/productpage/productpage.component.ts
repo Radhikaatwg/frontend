@@ -22,11 +22,11 @@ export class ProductpageComponent implements OnInit {
   product_data: [];
   ftpstring: string = GlobalConstants.ftpURL;
   sitestring: string = GlobalConstants.siteURL;
-  p_img1;
-  p_img2;
-  p_img3;
-  p_img4;
-  p_img5;
+  p_img1= null;
+  p_img2= null;
+  p_img3= null;
+  p_img4= null;
+  p_img5= null;
   form: any = {};
   Review;
   map_url;
@@ -36,6 +36,9 @@ export class ProductpageComponent implements OnInit {
   first_prod = null;
   second_prod = null;
   third_prod = null;
+  showLoadingIndicator = true;
+  product_amenties_length=null;
+  product_amenties:any={};
 
   constructor(
     private titleService: Title,
@@ -46,16 +49,20 @@ export class ProductpageComponent implements OnInit {
     private route:ActivatedRoute,
     private userService: UserService,
     private tokenStorage: TokenStorageService,
-  ) { }
+  ) { 
+        this.route.params.subscribe((params) => {
+        this.id = params["id"];
+        this.showLoadingIndicator = true;
+        this.single_property_data(this.id);
+     }); }
 
   ngOnInit(): void {
+    // console.log(this.id,"Proudct Id");
     // this.prodservice.setData(1);
     // this.prod_id = this.prodservice.getData();
     this.titleService.setTitle('Property Page');
     this.prod_id = this.idService.getProdId();
-    if(this.prod_id == null){
-      this.redirect_to_home();
-    }
+   
     if (this.tokenStorage.getToken() != null){
       this.isLoggedIn = true;
       this.login_userID = this.idService.getUser().id;
@@ -66,14 +73,15 @@ export class ProductpageComponent implements OnInit {
     // this.login_userID=this.login_user.id;
     // this.login_usertype=this.login_user.usertype;
     //console.log(this.router.url);
-    {this.route.queryParams.subscribe(params => {
-        let id = params['id'];
-        console.log(id);
-        if(id != null){
-          this.prod_id = id;
-        }
-      })
-    }
+    // {this.route.queryParams.subscribe(params => {
+    //     let id = params['id'];
+    //     console.log(id);
+    //     if(id != null){
+    //       this.prod_id = id;
+    //     }
+    //   })
+    // }
+   
 
     if( this.idService.getUser() != null)
     {
@@ -88,40 +96,45 @@ export class ProductpageComponent implements OnInit {
     }
 
     this.get_review();
-
-    {this.authService.product_see(this.prod_id).subscribe(
-
-      data => {
-        console.log(data);
-        this.user_data = data["user_data"];
-        this.product_data = data["product"];
-        this.p_img1 = GlobalConstants.ftpURL + data["product"]["0"]["product_image1"];
-        this.p_img2 = GlobalConstants.ftpURL + data["product"]["0"]["product_image2"];
-        this.p_img3 = GlobalConstants.ftpURL + data["product"]["0"]["product_image3"];
-        this.p_img4 = GlobalConstants.ftpURL + data["product"]["0"]["product_image4"];
-        this.p_img5 = GlobalConstants.ftpURL + data["product"]["0"]["product_image5"];
-        this.map_url = "https://maps.google.com/?q=" + data["product"]["0"]["map_latitude"] + "," + data["product"]["0"]["map_longitude"];
-        console.log(this.map_url)
-        console.log(this.product_data);
-        console.log(this.user_data);
-        this.cityValue=data["product"]["0"]["city"];
-        this.similarproperty(this.cityValue);
-
-      },
-        err => {
-          console.log(err);
-        }
-      );
-    }
     this.amenities();
     this.feature_property();
     this.idService.saveCdata(null);
     this.idService.saveProdId(null);
     if (this.tokenStorage.getToken() != null){
       this.isLoggedIn = true;
-      this.loginuser_countProduct(this.prod_id);
+      this.loginuser_countProduct(this.id);
       this.loginuser_coutData();
     }
+  }
+  single_property_data(id){
+    console.log(id);
+    this.showLoadingIndicator = true;
+    this.authService.product_see(id).subscribe(
+    data => {
+      console.log(data);
+      this.user_data = data["user_data"];
+      this.product_data = data["product"];
+      this.p_img1 =  data["product"]["0"]["product_image1"];
+      this.p_img2 = data["product"]["0"]["product_image2"];
+      this.p_img3 =  data["product"]["0"]["product_image3"];
+      this.p_img4 =  data["product"]["0"]["product_image4"];
+      this.p_img5 =  data["product"]["0"]["product_image5"];
+      this.map_url = "https://maps.google.com/?q=" + data["product"]["0"]["map_latitude"] + "," + data["product"]["0"]["map_longitude"];
+      console.log(this.map_url)
+      this.product_amenties= data["product"]["0"].amenities;
+      this.product_amenties_length= data["product"]["0"].amenities.length;
+      console.log(this.product_amenties_length);
+      console.log(this.product_amenties);
+      console.log(this.user_data);
+      this.cityValue=data["product"]["0"]["city"];
+      this.similarproperty(this.cityValue);
+      this.showLoadingIndicator = false;
+
+    },
+      err => {
+        console.log(err);
+      }
+    );
   }
   
   // recently_view():void{
@@ -139,19 +152,34 @@ export class ProductpageComponent implements OnInit {
   //   );
   // }
   
-  amenities(): void{
-    this.userService.getamenitiesdata().pipe().subscribe(
-      (amenitiesdata: any) => {
-        //  console.log(amenitiesdata);
-        this.amenities = amenitiesdata.data;
-        console.log(this.amenities);
-        //console.log(this.content);
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
-      }
-    );
-  }
+  // amenities(): void{
+  //   this.userService.getamenitiesdata().pipe().subscribe(
+  //     (amenitiesdata: any) => {
+  //       //  console.log(amenitiesdata);
+  //       this.amenities = amenitiesdata.data;
+  //       console.log(this.amenities);
+  //       //console.log(this.content);
+  //     },
+  //     err => {
+  //       this.content = JSON.parse(err.error).message;
+  //     }
+  //   );
+  // }
+
+   amenities(): void{
+     this.userService.getamenitiesdata().pipe().subscribe(
+       (amenitiesdata: any) => {
+         //  console.log(amenitiesdata);
+         this.amenities = amenitiesdata.data;
+         this.amenitiesresult = this.amenities;
+         this.Amenties_length=this.amenitiesresult.length;
+         //console.log(this.content);
+       },
+       err => {
+         this.content = JSON.parse(err.error).message;
+       }
+     );
+   }
   loginuser_coutData(){
     this.authService.get_CountData().subscribe(
       data => {
@@ -162,9 +190,9 @@ export class ProductpageComponent implements OnInit {
       });
   
   }
-  loginuser_countProduct(prod_id){
-    console.log(prod_id);
-     this.authService.User_productCount(this.prod_id).subscribe(
+  loginuser_countProduct(id){
+    console.log(this.id);
+     this.authService.User_productCount(this.id).subscribe(
        data => {
          console.log(data);
        });
@@ -215,6 +243,20 @@ export class ProductpageComponent implements OnInit {
     }
     
   }
+
+  Amenties_funtion(Amenties_id:any){
+    // var len= this.product_amenties.length; 
+    // console.log(Amenties_id);
+    // console.log(this.product_amenties);
+  if(this.product_amenties_length !=null){
+    for (let i = 0; i < this.product_amenties_length; i++) {
+      if(Amenties_id==this.product_amenties[i].amenties){
+        return  true;
+      }
+    }
+  }
+  return false;
+}
 
 
   similarproperty(cityValue){

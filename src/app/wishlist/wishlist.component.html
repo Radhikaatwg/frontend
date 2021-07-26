@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="wrapper">
-  <!-- <div class="preloader"></div> -->
+  <div class="preloader"></div>
 
  <!-- Main Header Nav -->
 <!-- <app-topbardark></app-topbardark> -->
@@ -59,11 +59,16 @@
 
        </div>
      </div>
+     <div class="row" *ngIf="showLoadingIndicator">
+      <div class="col-md-12 col-lg-12"  class="loaderClass">
+        <div class="preloader1"></div>
+      </div>
+    </div> 
      <div class="row">
         <div class="grid_list_search_result">
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
             <div class="left_area tac-xsd">
-              <p >{{wishlistresult.length}} Search results
+              <p >{{wishlist_length}} Search results
 
               </p>
             </div>
@@ -138,13 +143,14 @@
                                     <!-- <li class="list-inline-item" *ngIf="data.productdetails.expected_pricing != null" class="fp_price"><a href="#"><span class="flaticon-transfer-1"></span></a></li> -->
                                     <li class="list-inline-item"  class="fp_price"><a (click)="DeleteProd_function(data.product_id)"><span class="flaticon-fa-heart"></span></a></li>
                                 </ul>
-                                <a class="fp_price" href="#" >{{ data.productdetails.expected_pricing }}<small>/mo</small></a>
+                                <a *ngIf="data.productdetails.expected_pricing != null" class="fp_price" >${{data.productdetails.expected_pricing }}<small></small></a>
+                                <a *ngIf="data.productdetails.expected_rent != null" class="fp_price"  >${{ data.productdetails.expected_rent }}<small></small></a>
                             </div>
                         </div>
                         <div class="details">
                             <div class="tc_content">
                                 <p class="text-thm">{{ data.productdetails.type }}</p>
-                                <h4>{{ data.productdetails.expected_rent }}</h4>
+                                <h4>{{ data.productdetails.build_name }}</h4>
                                 <p><span class="flaticon-placeholder"></span> {{ data.productdetails.address }}</p>
                                 <ul class="prop_details mb0">
                                     <li class="list-inline-item"><a >Beds: {{ data.productdetails.bedroom }}</a></li>

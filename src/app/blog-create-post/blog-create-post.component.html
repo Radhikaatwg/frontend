@@ -32,18 +32,9 @@
                             <input type="text" class="form-control" formControlName="title" id="title" name="title"
                                 placeholder="Title...">
                         </div>
-                        <!--<div *ngIf="blogForm.controls['title'].invalid && (blogForm.controls['title'].dirty || blogForm.controls['title'].touched)" class="alert">
-                        <div *ngIf="blogForm.controls['title'].errors.required">
-                            Please enter the Title
-                        </div>
-                    </div> -->
+                    <!-- </div> -->
                         <div class="form-group">
                             <label for="description">Description:</label>
-                            <!--<textarea class="form-control" formControlName="description" rows="6" id="description"
-                                name="description" placeholder="Description..."></textarea> -->
-                            <!--<angular-editor formControlName="description" [config]="editorConfig"></angular-editor>-->
-                            <!--<ckeditor formControlName="description" [editor]="ClassicEditorBuild"
-                                (ready)="onReady($event)"></ckeditor> -->
                             <editor formControlName="description" [init]="{
                                 base_url: 'assets/tinymce', 
                                 suffix: '.min',

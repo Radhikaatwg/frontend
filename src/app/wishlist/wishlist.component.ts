@@ -14,6 +14,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class WishlistComponent implements OnInit {
   [x: string]: any;
+  wishlist_length=0;
   
   form: any = {};
   ared: any = {};
@@ -25,6 +26,8 @@ export class WishlistComponent implements OnInit {
   maintenance: boolean = true;
   parking: boolean = false;
   ftpstring = GlobalConstants.ftpURL;
+  
+  showLoadingIndicator = false;
 
   constructor(
     private titleService: Title,
@@ -59,11 +62,14 @@ export class WishlistComponent implements OnInit {
     }
   
     getwishlist(): void{
+      this.showLoadingIndicator = true;
       this.userService.getwishlistdata().pipe().subscribe(
         (wishlistdata: any) => {
           this.wishlistcontent = wishlistdata.data;
           this.wishlistresult = this.wishlistcontent;
+          this.wishlist_length =this.wishlistcontent.length;
           console.log(this.wishlistresult);
+          this.showLoadingIndicator = false;
           this.sendinformation();
         },
         err => {

@@ -4,10 +4,14 @@ import { AuthService } from './../_services/auth.service';
 import { TokenStorageService } from './../_services/token-storage.service';
 import { Title } from '@angular/platform-browser';
 import { GlobalConstants } from './../global-constants';
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 // import { EventEmitter } from 'stream';
-// import { Input,Output,EventEmitter } from '@angular/core';
+import { Output,EventEmitter } from '@angular/core';
+import { Options,LabelType } from 'ng5-slider';
+import { MapsAPILoader,AgmMap } from '@agm/core';
+// import { google } from "google-maps";
+import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +20,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeComponent implements OnInit {
   [x: string]: any;
-
   currentUser: any;
   currentUserid: any;
   form: any = {};
@@ -29,7 +32,19 @@ export class HomeComponent implements OnInit {
   city: any;
   selectedItems:string[];
   amenityArray = [];
+  showLoadingIndicator = false;
+  testimonial_length=0;
 
+  
+    // map google
+  geoCoder:any;
+  // searchElementRef:any;
+  latCus=78.89;
+  longCus=76.897;
+  @ViewChild("search") searchElementRef: ElementRef;
+  @ViewChild(AgmMap,{static: true}) public agmMap: AgmMap;
+  zoom: number;
+  location: string;
 
   public constructor(
     private titleService: Title,
@@ -38,7 +53,9 @@ export class HomeComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private userService: UserService,
     private idservice: TokenStorageService,
-    private router: Router
+    private router: Router,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone:NgZone,
   ){
   }
 
@@ -51,6 +68,31 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder();
+    });
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(
+        this.searchElementRef.nativeElement
+      );
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.latCus = place.geometry.location.lat();
+          this.longCus = place.geometry.location.lng();
+          this.location = place.formatted_address;
+          this.zoom = 15;
+          // console.log(this.latCus);
+          // console.log(this.location);
+          this.form.Location=this.location;
+          // this.form.map_latitude=this.latCus;
+          // this.form.map_longitude=this.longCus;
+        
+        });
+      });
+    });
+
     this.home_call();
     this.amenities();
     this.gettestimonialdata();
@@ -133,11 +175,13 @@ export class HomeComponent implements OnInit {
   home_call(): void{
     if(this.tokenStorage.getToken()){
       this.isLoggedIn = true;  
+      this.showLoadingIndicator = true;
       this.authService.getproductWishlist().pipe().subscribe(
         (product: any) => {  
           this.content = product.data;
           this.number = this.content;
           console.log(this.number);
+          this.showLoadingIndicator = false;
           this.sendinformation();
         },
         err => {
@@ -146,10 +190,12 @@ export class HomeComponent implements OnInit {
         }
       );   
     }else{
+      this.showLoadingIndicator = true;
       this.userService.getproductlistingfeatured().pipe().subscribe(
         (data: any) => {
           this.content = data.data.data;
           this.number = this.content;
+          this.showLoadingIndicator = false;
           console.log(this.number);        
         },
         err => {
@@ -180,6 +226,7 @@ export class HomeComponent implements OnInit {
       (Reviewdata: any) => {
         this.contenttestimonial = Reviewdata.data;
         this.testimonial = this.contenttestimonial;
+        this.testimonial_length= this.contenttestimonial.length
         console.log(this.testimonial);
         //console.log(this.content);
       },
@@ -187,6 +234,11 @@ export class HomeComponent implements OnInit {
         this.content = err.error.message;
       }
     );
+  }
+  
+  viewStationData(id: number) {
+    console.log(id);
+    this.router.navigate(["productpage/", id]);
   }
   
   onchangeAmenties(e:any,id:string){
