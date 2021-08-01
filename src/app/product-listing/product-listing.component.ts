@@ -24,7 +24,7 @@ export class ProductListingComponent implements OnInit {
     ceil: 50000000
   };
 
-
+  showLoadingIndicator :boolean= false;
   [x: string]: any;
   currentUser: any;
   currentUserid: any;

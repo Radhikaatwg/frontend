@@ -16,15 +16,15 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   isFailedVerify = false;
   verify = false;
-  errorMessage = '';
+   public errorMessage:any ={};
   theFile: any = null;
   fileToUpload: File = null;
   imageURL:string;
-  imgLink         : any
-  imgData         : any
+  imgLink: any
+  imgData: any
   image;
   number:string;
-  showLoadingIndicator;
+  showLoadingIndicator :boolean= false;
 
   constructor(private titleService: Title,
     private authService: AuthService) { }

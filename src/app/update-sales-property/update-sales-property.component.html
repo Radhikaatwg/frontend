@@ -88,7 +88,7 @@
             <label for="build_name">Property Name</label>
             <input type="text" class="form-control"  formControlName="build_name" id="build_name" name="build_name"
             placeholder="Please Enter the Property Name...">
-            <div class="text-center" id="errorId" *ngIf="errorMessage.build_name"><p class="alert alert-danger" >{{errorMessage.build_name}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.build_name" >{{errorMessage.build_name}}</p></div>
         </div>
       </div>
 
@@ -119,7 +119,7 @@
                   <option value="Agricultural Land">Agricultural Land</option>
                   <option value="Farm House">Farm House</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.type"><p class="alert alert-danger" >{{errorMessage.type}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.type">{{errorMessage.type}}</p></div>
         </div>
       </div>
 <!-- 
@@ -140,12 +140,11 @@
             <input type="hidden" class="form-control" formControlName="address" id="address" name="address"
             placeholder="Please Enter the Address...">
             <input  #search  autocorrect="off" autocapitalize="off"  spellcheck="off" formControlName="address" type="search"  class="form-control input-text"
-            placeholder="Enter Address"  [ngModelOptions]="{ standalone: true }" />
-            <div class="text-center" id="errorId" *ngIf="errorMessage.address"><p class="alert alert-danger" >{{errorMessage.address}}</p></div>
+            placeholder="Enter Address" />
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.address" >{{errorMessage.address}}</p></div>
             <span class="flaticon-maps-and-flags" style="position: absolute;top: 45px; right: 31px"></span>
           <agm-map style="height: 300px;" [latitude]="latCus" [longitude]="longCus"  [zoom]="15"  class="main-card-agm-map" >
-                <agm-marker [latitude]="latCus" [longitude]="longCus" [markerDraggable]="true"
-                (dragEnd)="markerDragEnd($event)">
+                <agm-marker [latitude]="latCus" [longitude]="longCus" [markerDraggable]="true">
                       <agm-info-window> </agm-info-window>
                 </agm-marker>
             </agm-map>
@@ -159,7 +158,7 @@
           <option value="1">Yes</option>
           <option value="0">No</option>
         </select>
-        <div class="text-center" id="errorId" *ngIf="errorMessage.display_address"><p class="alert alert-danger" >{{errorMessage.display_address}}</p></div>
+        <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.display_address" >{{errorMessage.display_address}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-6" >
@@ -167,7 +166,7 @@
             <label for="city">City</label>
             <input type="text" class="form-control" formControlName="city" id="city" name="city"
             placeholder="Please Enter City..." >
-            <div class="text-center" id="errorId" *ngIf="errorMessage.city"><p class="alert alert-danger" >{{errorMessage.city}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.city" >{{errorMessage.city}}</p></div>
         </div>
       </div>
       <div class="col-lg-6 col-xl-6" >
@@ -175,7 +174,7 @@
             <label for="locality">Locality</label>
             <input type="text" class="form-control"  formControlName="locality" id="locality" name="locality"
             placeholder="Please Enter Locality..." >
-            <div class="text-center" id="errorId" *ngIf="errorMessage.locality"><p class="alert alert-danger" >{{errorMessage.locality}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.locality">{{errorMessage.locality}}</p></div>
         </div>
       </div>
 
@@ -184,7 +183,7 @@
             <label for="property_detail">Property Details</label>
             <textarea class="form-control" formControlName="property_detail" id="property_detail" name="property_detail"
             placeholder="Please Enter Property Details..."  rows="7"></textarea>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.property_detail"><p class="alert alert-danger" >{{errorMessage.property_detail}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.property_detail" >{{errorMessage.property_detail}}</p></div>
         </div>
       </div>
 
@@ -193,21 +192,21 @@
             <label for="nearest_landmark">Nearest Landmark</label>
             <input type="text" class="form-control"  formControlName="nearest_landmark" id="nearest_landmark" name="nearest_landmark"
             placeholder="Please Enter Nearest Landmark...">
-            <div class="text-center" id="errorId" *ngIf="errorMessage.nearest_landmark"><p class="alert alert-danger" >{{errorMessage.nearest_landmark}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.nearest_landmark">{{errorMessage.nearest_landmark}}</p></div>
           </div>
       </div>
       <div class="col-lg-6 col-xl-6" >
         <div class="my_profile_setting_input form-group">
             <label for="map_latitude">Map Latitude</label>
             <input type="text" class="form-control" formControlName="map_latitude" id="map_latitude" name="map_latitude"
-            placeholder="Please Enter Map Latitude">
+            placeholder="Please Enter Map Latitude" readonly>
         </div>
       </div>
       <div class="col-lg-6 col-xl-6">
         <div class="my_profile_setting_input form-group">
             <label for="map_longitude">Map Longitude</label>
             <input type="text" class="form-control"  formControlName="map_longitude" id="map_longitude" name="map_longitude"
-            placeholder="Plese Enter Map longitude" >
+            placeholder="Plese Enter Map longitude" readonly>
         </div>
       </div>
     </div>
@@ -233,7 +232,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.area"><p class="alert alert-danger" >{{errorMessage.area}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.area" >{{errorMessage.area}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4">
@@ -252,7 +251,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.carpet_area"><p class="alert alert-danger" >{{errorMessage.carpet_area}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.carpet_area" >{{errorMessage.carpet_area}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4" >
@@ -279,7 +278,7 @@
                     <option value="chataks">chataks</option>
                     <option value="perch">perch</option>
                   </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.area_unit"><p class="alert alert-danger" >{{errorMessage.area_unit}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.area_unit" >{{errorMessage.area_unit}}</p></div>
         </div>
       </div>
 
@@ -300,7 +299,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.bedroom"><p class="alert alert-danger" >{{errorMessage.bedroom}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.bedroom" >{{errorMessage.bedroom}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4">
@@ -319,7 +318,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.bathroom"><p class="alert alert-danger" >{{errorMessage.bathroom}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.bathroom" >{{errorMessage.bathroom}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4" >
@@ -338,7 +337,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.balconies"><p class="alert alert-danger" >{{errorMessage.balconies}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.balconies">{{errorMessage.balconies}}</p></div>
       </div>
       </div>
       <div class="col-lg-4 col-xl-4">
@@ -357,7 +356,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.additional_rooms"><p class="alert alert-danger" >{{errorMessage.additional_rooms}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.additional_rooms" >{{errorMessage.additional_rooms}}</p></div>
       </div>
       </div>
       <div class="col-lg-4 col-xl-4" >
@@ -376,7 +375,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.equipment"><p class="alert alert-danger" >{{errorMessage.equipment}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.equipment" >{{errorMessage.equipment}}</p></div>
       </div>
       </div>
       <div class="col-lg-4 col-xl-4">
@@ -384,7 +383,7 @@
             <label for="features">Features</label>
             <input type="text" class="form-control" formControlName="features" id="features" name="map_longitude"
             placeholder="Please Enter Features..."  >
-            <div class="text-center" id="errorId" *ngIf="errorMessage.features"><p class="alert alert-danger" >{{errorMessage.features}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.features" >{{errorMessage.features}}</p></div>
         </div>
       </div>
       <div class="col-lg-4 col-xl-4"> 
@@ -392,7 +391,7 @@
             <label for="nearby_places">Nearby Places</label>
             <input type="text" class="form-control" formControlName="nearby_places" id="nearby_places" name="nearby_places"
             placeholder="Please Enter Nearby Place..." >
-            <div class="text-center" id="errorId" *ngIf="errorMessage.nearby_places"><p class="alert alert-danger" >{{errorMessage.nearby_places}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.nearby_places" >{{errorMessage.nearby_places}}</p></div>
         </div>
       </div>
       <div class="col-lg-4 col-xl-4">
@@ -400,7 +399,7 @@
             <label for="age_of_property">Age of Property</label>
             <input type="number" class="form-control"  formControlName="age_of_property" id="age_of_property" name="nearby_places"
             placeholder="Please Enter Age of Property..." >
-            <div class="text-center" id="errorId" *ngIf="errorMessage.age_of_property"><p class="alert alert-danger" >{{errorMessage.age_of_property}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.age_of_property" >{{errorMessage.age_of_property}}</p></div>
         </div>
       </div>
 
@@ -433,7 +432,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.property_on_floor"><p class="alert alert-danger" >{{errorMessage.property_on_floor}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.property_on_floor" >{{errorMessage.property_on_floor}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4" >        
@@ -452,7 +451,7 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.total_floors"><p class="alert alert-danger" >{{errorMessage.total_floors}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.total_floors" >{{errorMessage.total_floors}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4"  >
@@ -469,7 +468,7 @@
                   <option value="North West">North West</option>
                   <option value="South West">South West</option>
                 </select>
-             <div class="text-center" id="errorId" *ngIf="errorMessage.facing_towards"><p class="alert alert-danger" >{{errorMessage.facing_towards}}</p></div>          
+             <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.facing_towards">{{errorMessage.facing_towards}}</p></div>          
         </div>
       </div>
       <div class="col-lg-6 col-xl-4" >
@@ -481,7 +480,7 @@
                 <option value="Applied For">Applied For</option>
                 <option value="Not Applicable">Not Applicable</option>
               </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.rera_registration_status"><p class="alert alert-danger" >{{errorMessage.rera_registration_status}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.rera_registration_status" >{{errorMessage.rera_registration_status}}</p></div>
         </div>
       </div>
       <div class="col-lg-6 col-xl-4">
@@ -492,7 +491,7 @@
                <option value="1">Yes</option>
                <option value="0">No</option>
               </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.additional_parking_status"><p class="alert alert-danger" >{{errorMessage.additional_parking_status}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.additional_parking_status">{{errorMessage.additional_parking_status}}</p></div>
         </div>
       </div>
 
@@ -510,7 +509,7 @@
                   <option value="2020">2020</option>
                   <option value="2021">2021</option>
                 </select>
-          <div class="text-center" id="errorId" *ngIf="errorMessage.buildyear"><p class="alert alert-danger" >{{errorMessage.buildyear}}</p></div>
+          <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.buildyear" >{{errorMessage.buildyear}}</p></div>
       </div>
       </div>
       <div class="col-lg-6 col-xl-4">
@@ -521,7 +520,7 @@
               <option value="Under Construction">Under Construction</option>
               <option value="Ready To Move">Ready To Move</option>
             </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.availability_condition"><p class="alert alert-danger" >{{errorMessage.availability_condition}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.availability_condition" >{{errorMessage.availability_condition}}</p></div>
         </div>
       </div>
       <div class="col-lg-6 col-xl-4">
@@ -543,7 +542,7 @@
               <option value="Within 8 year">Within 8 years</option>
               <option value="Within 9 year">Within 9 years</option>
             </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.possession_by"><p class="alert alert-danger" >{{errorMessage.possession_by}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.possession_by">{{errorMessage.possession_by}}</p></div>
             
       </div>
       </div>
@@ -733,7 +732,7 @@
                   <option value="Co-operative Society">Co-operative Society</option>
                   <option value="Power of Attorney">Power of Attorney</option>
                 </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.ownership"><p class="alert alert-danger" >{{errorMessage.ownership}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.ownership" >{{errorMessage.ownership}}</p></div>
         </div>
       </div>
       <div class="col-lg-6 col-xl-6">
@@ -746,7 +745,7 @@
             placeholder="Please Enter Expected Price..."  maxlength="10"  (keypress)="keyPressNumbers($event)" (ngModelChange)="rangeInput_Price($event)">
             </div>
             <div class="col-lg-8 col-xl-8">
-            <ng5-slider [(value)]="expected_pricing" [options]="options" [(ngModel)]="range" (valueChange)="RangeSlider_Price($event)" ></ng5-slider>
+            <ng5-slider [(value)]="expected_pricing" [options]="options"  (valueChange)="RangeSlider_Price($event)" ></ng5-slider>
             </div>
             </div>
           <div class="text-center" id="errorId" *ngIf="Expected_PriceEroor"><p class="alert alert-danger" >Expected Price Between 5Lakhs to 5 Crore</p></div>
@@ -757,7 +756,7 @@
             <label for="security_deposit">Security Deposit</label>
             <input type="number" class="form-control" formControlName="security_deposit" id="security_deposit" name="security_deposit"
             placeholder="Please Enter Expected Rent...">
-            <div class="text-center" id="errorId" *ngIf="errorMessage.security_deposit"><p class="alert alert-danger" >{{errorMessage.security_deposit}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.security_deposit" >{{errorMessage.security_deposit}}</p></div>
           </div>
       </div>
       <div class="col-lg-6 col-xl-6">
@@ -768,7 +767,7 @@
                 <option value="1">Yes</option>
                 <option value="0">No</option>
               </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.inc_electricity_and_water_bill"><p class="alert alert-danger" >{{errorMessage.inc_electricity_and_water_bill}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.inc_electricity_and_water_bill" >{{errorMessage.inc_electricity_and_water_bill}}</p></div>
         </div>
       </div>
 
@@ -781,7 +780,7 @@
               <option selected value="1">Yes</option>
               <option value="0">No</option>
             </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.tax_govt_charge"><p class="alert alert-danger" >{{errorMessage.tax_govt_charge}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger"  *ngIf="errorMessage.tax_govt_charge">{{errorMessage.tax_govt_charge}}</p></div>
         </div>
       </div>
       <div class="col-lg-6 col-xl-6" >
@@ -792,7 +791,7 @@
                 <option value="1">Yes</option>
                 <option value="0">No</option>
               </select>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.price_negotiable"><p class="alert alert-danger" >{{errorMessage.price_negotiable}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.price_negotiable">{{errorMessage.price_negotiable}}</p></div>
         </div>
       </div>
       <div class="col-lg-6 col-xl-6" >
@@ -808,7 +807,7 @@
         <div class="my_profile_setting_input form-group">
             <label for="locality">Brokerage Charge. (Leave Blank for none.)</label>
             <input type="text" class="form-control">
-            <div class="text-center" id="errorId" *ngIf="errorMessage.maintenance_charge"><p class="alert alert-danger" >{{errorMessage.maintenance_charge}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.maintenance_charge">{{errorMessage.maintenance_charge}}</p></div>
         </div>
       </div>
     </div>
@@ -903,7 +902,7 @@
             <label for="description">Property Description</label>
             <textarea class="form-control"formControlName="description" id="description" name="description"
             placeholder="Please Enter  Properties Details"   rows="7"></textarea>
-            <div class="text-center" id="errorId" *ngIf="errorMessage.description"><p class="alert alert-danger" >{{errorMessage.description}}</p></div>
+            <div class="text-center" id="errorId" *ngIf="errorMessage"><p class="alert alert-danger" *ngIf="errorMessage.description" >{{errorMessage.description}}</p></div>
         </div>
       </div>
 

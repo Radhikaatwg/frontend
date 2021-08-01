@@ -91,7 +91,7 @@
                     </div>
                   </div> 
                     <tbody>
-                        <tr *ngFor="let number of content | paginate:{itemsPerPage:4, currentPage:p}">
+                        <tr *ngFor="let number of content ">
                           <th scope="row">
                           <div class="feat_property list favorite_page style2">
                             <div class="thumb">
@@ -135,9 +135,9 @@
                   <div class="col-lg-12  col-md-12 " *ngIf="contentLenght==0">
                     <h2 _ngcontent-rrd-c80="" class="breadcrumb_title">Product Listing Not Found!!!...</h2>
                   </div>
-                  <div class="col-lg-4 offset-lg-8 offset-md-8 " *ngIf="contentLenght>4">
+                  <!-- <div class="col-lg-4 offset-lg-8 offset-md-8 " *ngIf="contentLenght>4">
                     <pagination-controls (pageChange)="p=$event"></pagination-controls>
-                   </div>
+                   </div> -->
                 </div> 
               </div>
             </div>

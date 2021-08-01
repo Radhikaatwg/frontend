@@ -33,7 +33,7 @@ export class UpdateSalesPropertyComponent implements OnInit {
   image4;
   image5;
   amenitiesresult: () => void;
-  errorMessage1: any;
+  Message:any ={};
   build_name: any;
   type: any;
   willing_to_rent_out_to:any;
@@ -87,7 +87,7 @@ export class UpdateSalesPropertyComponent implements OnInit {
    ared: any = {};
    isLoggedIn = false;
    isFormSubmitted = false;
-   errorMessage = '';
+   public errorMessage:any ={};
    roles: string[] = [];
  
    saleValue: boolean = true;
@@ -739,9 +739,9 @@ onSubmitRent(): void {
     err => {
       this.err_caused = true;
       this.errorMessage = err.error.errors;
-      this.errorMessage1 = err.error.message;
+      this.Message = err.error.message;
       console.log(this.errorMessage);
-      this.toastr.error(this.errorMessage1, 'Something Error', {
+      this.toastr.error(this.Message, 'Something Error', {
         timeOut: 3000,
       });
     }

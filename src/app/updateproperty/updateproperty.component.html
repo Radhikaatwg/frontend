@@ -140,12 +140,11 @@
             <input type="hidden" class="form-control" formControlName="address" id="address" name="address"
             placeholder="Please Enter the Address...">
             <input  #search  autocorrect="off" autocapitalize="off"  spellcheck="off" formControlName="address" type="search"  class="form-control input-text"
-            placeholder="Enter Address"  [ngModelOptions]="{ standalone: true }" />
+            placeholder="Enter Address"   />
             <div class="text-center" id="errorId" *ngIf="errorMessage.address"><p class="alert alert-danger" >{{errorMessage.address}}</p></div>
             <span class="flaticon-maps-and-flags" style="position: absolute;top: 45px; right: 31px"></span>
           <agm-map style="height: 300px;" [latitude]="latCus" [longitude]="longCus"  [zoom]="15"  class="main-card-agm-map" >
-                <agm-marker [latitude]="latCus" [longitude]="longCus" [markerDraggable]="true"
-                (dragEnd)="markerDragEnd($event)">
+                <agm-marker [latitude]="latCus" [longitude]="longCus" [markerDraggable]="true">
                       <agm-info-window> </agm-info-window>
                 </agm-marker>
             </agm-map>
@@ -746,7 +745,7 @@
               placeholder="Please Enter Expected Rent Price..."  maxlength="10"  (keypress)="keyPressNumbers($event)" (ngModelChange)="rangeInput_Price($event)">
               </div>
               <div class="col-lg-8 col-xl-8">
-              <ng5-slider [(value)]="expected_rent" [options]="options" [(ngModel)]="range" (valueChange)="RangeSlider_Price($event)" ></ng5-slider>
+              <ng5-slider [(value)]="expected_rent" [options]="options"  (valueChange)="RangeSlider_Price($event)" ></ng5-slider>
               </div>
               </div>
               <div class="text-center" id="errorId" *ngIf="Expected_PriceEroor"><p class="alert alert-danger" >Expected Rent Price Between 5k to 5 Lakhs</p></div>

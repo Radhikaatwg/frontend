@@ -24,9 +24,9 @@ export class PostproductComponent implements OnInit {
   ared: any = {};
   isLoggedIn = false;
   isFormSubmitted = false;
-  errorMessage = '';
+  public errorMessage:any ={};
   roles: string[] = [];
-
+  showLoadingIndicator :boolean= false;
   saleValue: boolean = true;
   rentValue: boolean = false;
 
@@ -48,15 +48,9 @@ export class PostproductComponent implements OnInit {
 
   err_caused:boolean = false;
   selectedItems:string[];
-
-  image1;
-  image2;
-  image3;
-  image4;
-  image5;
   
   amenitiesresult: () => void;
-  errorMessage1: any;
+  Message: any={};
   build_name: any;
   type: any;
   address: any;

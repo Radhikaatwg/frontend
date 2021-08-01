@@ -5,6 +5,7 @@ import { AuthService } from './../_services/auth.service';
 import { TokenStorageService } from './../_services/token-storage.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-myproperties',
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MypropertiesComponent implements OnInit {
 
-  showLoadingIndicator = false;
+  showLoadingIndicator :boolean= false;
   content: [];
   ftpstring: string = GlobalConstants.ftpURL;
   usertype;
