@@ -49,21 +49,28 @@ import { VerifyGuard } from './verify.guard';
 import { VerifyDetailsComponent } from './verify-details/verify-details.component';
 import { UpdatepropertyComponent } from './updateproperty/updateproperty.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
+import { SubscriptionPlansComponent } from './subscription-plans/subscription-plans.component';
+import { IpDisclaimerComponent } from './ip-disclaimer/ip-disclaimer.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { VerifyDetailsGuard } from './verify-details.guard';
+import { VerifyGuardGuard } from './verify-guard.guard';
 import { UpdateSalesPropertyComponent } from './update-sales-property/update-sales-property.component';
 
 const routes: Routes = [
 
   {path: '', component: HomeComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [VerifyGuard]},
   {path: 'productlisting', component: ProductListingComponent},
   {path: 'productpage/:id', component: ProductpageComponent},
   //{path: 'register', component: UserregisterComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [VerifyGuard]},
   {path: 'logout', component: UserlogoutComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'insertproductsale', component: PostproductComponent},
-  {path: 'insertproductrent', component: PostproductrentComponent},
+  {path: 'insertproductsale', component: PostproductComponent, canActivate: [VerifyDetailsGuard]},
+  {path: 'insertproductrent', component: PostproductrentComponent, canActivate: [VerifyDetailsGuard]},
   {path: 'search', component: SearchComponent},
   //{path: 'agentregister', component: BoardAgentComponent},
   {path: 'agentregister', component: RegisterComponent},
@@ -75,7 +82,7 @@ const routes: Routes = [
   {path: 'savedsearches', component: SavedsearchesComponent},
   {path: 'reviews', component: ReviewsComponent},
   {path: 'admin', component: BoardAdminComponent},
-  {path: 'adminpanel', component: AdminpanelComponent},
+  {path: 'adminpanel', component: AdminpanelComponent, canActivate: [VerifyGuard]},
   {path: 'editproduct', component: EditproductComponent},
   {path: 'editproductrent', component: EditproductrentComponent},
   {path: 'adminusers', component: AdmingetusersComponent},
@@ -100,8 +107,13 @@ const routes: Routes = [
   //{path: 'blog-single-post', component: BlogSinglePostComponent},
   {path: 'admin-blog', component: AdminBlogComponent, canActivate: [PostsGuard]},
   {path: 'admin-blog-single-post/:slug', component: AdminBlogSinglePostComponent},
-  {path: 'verify-details', component:  VerifyDetailsComponent},
+  {path: 'verify-details', component:  VerifyDetailsComponent, canActivate: [VerifyGuardGuard]},
   {path: 'emi-calculator', component: EmiCalculatorComponent},
+  {path: 'plans', component: SubscriptionPlansComponent},
+  {path: 'intellectual-property-disclaimer', component: IpDisclaimerComponent},
+  {path: 'privacy-policy', component: PrivacyPolicyComponent},
+  {path: 'terms-conditions', component: TermsConditionsComponent},
+  {path: 'about-us', component: AboutUsComponent},
   {path: 'UdateProperty/:id', component: UpdatepropertyComponent},
   {path: 'UdateSalesProperty/:id', component: UpdateSalesPropertyComponent},
   {path: '**', component: NotfoundComponent},

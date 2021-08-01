@@ -16,37 +16,39 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   isFailedVerify = false;
   verify = false;
-   public errorMessage:any ={};
+  public errorMessage: any = {};
   theFile: any = null;
   fileToUpload: File = null;
-  imageURL:string;
+  imageURL: string;
   imgLink: any
   imgData: any
   image;
-  number:string;
-  showLoadingIndicator :boolean= false;
+  number: string;
+  showLoadingIndicator: boolean = false;
+  select_type: string;					  
 
   constructor(private titleService: Title,
     private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.form.select_type=2;
+    //this.form.select_type = 2;
     this.titleService.setTitle('Register');
   }
 
   onSubmit(): void {
     this.showLoadingIndicator = true;
-    {this.authService.register_new(this.form).subscribe(
+    {
+      this.authService.register_new(this.form).subscribe(
 
-      data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        this.number = this.form.other_mobile_number;
-        this.verify = true;
-        console.log(this.number);
-        this.showLoadingIndicator = false;
-      },
+        data => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+          this.number = this.form.other_mobile_number;
+          this.verify = true;
+          console.log(this.number);
+          this.showLoadingIndicator = false;
+        },
         err => {
           this.errorMessage = err.error;
           this.isSignUpFailed = true;
@@ -57,16 +59,17 @@ export class RegisterComponent implements OnInit {
         }
       );
     }
-  } 
+  }
 
   onSubmitotp(): void {
-    {this.authService.verify(this.number, this.otp.password ).subscribe(
+    {
+      this.authService.verify(this.number, this.otp.password).subscribe(
 
-      data => {
-        console.log(data);
-        this.isVerified = true;
-        this.verify = false;
-      },
+        data => {
+          console.log(data);
+          this.isVerified = true;
+          this.verify = false;
+        },
         err => {
           this.errorMessage = err.error.message;
           this.verify = true;
@@ -77,15 +80,15 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onFileChanged(event){
+  onFileChanged(event) {
 
     this.readThis(event.target)
 
   }
 
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {
       this.image = myReader.result;

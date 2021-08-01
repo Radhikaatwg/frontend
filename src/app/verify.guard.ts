@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTr
 import { Observable } from 'rxjs';
 
 import { UserService } from './_services/user.service';
+import { TokenStorageService } from './_services/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,34 +14,30 @@ export class VerifyGuard implements CanActivate {
   public val;
   public user_value: any;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private tokenStorage: TokenStorageService, private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let url: string = state.url;
 
-    return this.verify_mobile(url);
+    return this.checkLogin(url);
     //return true;
   }
-
-  verify_mobile(url: string): true | UrlTree {
+  checkLogin(url: string): true | UrlTree {
     console.log("Url: " + url);
 
     //let val: string = this.tokenStorage.getUser().usertype;
-    let val = this.userService.getUserDetails().pipe().subscribe(
-      (data: any) => {
-        this.user_value = data.phone_number_verification_status;
-        console.log(this.user_value);
-      });
-
-    console.log(this.user_value);
+    let val = this.tokenStorage.getUser();
+    console.log(val);
+    console.log(this.tokenStorage);
+    if (val != null) {
+      console.log("True");
       return true;
-    /*if (val != null && val == "1") {
-       return true;
     } else {
-       return this.router.parseUrl('/verify-details');
-    } */
+      console.log("false");
+      return this.router.parseUrl('/login');
+    }
   }
 
 }

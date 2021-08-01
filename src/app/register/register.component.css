@@ -1,4 +1,4 @@
-a {
+.modal_links {
     color: #007bff !important;
 }
 
@@ -14,4 +14,12 @@ body.modal-close {
 
 body {
     padding-right: 0 !important;
+}
+
+.page_links {
+    color: #007bff !important;
+}
+
+.ml-custom {
+    margin-left: 2.5rem !important;
 }

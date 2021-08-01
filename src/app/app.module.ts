@@ -82,6 +82,12 @@ import { TruncateTextPipe } from './truncate-text.pipe';
 import { ArticlesTipsComponent } from './articles-tips/articles-tips.component';
 import { RegisterComponent } from './register/register.component';
 import { EmiCalculatorComponent } from './emi-calculator/emi-calculator.component';
+import { SubscriptionPlansComponent } from './subscription-plans/subscription-plans.component';
+import { IpDisclaimerComponent } from './ip-disclaimer/ip-disclaimer.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { VerifyDetailsComponent } from './verify-details/verify-details.component';
 import { UpdatepropertyComponent } from './updateproperty/updateproperty.component';
 import { UpdateSalesPropertyComponent } from './update-sales-property/update-sales-property.component';
 import { Ng5SliderModule } from 'ng5-slider';
@@ -158,6 +164,12 @@ import { AgmCoreModule  } from '@agm/core';
     ArticlesTipsComponent,
     RegisterComponent,
     EmiCalculatorComponent,
+	SubscriptionPlansComponent,
+    IpDisclaimerComponent,
+    PrivacyPolicyComponent,
+    TermsConditionsComponent,
+    AboutUsComponent,
+    VerifyDetailsComponent,
     UpdatepropertyComponent,
     UpdateSalesPropertyComponent,
   ],

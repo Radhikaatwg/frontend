@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    
+
     <div class="wrapper">
         <div *ngIf="showLoadingIndicator">
             <div class="preloader"></div>
@@ -22,14 +22,15 @@
                     <div class="col-xl-4">
                         <div class="breadcrumb_content style2">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="">Home</a></li>
                                 <li class="breadcrumb-item active text-thm" aria-current="page">Blog
                                 </li>
                             </ol>
                             <h2 class="breadcrumb_title">Blog</h2>
-                            <h4 class="text-thm mt30">Showing post {{ paginated_posts.from }} to {{ paginated_posts.to
+                            <h4 class="text-thm mt30" *ngIf="paginated_posts.data.length > 0">Showing post {{ paginated_posts.from }} to {{ paginated_posts.to
                                 }} of
                                 {{ paginated_posts.total }}</h4>
+                                
                         </div>
                     </div>
                     <!--<div class="col-lg-4">
@@ -39,6 +40,9 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8">
+                        <div *ngIf="paginated_posts.data.length == 0">
+                            <h4>There are no blog posts at the moment.</h4>
+                        </div>
                         <div class="main_blog_post_content">
                             <div *ngIf="paginated_posts">
                                 <div class="for_blog feat_property" *ngFor="let post of paginated_posts.data">
@@ -52,18 +56,22 @@
                                             <h4 class="mb15">{{ post.title }}</h4>
                                             <!--<p>{{ post.description | slice:0:320 }}...</p> -->
                                             <p [innerHTML]="post.description | truncateText:330 | safe: 'html'"></p>
-                                            
+
                                             <!--<p [innerHTML]="post.descrption"></p> -->
                                         </div>
                                         <div class="fp_footer">
                                             <ul class="fp_meta float-left mb0">
-                                                <li class="list-inline-item"><a href="#"><img
-                                                            src="{{ images_folder }}/{{ post.profile_pic }}"
-                                                            alt="profile_pic"></a></li>
-                                                <li class="list-inline-item"><a href="#">{{ post.name }}</a></li>
-                                                <li class="list-inline-item"><a href="#"><span
-                                                            class="flaticon-calendar pr10"></span> {{ post.updated_at |
-                                                        date: 'MMMM dd, yyyy' }}</a></li>
+                                                <li class="list-inline-item"
+                                                    *ngIf="post.profile_pic !== null"><img
+                                                        src="{{ images_folder }}/{{ post.profile_pic }}"
+                                                        alt="profile_pic"></li>
+                                                <li class="list-inline-item" *ngIf="post.profile_pic == null">
+                                                    <img src="../../assets/images/default_avatar.png" alt="profile_pic">
+                                                </li>
+                                                <li class="list-inline-item">{{ post.name }}</li>
+                                                <li class="list-inline-item"><span
+                                                        class="flaticon-calendar pr10"></span> {{ post.updated_at |
+                                                    date: 'MMMM dd, yyyy' }}</li>
                                             </ul>
                                             <!--<a class="fp_pdate float-right text-thm" href="/single-post-blog?id={{post.id}}">Read More <span
                                                     class="flaticon-next"></span></a> -->
@@ -77,11 +85,11 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h4 class="text-thm">Showing post {{ paginated_posts.from }} to {{
+                                    <h4 class="text-thm" *ngIf="paginated_posts.data.length > 0">Showing post {{ paginated_posts.from }} to {{
                                         paginated_posts.to }} of
                                         {{ paginated_posts.total }}</h4>
                                 </div>
-                                <div class="mbp_pagination mt20">
+                                <div class="mbp_pagination mt20" *ngIf="paginated_posts.data.length > 0">
                                     <ul class="page_navigation">
                                         <li class="page-item"
                                             [ngClass]="{'active' : link.active == true, 'disabled' : link.url == null}"
@@ -91,9 +99,13 @@
 
                                             <button type="button" (click)="gotoPage(link.url)"
                                                 class="btn btn-white circle page-link">
-                                                <span *ngIf="link.label.indexOf('Previous') == -1 && link.label.indexOf('Next') == -1" [innerHTML]="link.label"></span>
-                                                <span *ngIf="link.label.indexOf('Previous') > -1" class="flaticon-left-arrow"></span>
-                                                <span *ngIf="link.label.indexOf('Next') > -1" class="flaticon-right-arrow"></span>
+                                                <span
+                                                    *ngIf="link.label.indexOf('Previous') == -1 && link.label.indexOf('Next') == -1"
+                                                    [innerHTML]="link.label"></span>
+                                                <span *ngIf="link.label.indexOf('Previous') > -1"
+                                                    class="flaticon-left-arrow"></span>
+                                                <span *ngIf="link.label.indexOf('Next') > -1"
+                                                    class="flaticon-right-arrow"></span>
                                             </button>
                                         </li>
                                     </ul>

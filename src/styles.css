@@ -64,3 +64,14 @@ input[type=number] {
   display: -o-flex;
   display: flex;
 }
+
+/*#menu:not( .mm-menu ) {
+  display: none;
+}*/
+/* Added by Radhika 14 July Start */
+@media (min-width: 993px) {
+  #menu{
+      display: none !important;
+  }
+}
+/* Added by Radhika 14 July End */

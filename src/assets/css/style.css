@@ -9349,10 +9349,12 @@ a.btn.btn_error{
   margin-bottom: 25px;
 }
 .terms_condition_grid .grids p{
-  font-size: 14px;
+  font-size: 18px;
   font-family: "Nunito";
   color: #484848;
   line-height: 1.714;
+  margin-left: 25px;
+  text-align: justify;
 }
 .terms_condition_widget{
   background-color: #ffffff;
@@ -10859,6 +10861,8 @@ a.btn.btn_error{
 }
 .our-dashbord.dashbord{
   padding-top: 145px;
+  /* Added by Radhika to fix the content issue */
+  padding-left: 80px;					 
 }
 .our-dashbord.dashbord .container-fluid{
   padding-left: 3%;
@@ -16721,7 +16725,7 @@ button.gm-ui-hover-effect:focus {
   position: absolute;
   top: -18px;
   font-size: 28px;
-  color: #ff5a5f; ;
+  color: #ff5a5f; 
   text-align: right;
   right: 0px!important;
   font-weight: 800;
@@ -16789,3 +16793,70 @@ button.gm-ui-hover-effect:focus {
 .userProfilePage .profile-img_user img{
   width: 250px;
 }
+/* Styles for the Subscription Plans tab Start */
+
+			   
+								
+									  
+ 
+										
+						  
+
+.plans_tab li.nav-item{
+  text-align: center;
+  width: 25%;
+}
+.plans_tab li.nav-item .nav-link{
+  /*background-color: #f5f5f5;*/
+  background-color: #ffffff;
+  height: 70px;
+  line-height: 65px;
+  margin: 0;
+  padding: 0;
+}
+.plans_tab li.nav-item .nav-link{
+  /*border: none;*/
+  border-bottom: 1px solid #ff5a5f;
+  color: #484848;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+.plans_tab li.nav-item .nav-link.active{
+  /*background-color: #ffffff;*/
+  background-color: #ff5a5f;
+  color: #ffffff;
+  /*border: none;*/
+  border-top: 1px solid #ff5a5f;
+  border-left: 1px solid #ff5a5f;
+  border-right: 1px solid #ff5a5f;
+  border-bottom: none;
+}
+
+@media only screen and (max-width:1200px)
+{
+  .plans_tab li.nav-item .nav-link {
+    font-size: 16px;
+  }
+  
+}
+
+@media only screen and (max-width:991px)
+					  
+			 
+{
+  .plans_tab li.nav-item{
+						 
+			 
+    width: 100%;
+								   
+			  
+					  
+  }
+
+  .plans_tab li.nav-item .nav-link
+  {
+    border: 1px solid #ff5a5f;
+  }
+}
+/* Styles for the Subscription Plans tab End */		

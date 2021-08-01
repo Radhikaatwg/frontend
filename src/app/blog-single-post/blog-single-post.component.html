@@ -23,7 +23,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
                                 <div class="breadcrumb_content style2">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="">Home</a></li>
                                         <li class="breadcrumb-item active text-thm" aria-current="page">Blog – {{
                                             post_detail[0].title }}</li>
                                     </ol>
@@ -53,15 +53,18 @@
                                 <!--<div class="blog_sp_tag float-right"><a href="#">Edit</a></div>-->
                                 <h3 class="blog_sp_title">{{ post_detail[0].title }}</h3>
                                 <ul class="blog_sp_post_meta">
-                                    <li class="list-inline-item"><a href="#"><img
-                                                src="{{ images_folder }}/{{ post_detail[0].profile_pic }}"
-                                                alt="profile_pic"></a></li>
-                                    <li class="list-inline-item"><a href="#">{{ post_detail[0].name }}</a></li>
+                                    <li class="list-inline-item" *ngIf="post_detail[0].profile_pic !== null"><img
+                                            src="{{ images_folder }}/profile_image_file/{{ post_detail[0].profile_pic }}"
+                                            alt="profile_pic"></li>
+                                    <li class="list-inline-item" *ngIf="post_detail[0].profile_pic == null"><img
+                                            src="../../assets/images/default_avatar.png"
+                                            alt="profile_pic"></li>
+                                    <li class="list-inline-item">{{ post_detail[0].name }}</li>
                                     <li class="list-inline-item"><span class="flaticon-calendar"></span></li>
-                                    <li class="list-inline-item"><a href="#">{{ post_detail[0].updated_at |
-                                            date: 'MMMM dd, yyyy' }}</a></li>
+                                    <li class="list-inline-item">{{ post_detail[0].updated_at |
+                                        date: 'MMMM dd, yyyy' }}</li>
                                     <li class="list-inline-item"><span class="flaticon-view"></span></li>
-                                    <li class="list-inline-item"><a href="#"> {{ post_detail[0].views}} views</a></li>
+                                    <li class="list-inline-item"> {{ post_detail[0].views}} views</li>
                                     <!--<li class="list-inline-item"><span class="flaticon-chat"></span></li>
                                     <li class="list-inline-item"><a href="#">15</a></li> -->
                                 </ul>

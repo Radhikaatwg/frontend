@@ -46,6 +46,9 @@ on<T>(): Observable<T>{
   getUserDetails(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + 'auth/verify_user', { responseType: 'json' });
   }
+  getUserPhoneDetails(): Observable<any> {
+    return this.http.get(GlobalConstants.apiURL + 'auth/verify_user_mobile');
+  }										  
   googleLogin(): Observable<any> {
     return this.http.get(GlobalConstants.apiURL + 'auth/redirect', { responseType: 'json' });
   }

@@ -27,7 +27,7 @@ export class TopbardarkComponent implements OnInit {
   data;
   wishlistcontent: any;
   wishlistresult: any;
-  wishlist_length= 0;
+  wishlist_length = 0;
 
   constructor(
     private titleService: Title,
@@ -35,35 +35,35 @@ export class TopbardarkComponent implements OnInit {
     private tokenStorage: TokenStorageService,
     private userService: UserService,
 
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.userService.on<string>().subscribe(
       (message: any) => {
-        if(message=='true'){
+        if (message == 'true') {
           this.wishlistcount();
         }
       }
     );
     // this.currentUser = this.token.getUser().username;
-     // console.log(this.data);
-  if (this.tokenStorage.getToken() != null){
-    this.isLoggedIn = true;
-    this.roles = this.tokenStorage.getUser().username;
-    this.userEmail=this.tokenStorage.getUser().misc.email;
-    this.userProfile=this.tokenStorage.getUser().misc.profile_pic;
-    console.log(this.userEmail);
-    console.log(this.userProfile);
-    this.wishlistcount();
+    // console.log(this.data);
+    if (this.tokenStorage.getToken() != null) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().username;
+      this.userEmail = this.tokenStorage.getUser().misc.email;
+      this.userProfile = this.tokenStorage.getUser().misc.profile_pic;
+      console.log(this.userEmail);
+      console.log(this.userProfile);
+      this.wishlistcount();
 
+    }
   }
-  }
-  wishlistcount(): void{
+  wishlistcount(): void {
     this.userService.getwishlistdata().pipe().subscribe(
       (wishlistdata: any) => {
         this.wishlistcontent = wishlistdata.data;
         this.wishlistresult = this.wishlistcontent;
-        this.wishlist_length=this.wishlistcontent.length;
+        this.wishlist_length = this.wishlistcontent.length;
         console.log(this.wishlistresult);
       },
       err => {

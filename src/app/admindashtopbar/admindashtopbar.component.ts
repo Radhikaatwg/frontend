@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdmindashtopbarComponent implements OnInit {
 
-  name
-  usertype
+  name;
+  usertype;
+  isLoggedIn = false;
 
   constructor(
     private tokenStorage: TokenStorageService
@@ -18,7 +19,10 @@ export class AdmindashtopbarComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.tokenStorage.getUser().username
     this.usertype = this.tokenStorage.getUser().usertype;
+    if (this.tokenStorage.getToken() != null){
+      this.isLoggedIn = true;
 
+    }
   }
 
 }

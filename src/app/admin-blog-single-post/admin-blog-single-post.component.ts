@@ -21,6 +21,7 @@ export class AdminBlogSinglePostComponent implements OnInit {
   constructor(private _ActivatedRoute:ActivatedRoute, private _router:Router, private blogService:BlogService) { }
 
   ngOnInit(): void {
+    
     this.activatedRouteSnapshot = this._ActivatedRoute.snapshot.params.slug;
     console.log(this.activatedRouteSnapshot);
 

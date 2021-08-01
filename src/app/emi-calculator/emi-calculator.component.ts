@@ -98,6 +98,8 @@ export class EmiCalculatorComponent implements OnInit {
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           datalabels: {
             color: "#fff",

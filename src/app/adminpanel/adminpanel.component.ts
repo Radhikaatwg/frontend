@@ -19,7 +19,7 @@ export class AdminpanelComponent implements OnInit {
   user
   product
   events
-
+  showLoadingIndicator;
 
   constructor(
     private titleservice: Title,
@@ -29,6 +29,7 @@ export class AdminpanelComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showLoadingIndicator = true;
     this.titleservice.setTitle('Admin Panel')
     if(this.tokenStorage.getUser().usertype < 6)
       this.panel_check();
@@ -89,7 +90,7 @@ export class AdminpanelComponent implements OnInit {
         console.log(err);
       }
     );
-
+    this.showLoadingIndicator = false;
   }
 
   panel_check(){

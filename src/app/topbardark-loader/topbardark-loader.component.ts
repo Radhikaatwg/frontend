@@ -18,48 +18,48 @@ export class TopbardarkLoaderComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = null;
-  wishlist_length=0;
+  wishlist_length = 0;
   data
   constructor(
     private titleService: Title,
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private userService: UserService,
-    ) { }
+  ) { }
 
-    ngOnInit(): void {
-      this.userService.on<string>().subscribe(
+  ngOnInit(): void {
+    this.userService.on<string>().subscribe(
       (message: any) => {
-        if(message=='true'){
+        if (message == 'true') {
           this.wishlistcount();
         }
       }
     );
-      this.data = this.tokenStorage.getToken();
-      if (this.tokenStorage.getToken() != null){
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().username;
-        this.userEmail=this.tokenStorage.getUser().misc.email;
-        this.userProfile=this.tokenStorage.getUser().misc.profile_pic;
-        console.log(this.userEmail);
-        console.log(this.userProfile);
-        this.wishlistcount();
-  
+    this.data = this.tokenStorage.getToken();
+    if (this.tokenStorage.getToken() != null) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().username;
+      this.userEmail = this.tokenStorage.getUser().misc.email;
+      this.userProfile = this.tokenStorage.getUser().misc.profile_pic;
+      console.log(this.userEmail);
+      console.log(this.userProfile);
+      this.wishlistcount();
+
+    }
+
+  }
+  wishlistcount(): void {
+    this.userService.getwishlistdata().pipe().subscribe(
+      (wishlistdata: any) => {
+        this.wishlistcontent = wishlistdata.data;
+        this.wishlistresult = this.wishlistcontent;
+        this.wishlist_length = this.wishlistcontent.length;
+        console.log(this.wishlistresult);
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
       }
-  
-    }
-    wishlistcount(): void{
-      this.userService.getwishlistdata().pipe().subscribe(
-        (wishlistdata: any) => {
-          this.wishlistcontent = wishlistdata.data;
-          this.wishlistresult = this.wishlistcontent;
-          this.wishlist_length=this.wishlistcontent.length;
-          console.log(this.wishlistresult);
-        },
-        err => {
-          this.content = JSON.parse(err.error).message;
-        }
-      );
-    }
+    );
+  }
 
 }

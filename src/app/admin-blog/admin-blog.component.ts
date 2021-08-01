@@ -102,8 +102,12 @@ export class AdminBlogComponent implements OnInit {
   }
 
   createPost($event) {
+    this.showLoadingIndicator = true;
     console.log($event.target.innerHTML);
-    this._router.navigate(['/blog-create-post']);
+    this._router.navigate(['/blog-create-post']).then(() => {
+      window.location.reload();
+      this.showLoadingIndicator = false;
+    });
   }
 
   public gotoPostDetails(url, id) {

@@ -32,6 +32,7 @@ export class BlogComponent implements OnInit {
     this.blogService.getPosts().then(paginatedPosts => {
       this.paginated_posts = paginatedPosts;
       console.log(this.paginated_posts);
+      console.log(this.paginated_posts.data.length);
       this.showLoadingIndicator = false;
       //this.total_pages = Math.round(this.paginated_posts.total /this.paginated_posts.per_page) ;
     });

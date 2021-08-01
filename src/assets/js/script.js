@@ -4,6 +4,7 @@
 
     /* ----- Preloader ----- */
     function preloaderLoad() {
+        console.log($('.preloader').length);
         if($('.preloader').length){
             $('.preloader').delay(200).fadeOut(300);
         }
@@ -167,7 +168,9 @@
 
     /* ----- Mobile Nav ----- */
     $(function() {
+        //$('nav#menu').mmenu();
         $('nav#menu').mmenu();
+        
     });
 
     /* ----- Candidate SIngle Page Price Slider ----- */

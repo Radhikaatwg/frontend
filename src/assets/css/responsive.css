@@ -169,7 +169,8 @@
 	header.header-nav.style_one .ace-responsive-menu > li > a{padding: 27px 10px 27px 5px;}
 	header.header-nav.menu_style_home_three .ace-responsive-menu > li > a,
 	header.header-nav.menu_style_home_four .ace-responsive-menu > li > a{padding: 30px 20px 30px 10px;}
-	header.header-nav.menu_style_home_one ul.ace-responsive-menu li.add_listing{height: 33px;top: 25px;width: 100px;}
+	/*header.header-nav.menu_style_home_one ul.ace-responsive-menu li.add_listing{height: 33px;top: 25px;width: 100px;}*/
+	header.header-nav.menu_style_home_one ul.ace-responsive-menu li.add_listing{height: 33px;top: 0;width: 100px;}
 	header.header-nav.menu_style_home_one ul.ace-responsive-menu li.add_listing a{top: -25px;}
 	header.header-nav.menu_style_home_one.style2 ul.ace-responsive-menu li.add_listing a{line-height: .7;}
 	.sign_up_btn .btn {width: auto;}

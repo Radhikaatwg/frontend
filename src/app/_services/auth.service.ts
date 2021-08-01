@@ -40,6 +40,13 @@ export class AuthService {
     }), httpOptions);
   }
 
+mobile_verify(data): Observable<any> {
+    console.log("Mobile Verification");
+    console.log(data.form_phone);
+    return this.http.post(AUTH_API + 'auth/verify_mobile', ({
+      other_mobile_number: data.form_phone
+    }), httpOptions);
+  }
 /* Code added by Radhika Start */
 
   register_new(user): Observable<any> {
@@ -470,6 +477,17 @@ export class AuthService {
     }), httpOptions);
   }
 
+/* Code added by Radhika Start */
+  verify_mobile(number, otp:string, id:number): Observable<any> {
+    let name = ""+number
+    console.log(typeof(name), typeof(otp), typeof(id));
+    return this.http.post(AUTH_API + 'auth/verify_mob', JSON.stringify({
+      other_mobile_number: name,
+      verification_code: otp,
+      user_id: id
+    }), httpOptions);
+  }
+  /* Code added by Radhika End */								   							 
   reverify(otp): Observable<any> {
     return this.http.post(AUTH_API + 'auth/reverify', JSON.stringify({
       verification_code: otp

@@ -123,6 +123,7 @@ export class PostproductComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.showLoadingIndicator = true;
     this.form.expected_pricing="0";
 
     
@@ -209,9 +210,11 @@ export class PostproductComponent implements OnInit {
         this.amenitiesresult = this.amenities;
         console.log(this.amenitiesresult);
         //console.log(this.content);
+        this.showLoadingIndicator = false;
       },
       err => {
         this.content = JSON.parse(err.error).message;
+        this.showLoadingIndicator = false;
       }
     );
   }
