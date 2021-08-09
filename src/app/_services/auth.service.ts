@@ -424,6 +424,11 @@ mobile_verify(data): Observable<any> {
     }), httpOptions);
   }
 
+  uploadProfile_Image(formdata): Observable<any> {
+    console.log(formdata.profile_image);
+    return this.http.post(AUTH_API + 'auth/upload_profile_pic', formdata);
+  }
+
   password_update(form): Observable<any> {
     console.log(form)
     return this.http.post(AUTH_API + 'auth/change_password', JSON.stringify({

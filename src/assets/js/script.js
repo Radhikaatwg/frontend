@@ -22,7 +22,8 @@
     }
 
     /* ----- Navbar Scroll To Fixed ----- */
-    function navbarScrollfixed() {
+     function navbarScrollfixed() {
+        console.log("Scroll Bar");
         $('.navbar-scrolltofixed').scrollToFixed();
         var summaries = $('.summary');
         summaries.each(function(i) {
@@ -286,6 +287,7 @@
 
     /* ----- Wow animation ----- */
     function wowAnimation() {
+        console.log("wow Animation");
         var wow = new WOW({
             animateClass: 'animated',
             mobile: true, // trigger animations on mobile devices (default is true)
@@ -942,6 +944,7 @@
 
     /* ----- Scroll To top ----- */
     function scrollToTop() {
+        console.log("Scroll To Top");
         $(window).scroll(function(){
             if ($(this).scrollTop() > 600) {
                 $('.scrollToHome').fadeIn();
@@ -1009,6 +1012,7 @@
    When document is ready, do
    ====== */
     $(document).on('ready', function() {
+        console.log("Ready");
         // add your functions
         navbarScrollfixed();
         scrollToTop();

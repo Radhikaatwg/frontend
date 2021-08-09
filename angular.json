@@ -46,6 +46,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/chart.js/dist/chart.min.js",
               "node_modules/tinymce/tinymce.min.js"
             ]
